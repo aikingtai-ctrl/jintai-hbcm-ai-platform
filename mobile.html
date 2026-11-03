@@ -24,27 +24,31 @@ html[data-font="standard"] { --base-size: 15.5px; }
 html[data-font="large"] { --base-size: 17px; }
 html[data-font="xlarge"] { --base-size: 18.5px; }
 
-/* 1. 默认：IMAX 银幕暗房 · 黑金胶片导播版 (cinema-imax) */
+/* 1. 默认：IMAX 银幕暗房 · 3D 透明流动液态玻璃版 (cinema-imax) */
 html[data-theme="cinema-imax"] {
-  --bg-outer: #030508;
-  --bg-primary: #07090e;
-  --bg-secondary: #0e131f;
-  --bg-card: rgba(17, 23, 36, 0.96);
-  --bg-card-hover: rgba(24, 33, 52, 0.99);
-  --bg-glass: rgba(8, 11, 19, 0.98);
-  --text-primary: #f4f6fb;
-  --text-secondary: #bac4d6;
-  --text-muted: #7f8ca3;
+  --bg-outer: #03050a;
+  --bg-primary: #060913;
+  --bg-secondary: rgba(15, 23, 42, 0.55);
+  --bg-card: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(15, 23, 42, 0.52) 50%, rgba(56, 189, 248, 0.08) 100%);
+  --bg-card-hover: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(20, 30, 55, 0.62) 50%, rgba(245, 158, 11, 0.14) 100%);
+  --bg-glass: rgba(8, 12, 24, 0.68);
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
   --accent-primary: #f59e0b;
-  --accent-secondary: #22d3ee;
+  --accent-secondary: #38bdf8;
   --accent-tertiary: #a855f7;
   --accent-success: #10b981;
   --accent-danger: #f43f5e;
-  --border-color: rgba(245, 158, 11, 0.28);
-  --border-subtle: rgba(255, 255, 255, 0.09);
-  --badge-bg: rgba(245, 158, 11, 0.15);
-  --badge-text: #fbbf24;
-  --hero-gradient: radial-gradient(circle at 20% 12%, rgba(245, 158, 11, 0.18) 0%, rgba(34, 211, 238, 0.10) 45%, rgba(7, 9, 14, 0.98) 85%);
+  --border-color: rgba(255, 255, 255, 0.18);
+  --border-subtle: rgba(255, 255, 255, 0.12);
+  --badge-bg: rgba(245, 158, 11, 0.16);
+  --badge-text: #fcd34d;
+  --shadow-card:
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.32),
+    inset 0 -1px 2px rgba(56, 189, 248, 0.16),
+    0 18px 36px -8px rgba(0, 0, 0, 0.75);
+  --hero-gradient: radial-gradient(circle at 18% 12%, rgba(245, 158, 11, 0.24) 0%, rgba(56, 189, 248, 0.16) 45%, rgba(6, 9, 19, 0.85) 88%);
 }
 
 /* 2. 瑞士国际主义 · 电影工业场记网格版 (swiss-grid) */
@@ -487,11 +491,30 @@ html[data-theme="tactile-archival"] .m-tab-btn.active {
   gap: 0.78rem;
 }
 .m-card {
+  position: relative;
+  overflow: hidden;
   background: var(--bg-card);
+  backdrop-filter: blur(22px) saturate(185%);
+  -webkit-backdrop-filter: blur(22px) saturate(185%);
   border: var(--border-width) solid var(--border-color);
   border-radius: var(--radius-card);
   padding: 0.95rem 0.95rem;
   box-shadow: var(--shadow-card);
+}
+.m-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 55%;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.75), var(--accent-secondary), transparent);
+  animation: mLiquidSweep 7s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes mLiquidSweep {
+  0% { transform: translateX(-120%); }
+  50%, 100% { transform: translateX(240%); }
 }
 .m-card-head {
   display: flex;

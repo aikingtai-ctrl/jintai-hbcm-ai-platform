@@ -1,945 +1,1312 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="cinema-imax" data-font="large">
+<html lang="zh-CN" data-theme="cinema-imax" data-font="comfortable">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>化繁为简 · 信手拈来｜金泰 AI 影视艺术全栈智算平台 · 面向河传师生能力全景方案</title>
+<title>金泰 AI 影视艺术全栈智算平台 · 面向河北传媒学院（河传）师生能力全景动态展映台</title>
 <style>
-:root {
-  --font-sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
-  --font-serif: "Songti SC", "Noto Serif SC", "Source Han Serif SC", "SimSun", Georgia, serif;
-  --font-mono: "JetBrains Mono", "Cascadia Code", "Consolas", monospace;
-  --base-size: 18px;
-  --radius-card: 14px;
-  --radius-pill: 999px;
-  --border-width: 1px;
-  --shadow-card: 0 18px 42px rgba(0, 0, 0, 0.45);
-  --transition: 0.28s cubic-bezier(0.22, 1, 0.36, 1);
-}
+  /* ==========================================================================
+     0. 立体动态透明流动玻璃 (3D Spatial Liquid Glass UI/UX) × 五大审美主题变量
+     ========================================================================== */
+  :root {
+    --font-sans: "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", serif;
+    --font-mono: "JetBrains Mono", "Cascadia Code", "Consolas", monospace;
+    --base-size: 18.5px;
+    --line-height: 1.72;
+    --radius-card: 22px;
+    --radius-pill: 999px;
+    --transition-smooth: all 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  }
 
-/* 字号档位控制（遵循大字护眼规范） */
-html[data-font="standard"] { --base-size: 16.5px; }
-html[data-font="large"] { --base-size: 18.5px; }
-html[data-font="xlarge"] { --base-size: 21px; }
+  html[data-font="standard"] { --base-size: 16.5px; }
+  html[data-font="comfortable"] { --base-size: 18.5px; }
+  html[data-font="large"] { --base-size: 21px; }
 
-/* 1. 默认：IMAX 银幕暗房 · 黑金胶片导播版 (cinema-imax) */
-html[data-theme="cinema-imax"] {
-  --bg-primary: #07090e;
-  --bg-secondary: #0d111a;
-  --bg-card: rgba(17, 23, 36, 0.88);
-  --bg-card-hover: rgba(24, 33, 52, 0.95);
-  --bg-glass: rgba(11, 15, 24, 0.85);
-  --text-primary: #f3f5f9;
-  --text-secondary: #b8c2d4;
-  --text-muted: #7e8b9f;
-  --accent-primary: #f59e0b;      /* ARRI Warm Amber Gold */
-  --accent-secondary: #22d3ee;    /* Anamorphic Teal Cyan */
-  --accent-tertiary: #a855f7;     /* Cinema Violet */
-  --accent-success: #10b981;
-  --accent-danger: #f43f5e;
-  --border-color: rgba(245, 158, 11, 0.24);
-  --border-subtle: rgba(255, 255, 255, 0.09);
-  --badge-bg: rgba(245, 158, 11, 0.14);
-  --badge-text: #fbbf24;
-  --hero-gradient: radial-gradient(circle at 18% 20%, rgba(245, 158, 11, 0.16) 0%, rgba(34, 211, 238, 0.10) 42%, rgba(7, 9, 14, 0.98) 80%);
-}
+  /* 主题 1：🎬 IMAX 银幕流光黑金液态玻璃版（默认） */
+  html[data-theme="cinema-imax"] {
+    --bg-primary: #050811;
+    --bg-secondary: rgba(12, 18, 34, 0.42);
+    --bg-card: linear-gradient(135deg, rgba(255, 255, 255, 0.11) 0%, rgba(15, 23, 42, 0.48) 45%, rgba(56, 189, 248, 0.07) 100%);
+    --bg-card-hover: linear-gradient(135deg, rgba(255, 255, 255, 0.17) 0%, rgba(20, 30, 55, 0.56) 45%, rgba(245, 158, 11, 0.12) 100%);
+    --bg-glass: rgba(8, 13, 26, 0.62);
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --accent-primary: #f59e0b;
+    --accent-secondary: #38bdf8;
+    --accent-tertiary: #10b981;
+    --accent-violet: #a855f7;
+    --accent-glow: rgba(245, 158, 11, 0.32);
+    --border-subtle: rgba(255, 255, 255, 0.16);
+    --border-strong: rgba(245, 158, 11, 0.58);
+    --glass-specular-top: rgba(255, 255, 255, 0.36);
+    --glass-specular-bottom: rgba(56, 189, 248, 0.22);
+    --shadow-card:
+      inset 0 1.5px 1px rgba(255, 255, 255, 0.32),
+      inset 0 -1.5px 2px rgba(56, 189, 248, 0.16),
+      inset 0 0 28px rgba(255, 255, 255, 0.03),
+      0 24px 48px -12px rgba(0, 0, 0, 0.78),
+      0 0 24px -4px rgba(56, 189, 248, 0.12);
+    --shadow-card-hover:
+      inset 0 1.5px 2px rgba(255, 255, 255, 0.52),
+      inset 0 -1.5px 3px rgba(245, 158, 11, 0.28),
+      inset 0 0 36px rgba(245, 158, 11, 0.08),
+      0 32px 64px -12px rgba(0, 0, 0, 0.88),
+      0 0 36px -2px rgba(245, 158, 11, 0.28);
+    --badge-bg: rgba(245, 158, 11, 0.16);
+    --badge-text: #fcd34d;
+  }
 
-/* 2. 瑞士国际主义 · 电影工业场记网格版 (swiss-grid) */
-html[data-theme="swiss-grid"] {
-  --bg-primary: #f4f1ea;
-  --bg-secondary: #eae5da;
-  --bg-card: #ffffff;
-  --bg-card-hover: #fcfaf5;
-  --bg-glass: rgba(244, 241, 234, 0.94);
-  --text-primary: #111318;
-  --text-secondary: #2e3440;
-  --text-muted: #5e6778;
-  --accent-primary: #d9232e;      /* Swiss Cinema Red */
-  --accent-secondary: #0f4c81;    /* Cobalt Blueprint Blue */
-  --accent-tertiary: #111318;
-  --accent-success: #0d7a4f;
-  --accent-danger: #c81e1e;
-  --border-color: #111318;
-  --border-subtle: rgba(17, 19, 24, 0.22);
-  --badge-bg: #111318;
-  --badge-text: #ffffff;
-  --radius-card: 0px;
-  --radius-pill: 0px;
-  --border-width: 2px;
-  --shadow-card: 6px 6px 0px #111318;
-  --hero-gradient: linear-gradient(135deg, #f4f1ea 0%, #e8e2d5 100%);
-}
+  /* 主题 2：📐 瑞士国际主义冰晶玻璃网格版 */
+  html[data-theme="swiss-grid"] {
+    --bg-primary: #eef2f9;
+    --bg-secondary: rgba(255, 255, 255, 0.55);
+    --bg-card: linear-gradient(135deg, rgba(255, 255, 255, 0.78) 0%, rgba(241, 245, 249, 0.58) 55%, rgba(224, 242, 254, 0.65) 100%);
+    --bg-card-hover: linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(241, 245, 249, 0.75) 55%, rgba(254, 226, 226, 0.65) 100%);
+    --bg-glass: rgba(255, 255, 255, 0.72);
+    --text-primary: #0f172a;
+    --text-secondary: #1e293b;
+    --text-muted: #475569;
+    --accent-primary: #dc2626;
+    --accent-secondary: #0284c7;
+    --accent-tertiary: #059669;
+    --accent-violet: #7c3aed;
+    --accent-glow: rgba(220, 38, 38, 0.18);
+    --border-subtle: rgba(15, 23, 42, 0.15);
+    --border-strong: rgba(220, 38, 38, 0.65);
+    --glass-specular-top: rgba(255, 255, 255, 0.95);
+    --glass-specular-bottom: rgba(2, 132, 199, 0.25);
+    --shadow-card:
+      inset 0 2px 2px rgba(255, 255, 255, 0.9),
+      inset 0 -1px 2px rgba(15, 23, 42, 0.08),
+      0 20px 42px -12px rgba(15, 23, 42, 0.12);
+    --shadow-card-hover:
+      inset 0 2px 3px rgba(255, 255, 255, 1),
+      0 28px 54px -12px rgba(220, 38, 38, 0.22);
+    --badge-bg: rgba(220, 38, 38, 0.10);
+    --badge-text: #b91c1c;
+  }
 
-/* 3. 2027审美④ 留白·宋式极简水墨电影版 (song-ink) */
-html[data-theme="song-ink"] {
-  --bg-primary: #f7f4eb;
-  --bg-secondary: #efeadd;
-  --bg-card: rgba(252, 250, 244, 0.94);
-  --bg-card-hover: #ffffff;
-  --bg-glass: rgba(247, 244, 235, 0.92);
-  --text-primary: #1c2024;
-  --text-secondary: #3d464d;
-  --text-muted: #6c767d;
-  --accent-primary: #2c5e66;      /* 汝窑天青 Celadon */
-  --accent-secondary: #b91c1c;    /* 朱砂印泥 Cinnabar Seal */
-  --accent-tertiary: #5c4b37;     /* 宿墨焦茶 */
-  --accent-success: #2c6e49;
-  --accent-danger: #b91c1c;
-  --border-color: rgba(44, 94, 102, 0.42);
-  --border-subtle: rgba(28, 32, 36, 0.16);
-  --badge-bg: rgba(185, 28, 28, 0.10);
-  --badge-text: #991b1b;
-  --radius-card: 4px;
-  --shadow-card: 0 10px 28px rgba(44, 94, 102, 0.08);
-  --hero-gradient: radial-gradient(circle at 80% 15%, rgba(44, 94, 102, 0.12) 0%, rgba(247, 244, 235, 0.96) 72%);
-}
+  /* 主题 3：🏔️ 2027 留白·宋式冰玉琉璃版 */
+  html[data-theme="song-ink"] {
+    --bg-primary: #f3f0e8;
+    --bg-secondary: rgba(245, 242, 234, 0.58);
+    --bg-card: linear-gradient(135deg, rgba(255, 255, 255, 0.72) 0%, rgba(245, 242, 234, 0.52) 55%, rgba(215, 228, 224, 0.55) 100%);
+    --bg-card-hover: linear-gradient(135deg, rgba(255, 255, 255, 0.88) 0%, rgba(245, 242, 234, 0.72) 55%, rgba(180, 83, 9, 0.12) 100%);
+    --bg-glass: rgba(246, 244, 238, 0.76);
+    --text-primary: #1c1917;
+    --text-secondary: #292524;
+    --text-muted: #57534e;
+    --accent-primary: #9a3412;
+    --accent-secondary: #2f5d62;
+    --accent-tertiary: #3f6212;
+    --accent-violet: #6b21a8;
+    --accent-glow: rgba(154, 52, 18, 0.16);
+    --border-subtle: rgba(28, 25, 23, 0.16);
+    --border-strong: rgba(154, 52, 18, 0.55);
+    --glass-specular-top: rgba(255, 255, 255, 0.88);
+    --glass-specular-bottom: rgba(47, 93, 98, 0.22);
+    --shadow-card:
+      inset 0 1.5px 2px rgba(255, 255, 255, 0.85),
+      0 18px 40px -12px rgba(28, 25, 23, 0.10);
+    --shadow-card-hover:
+      inset 0 2px 3px rgba(255, 255, 255, 0.95),
+      0 26px 52px -12px rgba(154, 52, 18, 0.18);
+    --badge-bg: rgba(154, 52, 18, 0.10);
+    --badge-text: #9a3412;
+  }
 
-/* 4. 2027审美① 笨拙·新野兽派孔版撞色版 (neo-risograph) */
-html[data-theme="neo-risograph"] {
-  --bg-primary: #fbf7ec;
-  --bg-secondary: #f3ebd6;
-  --bg-card: #fffdf7;
-  --bg-card-hover: #ffffff;
-  --bg-glass: rgba(251, 247, 236, 0.95);
-  --text-primary: #121316;
-  --text-secondary: #292b30;
-  --text-muted: #575b66;
-  --accent-primary: #ff2e63;      /* Risograph Fluorescent Pink */
-  --accent-secondary: #1d4ed8;    /* Risograph Cobalt Blue */
-  --accent-tertiary: #059669;     /* Risograph Kelly Green */
-  --accent-success: #047857;
-  --accent-danger: #e11d48;
-  --border-color: #121316;
-  --border-subtle: rgba(18, 19, 22, 0.28);
-  --badge-bg: #ffde59;
-  --badge-text: #121316;
-  --radius-card: 10px;
-  --border-width: 2.5px;
-  --shadow-card: 5px 5px 0px #1d4ed8, -2px -2px 0px #ff2e63;
-  --hero-gradient: radial-gradient(circle at 20% 20%, rgba(255, 46, 99, 0.12) 0%, rgba(29, 78, 216, 0.10) 55%, #fbf7ec 100%);
-}
+  /* 主题 4：🎨 2027 笨拙·新野兽派霓虹炫光玻璃版 */
+  html[data-theme="neo-risograph"] {
+    --bg-primary: #0f0722;
+    --bg-secondary: rgba(28, 14, 54, 0.48);
+    --bg-card: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(30, 15, 60, 0.52) 50%, rgba(255, 51, 102, 0.14) 100%);
+    --bg-card-hover: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(40, 20, 80, 0.62) 50%, rgba(0, 245, 212, 0.18) 100%);
+    --bg-glass: rgba(18, 9, 38, 0.68);
+    --text-primary: #ffffff;
+    --text-secondary: #f1f5f9;
+    --text-muted: #cbd5e1;
+    --accent-primary: #ff3366;
+    --accent-secondary: #00f5d4;
+    --accent-tertiary: #fee440;
+    --accent-violet: #c084fc;
+    --accent-glow: rgba(255, 51, 102, 0.38);
+    --border-subtle: rgba(0, 245, 212, 0.35);
+    --border-strong: #ff3366;
+    --glass-specular-top: rgba(255, 255, 255, 0.45);
+    --glass-specular-bottom: rgba(0, 245, 212, 0.35);
+    --shadow-card:
+      inset 0 1.5px 2px rgba(255, 255, 255, 0.38),
+      inset 0 -1.5px 2px rgba(0, 245, 212, 0.28),
+      6px 6px 0px rgba(0, 245, 212, 0.45),
+      0 24px 48px rgba(0, 0, 0, 0.75);
+    --shadow-card-hover:
+      inset 0 2px 3px rgba(255, 255, 255, 0.55),
+      8px 8px 0px rgba(255, 51, 102, 0.75),
+      0 28px 56px rgba(0, 0, 0, 0.85);
+    --badge-bg: rgba(255, 51, 102, 0.25);
+    --badge-text: #fee440;
+  }
 
-/* 5. 2027审美②&③ 触觉·盲压浮雕与半调档案版 (tactile-archival) */
-html[data-theme="tactile-archival"] {
-  --bg-primary: #e6e1d6;
-  --bg-secondary: #dad3c5;
-  --bg-card: #ece8de;
-  --bg-card-hover: #f3efe6;
-  --bg-glass: rgba(230, 225, 214, 0.92);
-  --text-primary: #1e1b18;
-  --text-secondary: #3b352e;
-  --text-muted: #665d52;
-  --accent-primary: #8c3b2b;      /* Stamped Copper Rust */
-  --accent-secondary: #2b4c59;    /* Archival Steel Ink */
-  --accent-tertiary: #4a3f35;
-  --accent-success: #2d5a43;
-  --accent-danger: #9e2a2b;
-  --border-color: rgba(30, 27, 24, 0.35);
-  --border-subtle: rgba(30, 27, 24, 0.16);
-  --badge-bg: #d5cdbd;
-  --badge-text: #1e1b18;
-  --radius-card: 12px;
-  --shadow-card: inset 2px 2px 5px rgba(255,255,255,0.7), inset -3px -3px 7px rgba(0,0,0,0.12), 0 8px 20px rgba(0,0,0,0.08);
-  --hero-gradient: linear-gradient(180deg, #ded8ca 0%, #e6e1d6 100%);
-}
+  /* 主题 5：🏛️ 2027 琥珀熏色水晶玻璃档案版 */
+  html[data-theme="tactile-archival"] {
+    --bg-primary: #14110f;
+    --bg-secondary: rgba(34, 29, 25, 0.52);
+    --bg-card: linear-gradient(135deg, rgba(255, 248, 235, 0.12) 0%, rgba(36, 30, 26, 0.55) 50%, rgba(217, 119, 6, 0.10) 100%);
+    --bg-card-hover: linear-gradient(135deg, rgba(255, 248, 235, 0.18) 0%, rgba(44, 37, 32, 0.65) 50%, rgba(217, 119, 6, 0.18) 100%);
+    --bg-glass: rgba(24, 20, 18, 0.72);
+    --text-primary: #f5f5f4;
+    --text-secondary: #e7e5e4;
+    --text-muted: #a8a29e;
+    --accent-primary: #fb923c;
+    --accent-secondary: #38bdf8;
+    --accent-tertiary: #4ade80;
+    --accent-violet: #c084fc;
+    --accent-glow: rgba(251, 146, 60, 0.28);
+    --border-subtle: rgba(255, 248, 235, 0.18);
+    --border-strong: rgba(251, 146, 60, 0.62);
+    --glass-specular-top: rgba(255, 248, 235, 0.35);
+    --glass-specular-bottom: rgba(251, 146, 60, 0.22);
+    --shadow-card:
+      inset 0 1.5px 2px rgba(255, 248, 235, 0.28),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.65),
+      0 22px 44px -10px rgba(0, 0, 0, 0.82);
+    --shadow-card-hover:
+      inset 0 2px 3px rgba(255, 248, 235, 0.45),
+      0 30px 60px -10px rgba(0, 0, 0, 0.9);
+    --badge-bg: rgba(251, 146, 60, 0.18);
+    --badge-text: #fdba74;
+  }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: var(--base-size); scroll-behavior: smooth; }
-body {
-  font-family: var(--font-sans);
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  line-height: 1.68;
-  overflow-x: hidden;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-html[data-theme="song-ink"] h1,
-html[data-theme="song-ink"] h2,
-html[data-theme="song-ink"] .serif-title {
-  font-family: var(--font-serif);
-}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html {
+    font-size: var(--base-size);
+    scroll-behavior: smooth;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    line-height: var(--line-height);
+  }
+  body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    background-color: var(--bg-primary);
+  }
 
-/* 顶部常驻电影监视器导播栏 (Cinema HUD Topbar) */
-.hud-topbar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: var(--bg-glass);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border-bottom: var(--border-width) solid var(--border-color);
-  padding: 0.55rem 1.4rem 0.6rem;
-}
-.hud-inner {
-  max-width: 1460px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 0.48rem;
-}
-.hud-top-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.6rem 1rem;
-}
-.hud-brand {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  white-space: nowrap;
-}
-.rec-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #ef4444;
-  box-shadow: 0 0 12px #ef4444;
-  animation: pulseRec 1.6s infinite;
-  flex-shrink: 0;
-}
-@keyframes pulseRec {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.35; transform: scale(0.86); }
-}
-.brand-title {
-  font-weight: 800;
-  font-size: 0.98rem;
-  letter-spacing: 0.03em;
-  white-space: nowrap;
-}
-.timecode-pill {
-  font-family: var(--font-mono);
-  font-size: 0.76rem;
-  padding: 0.16rem 0.58rem;
-  background: var(--badge-bg);
-  color: var(--badge-text);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-pill);
-  font-weight: 600;
-  white-space: nowrap;
-}
-.hud-nav {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 0.38rem;
-}
-@media (max-width: 1100px) {
-  .hud-nav {
+  /* ==========================================================================
+     1. 全屏动态液态流光与体积焦散背景层 (#bgCanvas + 3D 浮动极光球)
+     ========================================================================== */
+  #bgCanvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.92;
+  }
+
+  /* 体积液态流光球，为透明玻璃提供真实的背景折射彩光 */
+  .liquid-ambient-orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(85px);
+    pointer-events: none;
+    z-index: 0;
+    mix-blend-mode: screen;
+    opacity: 0.42;
+    animation: orbFloat 18s ease-in-out infinite alternate;
+  }
+  html[data-theme="swiss-grid"] .liquid-ambient-orb,
+  html[data-theme="song-ink"] .liquid-ambient-orb {
+    mix-blend-mode: multiply;
+    opacity: 0.22;
+  }
+  .orb-1 {
+    width: 520px; height: 520px;
+    top: -120px; left: -100px;
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.55), rgba(217, 119, 6, 0.08) 70%);
+  }
+  .orb-2 {
+    width: 600px; height: 600px;
+    top: 28%; right: -160px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.48), rgba(14, 165, 233, 0.06) 70%);
+    animation-delay: -6s;
+  }
+  .orb-3 {
+    width: 540px; height: 540px;
+    bottom: -140px; left: 22%;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.42), rgba(16, 185, 129, 0.12) 70%);
+    animation-delay: -12s;
+  }
+  @keyframes orbFloat {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(45px, -35px, 0) scale(1.12); }
+    100% { transform: translate3d(-35px, 40px, 0) scale(0.94); }
+  }
+
+  @keyframes liquidSheen {
+    0% { transform: translateX(-120%); }
+    50%, 100% { transform: translateX(260%); }
+  }
+  @keyframes borderPulse {
+    0%, 100% { opacity: 0.55; }
+    50% { opacity: 1; }
+  }
+
+  /* ==========================================================================
+     2. 顶部悬浮立体液态玻璃主控台 (HUD Spatial Glass Bar)
+     ========================================================================== */
+  .hud-header, .hud-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--bg-glass);
+    backdrop-filter: blur(28px) saturate(200%);
+    -webkit-backdrop-filter: blur(28px) saturate(200%);
+    border-bottom: 1px solid var(--border-subtle);
+    box-shadow:
+      inset 0 1px 0 var(--glass-specular-top),
+      0 14px 36px -8px rgba(0, 0, 0, 0.55);
+    padding: 0.55rem 1.4rem;
+    transition: var(--transition-smooth);
+  }
+  .hud-inner {
+    max-width: 1560px;
+    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.65rem;
   }
-}
-.hud-nav a {
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-size: 0.78rem;
-  font-weight: 700;
-  padding: 0.3rem 0.5rem;
-  border-radius: var(--radius-pill);
-  border: 1px solid var(--border-subtle);
-  background: rgba(255, 255, 255, 0.02);
-  text-align: center;
-  white-space: nowrap;
-  transition: var(--transition);
-}
-.hud-nav a:hover {
-  color: var(--accent-primary);
-  border-color: var(--border-color);
-  background: var(--badge-bg);
-}
-.hud-controls {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.38rem;
-  white-space: nowrap;
-}
-.ctrl-select, .ctrl-btn {
-  font-family: var(--font-sans);
-  font-size: 0.78rem;
-  font-weight: 700;
-  padding: 0.3rem 0.66rem;
-  border-radius: var(--radius-pill);
-  border: var(--border-width) solid var(--border-color);
-  background: var(--bg-card);
-  color: var(--text-primary);
-  cursor: pointer;
-  white-space: nowrap;
-  transition: var(--transition);
-}
-.ctrl-btn:hover, .ctrl-select:hover {
-  border-color: var(--accent-primary);
-  color: var(--accent-primary);
-}
-.ctrl-btn.active {
-  background: var(--accent-primary);
-  color: #fff;
-  border-color: var(--accent-primary);
-}
-html[data-theme="cinema-imax"] .ctrl-btn.active {
-  color: #07090e;
-}
+  .hud-top-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .brand-cluster, .hud-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .rec-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #ef4444;
+    box-shadow: 0 0 14px #ef4444, 0 0 24px rgba(239, 68, 68, 0.6);
+    animation: recBlink 1.8s infinite;
+  }
+  @keyframes recBlink {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.35; transform: scale(0.86); }
+  }
+  .brand-title {
+    font-weight: 800;
+    font-size: 1.02rem;
+    letter-spacing: 0.03em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+  }
+  .timecode-box, .timecode-pill {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    padding: 0.18rem 0.62rem;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.38);
+    border: 1px solid var(--border-subtle);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.18);
+    color: var(--accent-primary);
+    letter-spacing: 0.06em;
+  }
 
-/* 主容器 */
-.container {
-  max-width: 1460px;
-  margin: 0 auto;
-  padding: 0 1.6rem;
-}
+  .hud-nav {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.38rem;
+    width: 100%;
+    order: 3;
+    padding-top: 0.42rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .hud-nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.28rem 0.55rem;
+    border-radius: var(--radius-pill);
+    transition: var(--transition-smooth);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.02));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+  }
+  .hud-nav a:hover {
+    color: var(--text-primary);
+    border-color: var(--border-strong);
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.24), rgba(56, 189, 248, 0.14));
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.45),
+      0 6px 18px -4px var(--accent-glow);
+    transform: translateY(-1.5px);
+  }
 
-/* 银幕级首屏 Hero Stage */
-.hero-stage {
-  position: relative;
-  background: var(--hero-gradient);
-  border-bottom: var(--border-width) solid var(--border-color);
-  padding: 2.2rem 0 2.4rem;
-  overflow: hidden;
-}
-#heroCanvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  opacity: 0.45;
-}
-/* 电影取景框四角准星 */
-.viewfinder-frame {
-  position: relative;
-  border: var(--border-width) solid var(--border-color);
-  border-radius: var(--radius-card);
-  padding: 2.2rem 2.4rem;
-  background: var(--bg-card);
-  box-shadow: var(--shadow-card);
-  z-index: 2;
-}
-.vf-corner {
-  position: absolute;
-  width: 22px;
-  height: 22px;
-  border-color: var(--accent-primary);
-  border-style: solid;
-  pointer-events: none;
-}
-.vf-tl { top: 12px; left: 12px; border-width: 3px 0 0 3px; }
-.vf-tr { top: 12px; right: 12px; border-width: 3px 3px 0 0; }
-.vf-bl { bottom: 12px; left: 12px; border-width: 0 0 3px 3px; }
-.vf-br { bottom: 12px; right: 12px; border-width: 0 3px 3px 0; }
+  .hud-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+  }
+  .ctrl-select, .ctrl-btn {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(15, 23, 42, 0.55));
+    backdrop-filter: blur(16px);
+    color: var(--text-primary);
+    border: 1px solid var(--border-subtle);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    padding: 0.28rem 0.68rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.78rem;
+    font-family: var(--font-sans);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+  }
+  .ctrl-select option {
+    background: #0f172a;
+    color: #f8fafc;
+  }
+  .ctrl-select:hover, .ctrl-btn:hover {
+    border-color: var(--accent-primary);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4), 0 0 16px var(--accent-glow);
+    transform: translateY(-1px);
+  }
+  .ctrl-btn.active {
+    background: linear-gradient(135deg, var(--accent-primary), #d97706);
+    color: #090d16;
+    font-weight: 700;
+    border-color: var(--accent-primary);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.55), 0 4px 16px var(--accent-glow);
+  }
 
-.hero-eyebrow-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.6rem;
-  margin-bottom: 1.15rem;
-}
-.hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.3rem 0.88rem;
-  background: var(--badge-bg);
-  color: var(--badge-text);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-pill);
-  font-size: 0.82rem;
-  font-weight: 700;
-  white-space: nowrap;
-}
-.hero-eyebrow.secondary {
-  background: rgba(34, 211, 238, 0.11);
-  color: var(--accent-secondary);
-  border-color: rgba(34, 211, 238, 0.35);
-}
-.hero-title {
-  font-size: clamp(1.65rem, 2.35vw, 2.38rem);
-  font-weight: 900;
-  line-height: 1.34;
-  letter-spacing: -0.01em;
-  margin-bottom: 1.35rem;
-  text-wrap: balance;
-}
-.hero-title-line1 {
-  display: block;
-  font-size: 0.82em;
-  color: var(--text-secondary);
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  margin-bottom: 0.28rem;
-}
-.hero-title-line2 {
-  display: block;
-  white-space: nowrap;
-}
-@media (max-width: 1100px) {
-  .hero-title-line2 { white-space: normal; }
-}
-.hero-title .highlight {
-  color: var(--accent-primary);
-  text-decoration: underline;
-  text-decoration-color: rgba(245, 158, 11, 0.38);
-  text-underline-offset: 6px;
-  white-space: nowrap;
-}
-.hero-split-body {
-  display: grid;
-  grid-template-columns: 1.38fr 1fr;
-  gap: 1.35rem;
-  align-items: stretch;
-  margin-bottom: 1.55rem;
-}
-@media (max-width: 1024px) {
-  .hero-split-body { grid-template-columns: 1fr; }
-}
-.hero-subtitle {
-  font-size: 0.98rem;
-  color: var(--text-secondary);
-  line-height: 1.76;
-  padding: 1.15rem 1.35rem;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-card);
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.hero-Subtitle-strong {
-  color: var(--text-primary);
-}
-.hero-quote-box {
-  padding: 1.15rem 1.35rem;
-  border-left: 4px solid var(--accent-primary);
-  background: var(--bg-secondary);
-  border-top: 1px solid var(--border-subtle);
-  border-right: 1px solid var(--border-subtle);
-  border-bottom: 1px solid var(--border-subtle);
-  border-radius: 0 var(--radius-card) var(--radius-card) 0;
-  margin: 0;
-  font-size: 0.96rem;
-  line-height: 1.72;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.hero-quote-box strong {
-  color: var(--accent-primary);
-}
+  /* ==========================================================================
+     3. 通用立体液态玻璃容器与 3D 悬浮折射卡片系统
+     ========================================================================== */
+  .container {
+    max-width: 1520px;
+    margin: 0 auto;
+    padding: 0 1.6rem;
+    position: relative;
+    z-index: 2;
+  }
+  section {
+    padding: 3.4rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    scroll-margin-top: 128px;
+    position: relative;
+  }
 
-/* 顶部六维实时指标遥测带 */
-.telemetry-grid {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 0.85rem;
-  margin-top: 0;
-}
-@media (max-width: 1280px) {
-  .telemetry-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-}
-@media (max-width: 720px) {
-  .telemetry-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-.telemetry-card {
-  padding: 0.95rem 1rem;
-  background: var(--bg-secondary);
-  border: var(--border-width) solid var(--border-subtle);
-  border-radius: var(--radius-card);
-  transition: var(--transition);
-}
-.telemetry-card:hover {
-  border-color: var(--accent-primary);
-  transform: translateY(-3px);
-}
-.telemetry-val {
-  font-family: var(--font-mono);
-  font-size: 1.22rem;
-  font-weight: 900;
-  color: var(--accent-primary);
-  line-height: 1.15;
-  white-space: nowrap;
-}
-.telemetry-label {
-  font-size: 0.84rem;
-  font-weight: 700;
-  margin-top: 0.32rem;
-  color: var(--text-primary);
-  line-height: 1.3;
-}
-.telemetry-sub {
-  font-size: 0.72rem;
-  color: var(--text-muted);
-  margin-top: 0.22rem;
-  line-height: 1.4;
-}
+  /* 3D 立体透明流动玻璃核心特效（共用类与核心卡片） */
+  .hero-frame,
+  .viewfinder-frame,
+  .cine-card,
+  .model-card,
+  .skill-card,
+  .vault-card,
+  .mech-step,
+  .ast-topo-panel,
+  .topology-stage,
+  .ast-detail-panel,
+  .inspector-panel,
+  .vs-col,
+  .simulator-box,
+  .multi-demo-stage {
+    position: relative;
+    background: var(--bg-card);
+    backdrop-filter: blur(26px) saturate(195%);
+    -webkit-backdrop-filter: blur(26px) saturate(195%);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
 
-/* 通用章节 Section 样式 */
-.section-block {
-  padding: 2.9rem 0;
-  scroll-margin-top: 128px;
-  border-bottom: var(--border-width) solid var(--border-subtle);
-}
-.section-header {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 0.85rem;
-  margin-bottom: 1.65rem;
-}
-.sec-head-top {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 0.85rem 1.2rem;
-}
-.sec-tag {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: var(--accent-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-.sec-title {
-  font-size: clamp(1.38rem, 2.0vw, 1.88rem);
-  font-weight: 800;
-  margin-top: 0.2rem;
-  line-height: 1.32;
-  text-wrap: balance;
-}
-.sec-desc {
-  color: var(--text-secondary);
-  font-size: 0.95rem;
-  line-height: 1.72;
-  max-width: 1180px;
-  margin-top: 0;
-}
+  /* 鼠标跟随立体玻璃折射高光层 */
+  .cine-card::before,
+  .model-card::before,
+  .skill-card::before,
+  .vault-card::before,
+  .mech-step::before,
+  .vs-col::before,
+  .multi-demo-stage::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      480px circle at var(--mx, 50%) var(--my, 30%),
+      rgba(255, 255, 255, 0.18),
+      rgba(56, 189, 248, 0.09) 38%,
+      transparent 72%
+    );
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .cine-card:hover::before,
+  .model-card:hover::before,
+  .skill-card:hover::before,
+  .vault-card:hover::before,
+  .mech-step:hover::before,
+  .vs-col:hover::before,
+  .multi-demo-stage:hover::before {
+    opacity: 1;
+  }
 
-/* 卡片网格与标签（严锁2列与3列矩阵，杜绝字号放大后单卡落单） */
-.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
-.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; }
-.grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.1rem; }
+  /* 顶部流动水晶棱镜高光边 */
+  .viewfinder-frame::after,
+  .cine-card::after,
+  .model-card::after,
+  .skill-card::after,
+  .vault-card::after,
+  .multi-demo-stage::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 55%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.88), var(--accent-secondary), transparent);
+    animation: liquidSheen 7.5s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
 
-@media (max-width: 1160px) {
-  .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-@media (max-width: 820px) {
-  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-}
+  .viewfinder-frame > *,
+  .cine-card > *,
+  .model-card > *,
+  .skill-card > *,
+  .vault-card > *,
+  .mech-step > *,
+  .multi-demo-stage > * {
+    position: relative;
+    z-index: 2;
+  }
 
-.cine-card {
-  background: var(--bg-card);
-  border: var(--border-width) solid var(--border-color);
-  border-radius: var(--radius-card);
-  padding: 1.4rem 1.5rem;
-  box-shadow: var(--shadow-card);
-  transition: var(--transition);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.cine-card:hover {
-  background: var(--bg-card-hover);
-  border-color: var(--accent-primary);
-  transform: translateY(-3px);
-}
-.card-badge-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.45rem;
-  margin-bottom: 0.75rem;
-}
-.pill-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: 0.76rem;
-  font-weight: 700;
-  padding: 0.22rem 0.68rem;
-  border-radius: var(--radius-pill);
-  background: var(--badge-bg);
-  color: var(--badge-text);
-  border: 1px solid var(--border-color);
-  white-space: nowrap;
-}
-.pill-badge.cyan {
-  background: rgba(34, 211, 238, 0.14);
-  color: var(--accent-secondary);
-  border-color: var(--accent-secondary);
-}
-.pill-badge.green {
-  background: rgba(16, 185, 129, 0.14);
-  color: var(--accent-success);
-  border-color: var(--accent-success);
-}
-.card-title {
-  font-size: 1.08rem;
-  font-weight: 800;
-  line-height: 1.36;
-  margin-bottom: 0.5rem;
-  color: var(--text-primary);
-}
-.card-body {
-  font-size: 0.91rem;
-  line-height: 1.66;
-  color: var(--text-secondary);
-  margin-bottom: 0.85rem;
-}
-.spec-list {
-  list-style: none;
-  margin: 0.45rem 0 0.9rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.44rem;
-}
-.spec-list li {
-  font-size: 0.87rem;
-  line-height: 1.62;
-  color: var(--text-secondary);
-  padding-left: 1.15rem;
-  position: relative;
-}
-.spec-list li::before {
-  content: "▸";
-  position: absolute;
-  left: 0;
-  color: var(--accent-primary);
-  font-weight: bold;
-}
-.spec-list li strong {
-  color: var(--text-primary);
-}
-.skill-tag-wrap {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.38rem;
-  margin-top: auto;
-  padding-top: 0.75rem;
-  border-top: 1px dashed var(--border-subtle);
-}
-.skill-chip {
-  font-family: var(--font-mono);
-  font-size: 0.73rem;
-  padding: 0.18rem 0.52rem;
-  background: var(--bg-secondary);
-  color: var(--text-primary);
-  border: 1px solid var(--border-subtle);
-  border-radius: 6px;
-  white-space: nowrap;
-}
+  /* ==========================================================================
+     4. HERO 巨幕立体玻璃舱
+     ========================================================================== */
+  .hero-section, .hero-stage {
+    padding: 2.4rem 0 2.8rem;
+    position: relative;
+  }
+  #heroCanvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.92;
+  }
+  .hero-frame, .viewfinder-frame {
+    border-radius: 28px;
+    padding: 2.3rem 2.5rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.13) 0%, rgba(12, 19, 38, 0.52) 48%, rgba(56, 189, 248, 0.11) 100%);
+  }
+  /* 四角电影取景框标尺 */
+  .viewfinder-corner, .vf-corner {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-color: var(--accent-primary);
+    border-style: solid;
+    opacity: 0.88;
+    pointer-events: none;
+    z-index: 3;
+    filter: drop-shadow(0 0 8px var(--accent-glow));
+  }
+  .vf-tl { top: 16px; left: 16px; border-width: 2.5px 0 0 2.5px; border-top-left-radius: 6px; }
+  .vf-tr { top: 16px; right: 16px; border-width: 2.5px 2.5px 0 0; border-top-right-radius: 6px; }
+  .vf-bl { bottom: 16px; left: 16px; border-width: 0 0 2.5px 2.5px; border-bottom-left-radius: 6px; }
+  .vf-br { bottom: 16px; right: 16px; border-width: 0 2.5px 2.5px 0; border-bottom-right-radius: 6px; }
 
-/* 模块一：金泰 1-3 号模型与本地集群切换器 */
-.tab-bar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.48rem;
-  margin-bottom: 1.25rem;
-}
-.tab-btn {
-  font-family: var(--font-sans);
-  font-size: 0.86rem;
-  font-weight: 700;
-  padding: 0.48rem 1rem;
-  border-radius: var(--radius-pill);
-  border: var(--border-width) solid var(--border-color);
-  background: var(--bg-secondary);
-  color: var(--text-secondary);
-  cursor: pointer;
-  white-space: nowrap;
-  transition: var(--transition);
-}
-.tab-btn:hover {
-  color: var(--text-primary);
-  border-color: var(--accent-primary);
-}
-.tab-btn.active {
-  background: var(--accent-primary);
-  color: #07090e;
-  border-color: var(--accent-primary);
-}
-html[data-theme="swiss-grid"] .tab-btn.active,
-html[data-theme="song-ink"] .tab-btn.active,
-html[data-theme="tactile-archival"] .tab-btn.active {
-  color: #ffffff;
-}
+  .hero-eyebrow-row {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.28rem 0.88rem;
+    border-radius: var(--radius-pill);
+    background: var(--badge-bg);
+    backdrop-filter: blur(14px);
+    color: var(--badge-text);
+    font-size: 0.8rem;
+    font-weight: 700;
+    border: 1px solid var(--border-strong);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.35), 0 4px 14px rgba(0, 0, 0, 0.25);
+  }
+  .hero-eyebrow.secondary {
+    background: rgba(56, 189, 248, 0.16);
+    color: var(--accent-secondary);
+    border-color: rgba(56, 189, 248, 0.5);
+  }
+  .pill-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.38rem;
+    padding: 0.28rem 0.88rem;
+    border-radius: var(--radius-pill);
+    background: var(--badge-bg);
+    backdrop-filter: blur(12px);
+    color: var(--badge-text);
+    font-size: 0.82rem;
+    font-weight: 700;
+    border: 1px solid var(--border-strong);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.35), 0 4px 14px rgba(0, 0, 0, 0.25);
+  }
+  .pill-badge.cyan {
+    background: rgba(56, 189, 248, 0.16);
+    color: var(--accent-secondary);
+    border-color: rgba(56, 189, 248, 0.5);
+  }
+  .pill-badge.green {
+    background: rgba(16, 185, 129, 0.16);
+    color: var(--accent-tertiary);
+    border-color: rgba(16, 185, 129, 0.5);
+  }
 
-/* 模块二：ASTRA 工业控制链动态拓扑画布 */
-.astra-workbench {
-  display: grid;
-  grid-template-columns: 1.55fr 1fr;
-  gap: 1.4rem;
-  align-items: stretch;
-}
-@media (max-width: 1080px) {
-  .astra-workbench { grid-template-columns: 1fr; }
-}
-.topology-stage {
-  background: var(--bg-card);
-  border: var(--border-width) solid var(--border-color);
-  border-radius: var(--radius-card);
-  padding: 1.25rem;
-  box-shadow: var(--shadow-card);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.topology-svg {
-  width: 100%;
-  height: auto;
-  min-height: 390px;
-  user-select: none;
-}
-.topo-node {
-  cursor: pointer;
-  transition: transform 0.22s ease, opacity 0.22s ease;
-}
-.topo-node:hover {
-  filter: brightness(1.15);
-}
-.topo-node rect {
-  transition: stroke-width 0.2s ease, stroke 0.2s ease;
-}
-.topo-node.active rect {
-  stroke: var(--accent-primary) !important;
-  stroke-width: 3.5px !important;
-}
-.topo-edge {
-  fill: none;
-  stroke-width: 2.4;
-  transition: opacity 0.25s ease, stroke-width 0.25s ease;
-}
-.topo-edge.pulse-anim {
-  stroke-dasharray: 10 8;
-  animation: edgeFlow 1.1s linear infinite;
-}
-@keyframes edgeFlow {
-  to { stroke-dashoffset: -36; }
-}
-.inspector-panel {
-  background: var(--bg-card);
-  border: var(--border-width) solid var(--border-color);
-  border-radius: var(--radius-card);
-  padding: 1.5rem;
-  box-shadow: var(--shadow-card);
-  display: flex;
-  flex-direction: column;
-  gap: 0.9rem;
-}
+  .hero-title {
+    font-size: clamp(1.75rem, 2.85vw, 2.55rem);
+    font-weight: 900;
+    line-height: 1.26;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.15rem;
+    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .hero-title-line1 {
+    font-size: 0.76em;
+    color: var(--text-secondary);
+    font-weight: 800;
+  }
+  .hero-title .highlight {
+    background: linear-gradient(120deg, var(--accent-primary) 0%, #fde047 50%, var(--accent-secondary) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    border-bottom: 3px solid var(--accent-primary);
+    padding-bottom: 2px;
+  }
+  .hero-lead-grid, .hero-split-body {
+    display: grid;
+    grid-template-columns: 1.42fr 1fr;
+    gap: 1.35rem;
+    align-items: stretch;
+    margin-bottom: 1.55rem;
+  }
+  .hero-lead-box, .hero-subtitle {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.10), rgba(15, 23, 42, 0.44));
+    backdrop-filter: blur(18px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 18px;
+    padding: 1.15rem 1.4rem;
+    font-size: 0.94rem;
+    color: var(--text-secondary);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.28), 0 12px 28px -8px rgba(0, 0, 0, 0.45);
+  }
+  .hero-lead-box strong, .hero-Subtitle-strong {
+    color: var(--text-primary);
+  }
+  .hero-quote-box {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.16), rgba(56, 189, 248, 0.11));
+    backdrop-filter: blur(18px);
+    border: 1px solid var(--border-strong);
+    border-left: 5px solid var(--accent-primary);
+    border-radius: 18px;
+    padding: 1.15rem 1.4rem;
+    font-size: 0.92rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.35), 0 12px 28px -8px rgba(0, 0, 0, 0.45);
+  }
 
-/* 抽卡 vs 确定性对比面板 */
-.vs-compare-box {
-  margin-top: 1.5rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.2rem;
-}
-@media (max-width: 860px) {
-  .vs-compare-box { grid-template-columns: 1fr; }
-}
-.vs-col {
-  padding: 1.35rem;
-  border-radius: var(--radius-card);
-  border: var(--border-width) solid var(--border-subtle);
-}
-.vs-col.gacha {
-  background: rgba(244, 63, 94, 0.06);
-  border-color: rgba(244, 63, 94, 0.32);
-}
-.vs-col.deterministic {
-  background: rgba(16, 185, 129, 0.08);
-  border-color: rgba(16, 185, 129, 0.42);
-}
+  /* 6 大核心指标立体玻璃矩阵 */
+  .telemetry-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.85rem;
+  }
+  .telemetry-card {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.14) 0%, rgba(15, 23, 42, 0.48) 58%, rgba(56, 189, 248, 0.10) 100%);
+    backdrop-filter: blur(22px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 16px;
+    padding: 0.95rem 1rem;
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      inset 0 1.5px 1px rgba(255, 255, 255, 0.34),
+      0 14px 28px -8px rgba(0, 0, 0, 0.55);
+  }
+  .telemetry-card:hover {
+    border-color: var(--accent-primary);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow:
+      inset 0 1.5px 2px rgba(255, 255, 255, 0.55),
+      0 20px 36px -8px rgba(0, 0, 0, 0.72),
+      0 0 24px var(--accent-glow);
+  }
+  .tm-val, .telemetry-val {
+    font-family: var(--font-mono);
+    font-size: 1.32rem;
+    font-weight: 900;
+    color: var(--accent-primary);
+    line-height: 1.2;
+    text-shadow: 0 0 18px var(--accent-glow);
+  }
+  .tm-label, .telemetry-label {
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-top: 0.25rem;
+  }
+  .tm-sub, .telemetry-sub {
+    font-size: 0.74rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+  }
 
-/* 搜索框与过滤器 */
-.filter-toolbar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-.search-input {
-  flex: 1;
-  min-width: 260px;
-  max-width: 420px;
-  font-family: var(--font-sans);
-  font-size: 0.92rem;
-  padding: 0.58rem 1rem;
-  border-radius: var(--radius-pill);
-  border: var(--border-width) solid var(--border-color);
-  background: var(--bg-card);
-  color: var(--text-primary);
-}
-.search-input:focus {
-  outline: 2px solid var(--accent-primary);
-}
+  /* ==========================================================================
+     5. 章节标题与多维动态演示舱 (Multi-Dimensional Dynamic Demo Stage)
+     ========================================================================== */
+  .section-header {
+    margin-bottom: 1.8rem;
+  }
+  .sec-head-top {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.55rem;
+  }
+  .section-tag, .sec-tag {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--accent-secondary);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+    text-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
+  }
+  .section-title, .sec-title {
+    font-size: clamp(1.45rem, 2.3vw, 2.05rem);
+    font-weight: 900;
+    line-height: 1.28;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
+  }
+  .section-desc, .sec-desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    max-width: 1180px;
+  }
 
-/* 运作机理四步/五步横向状态流水线 (How-It-Works Mechanism Strip) */
-.mech-strip {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.95rem;
-  margin-bottom: 1.45rem;
-}
-.mech-strip.steps-5 {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-}
-@media (max-width: 1200px) {
-  .mech-strip, .mech-strip.steps-5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-@media (max-width: 720px) {
-  .mech-strip, .mech-strip.steps-5 { grid-template-columns: 1fr; }
-}
-.mech-step {
-  background: var(--bg-secondary);
-  border: var(--border-width) solid var(--border-color);
-  border-radius: var(--radius-card);
-  padding: 1.05rem 1.15rem;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-.mech-step-num {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 900;
-  color: var(--accent-primary);
-  letter-spacing: 0.05em;
-}
-.mech-step-title {
-  font-size: 0.98rem;
-  font-weight: 800;
-  color: var(--text-primary);
-  line-height: 1.32;
-}
-.mech-step-body {
-  font-size: 0.84rem;
-  color: var(--text-secondary);
-  line-height: 1.58;
-}
-.mech-step-code {
-  margin-top: auto;
-  padding-top: 0.45rem;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--accent-secondary);
-}
+  /* 多维动态演示舱玻璃面板 */
+  .multi-demo-stage {
+    border-radius: 24px;
+    padding: 1.35rem 1.55rem;
+    margin-bottom: 1.65rem;
+    border: 1px solid rgba(56, 189, 248, 0.36);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.10) 0%, rgba(10, 16, 32, 0.62) 50%, rgba(56, 189, 248, 0.09) 100%);
+  }
+  .demo-stage-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+    padding-bottom: 0.9rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .demo-stage-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.02rem;
+    font-weight: 800;
+    color: var(--text-primary);
+  }
+  .demo-live-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.18rem 0.65rem;
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    background: rgba(16, 185, 129, 0.18);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.5);
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
+  }
+  .demo-live-pill::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 8px #10b981;
+    animation: recBlink 1.4s infinite;
+  }
+  .demo-controls-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+  }
+  .demo-btn {
+    padding: 0.3rem 0.78rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.07);
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  }
+  .demo-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--accent-secondary);
+    background: rgba(56, 189, 248, 0.16);
+  }
+  .demo-btn.active {
+    background: linear-gradient(135deg, var(--accent-secondary), #0284c7);
+    color: #040812;
+    font-weight: 800;
+    border-color: var(--accent-secondary);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.6), 0 0 16px rgba(56, 189, 248, 0.4);
+  }
+  .demo-btn.warn.active {
+    background: linear-gradient(135deg, #ef4444, #b91c1c);
+    color: #fff;
+    border-color: #f87171;
+    box-shadow: 0 0 18px rgba(239, 68, 68, 0.55);
+  }
 
-/* 河传师生创演沙盘模拟器 (Idea-to-Cinema Simulator) */
-.simulator-box {
-  background: var(--bg-card);
-  border: 2px solid var(--accent-primary);
-  border-radius: var(--radius-card);
-  padding: 1.8rem;
-  box-shadow: var(--shadow-card);
-}
-.sim-preset-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  margin: 0.9rem 0 1.2rem;
-}
-.sim-input-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-  margin-bottom: 1.5rem;
-}
-.sim-textarea {
-  flex: 1;
-  min-width: 280px;
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  padding: 0.85rem 1.1rem;
-  border-radius: var(--radius-card);
-  border: var(--border-width) solid var(--border-color);
-  background: var(--bg-secondary);
-  color: var(--text-primary);
-  resize: vertical;
-  min-height: 76px;
-}
-.sim-run-btn {
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  font-weight: 800;
-  padding: 0.85rem 1.7rem;
-  border-radius: var(--radius-card);
-  border: none;
-  background: var(--accent-primary);
-  color: #07090e;
-  cursor: pointer;
-  transition: var(--transition);
-}
-html[data-theme="swiss-grid"] .sim-run-btn,
-html[data-theme="song-ink"] .sim-run-btn,
-html[data-theme="tactile-archival"] .sim-run-btn {
-  color: #ffffff;
-}
-.sim-run-btn:hover {
-  transform: scale(1.02);
-  filter: brightness(1.08);
-}
-.sim-pipeline-stages {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 0.75rem;
-  margin-bottom: 1.4rem;
-}
-@media (max-width: 1280px) {
-  .sim-pipeline-stages { grid-template-columns: repeat(3, 1fr); }
-}
-@media (max-width: 720px) {
-  .sim-pipeline-stages { grid-template-columns: repeat(2, 1fr); }
-}
-.sim-stage-card {
-  padding: 1rem;
-  background: var(--bg-secondary);
-  border: var(--border-width) solid var(--border-subtle);
-  border-radius: var(--radius-card);
-  transition: var(--transition);
-}
-.sim-stage-card.done {
-  border-color: var(--accent-success);
-  background: rgba(16, 185, 129, 0.09);
-}
-.sim-output-board {
-  padding: 1.4rem;
-  background: var(--bg-secondary);
-  border: var(--border-width) solid var(--border-color);
-  border-radius: var(--radius-card);
-}
+  .demo-canvas-wrap {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(4, 8, 18, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: inset 0 2px 12px rgba(0, 0, 0, 0.65);
+  }
+  .demo-canvas-wrap canvas {
+    display: block;
+    width: 100%;
+    height: 250px;
+  }
+  .demo-metrics-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.7rem;
+    margin-top: 0.85rem;
+  }
+  .demo-metric-box {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(15, 23, 42, 0.45));
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+    border-radius: 12px;
+    padding: 0.55rem 0.85rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.18rem;
+    font-size: 0.76rem;
+    color: var(--text-muted);
+  }
+  .demo-metric-box strong {
+    font-family: var(--font-mono);
+    color: var(--accent-primary);
+    font-size: 0.85rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
 
-/* 可复制提示词样本框 */
-.prompt-specimen {
-  font-family: var(--font-mono);
-  font-size: 0.84rem;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
-  border-radius: 8px;
-  padding: 0.9rem 1rem;
-  margin-top: 0.75rem;
-  color: var(--text-primary);
-  line-height: 1.58;
-  white-space: pre-wrap;
-}
+  /* ==========================================================================
+     6. 卡片网格与 3D 悬浮倾斜卡片 (Cards & Grids)
+     ========================================================================== */
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
 
-.footer-bar {
-  padding: 2.6rem 0;
-  text-align: center;
-  color: var(--text-muted);
-  font-size: 0.88rem;
-}
+  .cine-card, .model-card, .skill-card, .vault-card {
+    border-radius: var(--radius-card);
+    padding: 1.45rem 1.55rem;
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+  .cine-card:hover, .model-card:hover, .skill-card:hover, .vault-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-card-hover);
+    transform: perspective(1100px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-5px) translateZ(6px);
+  }
+
+  .card-top-bar, .card-badge-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .card-index {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+  }
+  .card-title {
+    font-size: 1.12rem;
+    font-weight: 800;
+    margin-bottom: 0.55rem;
+    color: var(--text-primary);
+    line-height: 1.32;
+  }
+  .card-desc, .card-body {
+    font-size: 0.90rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.95rem;
+  }
+  .feature-list, .spec-list {
+    list-style: none;
+    display: grid;
+    gap: 0.42rem;
+    margin-bottom: 1rem;
+  }
+  .feature-list li, .spec-list li {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    padding-left: 1.1rem;
+    position: relative;
+  }
+  .feature-list li::before, .spec-list li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--accent-primary);
+    font-weight: bold;
+  }
+  .tag-row, .skill-tag-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: auto;
+    padding-top: 0.7rem;
+    border-top: 1px dashed rgba(255, 255, 255, 0.16);
+  }
+  .mini-tag, .tech-tag, .skill-chip {
+    font-family: var(--font-mono);
+    font-size: 0.73rem;
+    padding: 0.18rem 0.58rem;
+    border-radius: 8px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.03));
+    color: var(--text-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  }
+
+  /* ==========================================================================
+     7. 章节 02：ASTRA 跨软件工业控制拓扑工作台
+     ========================================================================== */
+  .astra-workbench {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 1.4rem;
+    align-items: stretch;
+  }
+  .ast-topo-panel, .topology-stage {
+    border-radius: var(--radius-card);
+    padding: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .ast-svg-wrap, .topology-svg {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 16px;
+    background: rgba(4, 8, 18, 0.62);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 0.5rem;
+    box-shadow: inset 0 2px 12px rgba(0, 0, 0, 0.65);
+  }
+  .topo-edge {
+    fill: none;
+    stroke-width: 2.5px;
+    stroke-dasharray: 8 6;
+    animation: dashFlow 1.6s linear infinite;
+  }
+  @keyframes dashFlow {
+    to { stroke-dashoffset: -28; }
+  }
+  .ast-node-group, .topo-node {
+    cursor: pointer;
+    transition: var(--transition-smooth);
+  }
+  .ast-node-group:hover rect, .topo-node:hover rect, .topo-node.active rect {
+    stroke: var(--accent-primary);
+    stroke-width: 3px;
+    filter: drop-shadow(0 0 10px var(--accent-glow));
+  }
+  .ast-detail-panel, .inspector-panel {
+    border-radius: var(--radius-card);
+    padding: 1.6rem;
+    border: 1px solid var(--border-strong);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .vs-compare-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-top: 1.35rem;
+  }
+  .vs-col {
+    border-radius: var(--radius-card);
+    padding: 1.35rem 1.5rem;
+  }
+  .vs-col.gacha {
+    border-color: rgba(244, 63, 94, 0.42);
+  }
+  .vs-col.deterministic {
+    border-color: rgba(16, 185, 129, 0.48);
+  }
+  .code-preview {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    background: rgba(3, 6, 14, 0.78);
+    color: #e2e8f0;
+    padding: 0.9rem 1.05rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    overflow-x: auto;
+    line-height: 1.52;
+    margin-top: 0.75rem;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.7);
+  }
+
+  /* ==========================================================================
+     8. 章节 03 / 11：分类筛选栏与搜索框
+     ========================================================================== */
+  .filter-bar, .filter-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.85rem;
+    margin-bottom: 1.4rem;
+    background: var(--bg-card);
+    backdrop-filter: blur(22px);
+    padding: 0.8rem 1.05rem;
+    border-radius: 16px;
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-card);
+  }
+  .tab-group, .tab-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+  .tab-btn {
+    padding: 0.36rem 0.88rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--border-subtle);
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-secondary);
+    font-size: 0.84rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  .tab-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--accent-primary);
+    transform: translateY(-1px);
+  }
+  .tab-btn.active {
+    background: linear-gradient(135deg, var(--accent-primary), #d97706);
+    color: #090d16;
+    border-color: var(--accent-primary);
+    font-weight: 800;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5), 0 4px 16px var(--accent-glow);
+  }
+  .search-input {
+    background: rgba(0, 0, 0, 0.32);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    padding: 0.42rem 0.95rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.84rem;
+    min-width: 260px;
+    outline: none;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.45);
+  }
+  .search-input:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 14px var(--accent-glow);
+  }
+
+  /* ==========================================================================
+     9. 章节 05：百万级双图库与一键复制框
+     ========================================================================== */
+  .prompt-sample-box, .prompt-specimen {
+    background: rgba(0, 0, 0, 0.42);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-left: 3.5px solid var(--accent-secondary);
+    border-radius: 12px;
+    padding: 0.82rem 1rem;
+    font-size: 0.83rem;
+    color: var(--text-secondary);
+    margin: 0.7rem 0;
+    position: relative;
+    box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.55);
+  }
+  .copy-btn {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04));
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    font-size: 0.74rem;
+    padding: 0.22rem 0.65rem;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+  .copy-btn:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+
+  /* ==========================================================================
+     10. 章节 07–09：运作机理横向立体玻璃流转带 (How-It-Works Flow Strip)
+     ========================================================================== */
+  .mech-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.95rem;
+    margin-bottom: 1.55rem;
+  }
+  .mech-strip.steps-5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .mech-step {
+    border-radius: 18px;
+    padding: 1.1rem 1.2rem;
+    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .mech-step:hover {
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-4px);
+  }
+  .mech-step-num {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    font-weight: 800;
+    color: var(--accent-primary);
+    letter-spacing: 0.06em;
+    margin-bottom: 0.3rem;
+  }
+  .mech-step-title {
+    font-size: 0.98rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.35rem;
+  }
+  .mech-step-desc, .mech-step-body {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+  .mech-step-code {
+    margin-top: 0.55rem;
+    padding-top: 0.45rem;
+    border-top: 1px dashed rgba(255, 255, 255, 0.14);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--accent-secondary);
+  }
+
+  /* ==========================================================================
+     11. 章节 12：河传师生「提出创意 ➔ 超越预期」实时创演沙盘模拟器
+     ========================================================================== */
+  .simulator-box {
+    border-radius: 26px;
+    padding: 1.85rem;
+    border: 2px solid var(--border-strong);
+  }
+  .sim-preset-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin: 0.85rem 0 1.2rem;
+  }
+  .sim-input-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.9rem;
+    margin-bottom: 1.4rem;
+  }
+  .sim-textarea {
+    width: 100%;
+    min-height: 76px;
+    background: rgba(0, 0, 0, 0.36);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 0.85rem 1.05rem;
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    resize: vertical;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.55);
+  }
+  .sim-run-btn {
+    padding: 0 1.85rem;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: linear-gradient(135deg, var(--accent-primary), #ea580c);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5), 0 10px 28px var(--accent-glow);
+    transition: var(--transition-smooth);
+  }
+  .sim-run-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.65), 0 14px 34px var(--accent-glow);
+  }
+  .sim-pipeline-stages {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.65rem;
+    margin-bottom: 1.4rem;
+  }
+  .stage-pill, .sim-stage-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.10), rgba(15, 23, 42, 0.48));
+    backdrop-filter: blur(18px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 0.72rem 0.85rem;
+    font-size: 0.78rem;
+    transition: var(--transition-smooth);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25), 0 8px 20px -6px rgba(0, 0, 0, 0.5);
+  }
+  .stage-pill.done, .sim-stage-card.done {
+    border-color: var(--accent-tertiary);
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.18), rgba(15, 23, 42, 0.55));
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.35), 0 0 18px rgba(16, 185, 129, 0.25);
+  }
+  .sim-output-board {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(10, 16, 30, 0.58));
+    backdrop-filter: blur(22px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 18px;
+    padding: 1.25rem 1.45rem;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25), 0 16px 36px -10px rgba(0, 0, 0, 0.6);
+  }
+  .sim-out-card {
+    background: rgba(0, 0, 0, 0.32);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 1rem 1.15rem;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  .sim-out-title {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--accent-secondary);
+    margin-bottom: 0.45rem;
+  }
+  .sim-out-body {
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+  }
+
+  footer, .footer-bar {
+    padding: 2.5rem 0 3.5rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  @media (max-width: 1200px) {
+    .telemetry-grid { grid-template-columns: repeat(3, 1fr); }
+    .hero-lead-grid, .astra-workbench { grid-template-columns: 1fr; }
+    .grid-3, .sim-output-board { grid-template-columns: repeat(2, 1fr); }
+    .sim-pipeline-stages { grid-template-columns: repeat(3, 1fr); }
+    .mech-strip, .mech-strip.steps-5, .demo-metrics-strip { grid-template-columns: repeat(2, 1fr); }
+    .hud-nav { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .telemetry-grid, .grid-2, .grid-3, .grid-4, .sim-output-board, .sim-pipeline-stages, .mech-strip, .mech-strip.steps-5, .demo-metrics-strip {
+      grid-template-columns: 1fr;
+    }
+    .sim-input-row { grid-template-columns: 1fr; }
+    .sim-run-btn { padding: 0.75rem; }
+    .hud-nav { grid-template-columns: repeat(2, 1fr); }
+  }
 </style>
 </head>
 <body>
+<!-- 体积液态流光与色彩折射环境球 (Volumetric Liquid Ambient Orbs) -->
+<div class="liquid-ambient-orb orb-1"></div>
+<div class="liquid-ambient-orb orb-2"></div>
+<div class="liquid-ambient-orb orb-3"></div>
 
 <!-- 顶部常驻电影监视器导播台 (Cinema HUD Topbar) -->
 <header class="hud-topbar">
@@ -1089,6 +1456,31 @@ html[data-theme="tactile-archival"] .sim-run-btn {
         </div>
       </div>
       <p class="sec-desc">拒绝单一公网工具的排队限流与风格同质化。金泰将全球三大顶级合规认知模型（金泰 1–3 号）、顶尖云端生图引擎（Image 2.5 / NanoBanana Pro）与本地 A/B 机精调模型群（MiniMax H3 SelfLift / Qwen 2.1 / OpenMOSS 13B）深度融合调度。</p>
+    </div>
+
+    <!-- 多维动态演示舱 ①：A/B 机 12 卡算力流 × 金泰 1-3 号模型智能路由沙盘 -->
+    <div class="multi-demo-stage" id="clusterDemoStage">
+      <div class="demo-stage-header">
+        <div class="demo-stage-title">
+          <span class="demo-live-pill">LIVE TELEMETRY · 60FPS</span>
+          <span>多维动态演示 ①：A/B 机 12 卡 H100/5090 实时算力流 × 金泰 1–3 号模型智能路由沙盘</span>
+        </div>
+        <div class="demo-controls-bar" id="clusterModeBtns">
+          <button class="demo-btn active" onclick="setClusterDemoMode('hybrid', this)">⚡ 全栈并发混合路由</button>
+          <button class="demo-btn" onclick="setClusterDemoMode('drama', this)">🎭 文戏六段微表情 (6+4步)</button>
+          <button class="demo-btn" onclick="setClusterDemoMode('combat', this)">⚔️ 冷兵器武戏 (6+6步+@四只兔子)</button>
+          <button class="demo-btn" onclick="setClusterDemoMode('swap', this)">🧬 真人实拍 0.999978 换角</button>
+        </div>
+      </div>
+      <div class="demo-canvas-wrap">
+        <canvas id="clusterDemoCanvas" height="240"></canvas>
+      </div>
+      <div class="demo-metrics-strip">
+        <div class="demo-metric-box"><span>A机 8×H100 显存带宽</span><strong id="cmBw">14.45 TB/s (8/8 在线)</strong></div>
+        <div class="demo-metric-box"><span>当前主导认知引擎</span><strong id="cmLlm">金泰 1–3 号协同调度</strong></div>
+        <div class="demo-metric-box"><span>当前视觉/视频管线</span><strong id="cmPipe">H3 SelfLift + Topaz 4K</strong></div>
+        <div class="demo-metric-box"><span>:4300 国标安全网关</span><strong style="color:#34d399;">L0 4.9ms · GB 45438 PASS</strong></div>
+      </div>
     </div>
 
     <div class="grid-2" id="modelCardsGrid"></div>
@@ -1273,6 +1665,31 @@ html[data-theme="tactile-archival"] .sim-run-btn {
       </div>
     </div>
 
+    <!-- 多维动态演示舱 ③：四轨干湿分离 (HDemucs) × 48kHz 声纹克隆 × 130.5 BPM 实时频谱混音台 -->
+    <div class="multi-demo-stage" id="audioDemoStage">
+      <div class="demo-stage-header">
+        <div class="demo-stage-title">
+          <span class="demo-live-pill">4-STEM FOLEY &amp; 48kHz DSP</span>
+          <span>多维动态演示 ②：48kHz 真声克隆 × HDemucs 四轨干湿分离 × 130.5 BPM 节拍锁定频谱仪</span>
+        </div>
+        <div class="demo-controls-bar">
+          <button class="demo-btn active" onclick="toggleAudioStem(0, this)">🎤 轨1: VoxCPM2 48kHz 干声</button>
+          <button class="demo-btn active" onclick="toggleAudioStem(1, this)">⚔️ 轨2: HDemucs 刀剑拟音</button>
+          <button class="demo-btn active" onclick="toggleAudioStem(2, this)">🌧️ 轨3: 空间环境声场</button>
+          <button class="demo-btn active" onclick="toggleAudioStem(3, this)">🎵 轨4: MiniMax 整轨配乐</button>
+        </div>
+      </div>
+      <div class="demo-canvas-wrap">
+        <canvas id="audioSpectrumCanvas" height="225"></canvas>
+      </div>
+      <div class="demo-metrics-strip">
+        <div class="demo-metric-box"><span>母带响度与真峰值</span><strong>-14.0 LUFS / -1.2 dBTP</strong></div>
+        <div class="demo-metric-box"><span>口型同步引擎</span><strong>LatentSync 1.6 余弦椭圆蒙版</strong></div>
+        <div class="demo-metric-box"><span>拟音分离纯度</span><strong style="color:#38bdf8;">HDemucs 0% 人声串音</strong></div>
+        <div class="demo-metric-box"><span>配乐生成模式</span><strong style="color:#34d399;">整轨一次生成 · 零拼接断层</strong></div>
+      </div>
+    </div>
+
     <div class="grid-3" id="audioCardsGrid"></div>
   </div>
 </section>
@@ -1349,6 +1766,31 @@ html[data-theme="tactile-archival"] .sim-run-btn {
     <!-- 运作机理四阶流水线 -->
     <div class="mech-strip" id="storageFlowStrip"></div>
 
+    <!-- 多维动态演示舱 ③：影视四联标准检视板 × S1/S2/S3 冷热温三级存储动态沙盘 -->
+    <div class="multi-demo-stage" id="storageDemoStage">
+      <div class="demo-stage-header">
+        <div class="demo-stage-title">
+          <span class="demo-live-pill">DUAL-BLIND AUDIT &amp; S1/S2/S3 STREAM</span>
+          <span>多维动态演示 ③：影视四联标准检视板（06/07 双审 ≥9.0）× S1热/S2温/S3冷三级资产流</span>
+        </div>
+        <div class="demo-controls-bar" id="storageModeBtns">
+          <button class="demo-btn active" onclick="setStorageDemoPhase('quad', this)">🔍 阶段A: 影视四联检视板 &amp; 双盲打分</button>
+          <button class="demo-btn" onclick="setStorageDemoPhase('s1', this)">🔥 阶段B: S1全闪热存 (14.45 TB/s)</button>
+          <button class="demo-btn" onclick="setStorageDemoPhase('s2', this)">🌤️ 阶段C: S2跨专业协同温存 (100G)</button>
+          <button class="demo-btn" onclick="setStorageDemoPhase('s3', this)">❄️ 阶段D: S3冷金库 &amp; :18899 (4.5ms秒搜)</button>
+        </div>
+      </div>
+      <div class="demo-canvas-wrap">
+        <canvas id="storageQuadCanvas" height="245"></canvas>
+      </div>
+      <div class="demo-metrics-strip">
+        <div class="demo-metric-box"><span>06号视觉挑刺官</span><strong id="stAudit06">9.38 PASS (100%原尺寸人脸抽帧)</strong></div>
+        <div class="demo-metric-box"><span>07号防放水交叉官</span><strong id="stAudit07">9.62 PASS (声画/退步刻度核验)</strong></div>
+        <div class="demo-metric-box"><span>S1/S2/S3 存储状态</span><strong id="stTierInfo" style="color:#38bdf8;">81,917母图硬链接 + 77柜冷金库</strong></div>
+        <div class="demo-metric-box"><span>:18899 秒搜延迟</span><strong style="color:#34d399;">4.5 ms (101.4万+ 资产实时索引)</strong></div>
+      </div>
+    </div>
+
     <!-- S1/S2/S3 冷热温三级存储与数字资产管理卡片 -->
     <div class="grid-3" id="storageCardsGrid"></div>
   </div>
@@ -1373,6 +1815,32 @@ html[data-theme="tactile-archival"] .sim-run-btn {
     <!-- 运作机理四步链 -->
     <div class="mech-strip" id="hybridFlowStrip"></div>
 
+    <!-- 多维动态演示舱 ④：教室真人实拍 ➔ SAM 3.1 掩码 ➔ 小肥猴 Easy-H3 0.999978 无痕换角交互滑块对比器 -->
+    <div class="multi-demo-stage" id="hybridDemoStage">
+      <div class="demo-stage-header">
+        <div class="demo-stage-title">
+          <span class="demo-live-pill">r = 0.999978 MOTION LOCK</span>
+          <span>多维动态演示 ④：教室真人实拍 ➔ SAM 3.1 骨骼掩码 ➔ 小肥猴 Easy-H3 盛唐将军无痕换角对比器</span>
+        </div>
+        <div class="demo-controls-bar">
+          <button class="demo-btn active" id="btnHybridAuto" onclick="toggleHybridAutoSweep(this)">🔄 自动往复扫掠对比</button>
+          <button class="demo-btn" onclick="setHybridSplitPos(0.18)">👈 看实拍原片</button>
+          <button class="demo-btn" onclick="setHybridSplitPos(0.50)">⚖️ 50:50 同屏对照</button>
+          <button class="demo-btn" onclick="setHybridSplitPos(0.85)">👉 看 AI 盛唐金甲成片</button>
+          <button class="demo-btn active" id="btnXsegToggle" onclick="toggleHybridXseg(this)">🕶️ :3910 XSeg 隔刀刃/镜框护脸 ON</button>
+        </div>
+      </div>
+      <div class="demo-canvas-wrap" style="cursor:ew-resize;" onmousemove="onHybridCanvasHover(event)">
+        <canvas id="hybridWipeCanvas" height="255"></canvas>
+      </div>
+      <div class="demo-metrics-strip">
+        <div class="demo-metric-box"><span>动作轨迹相关系数</span><strong style="color:#34d399;">r = 0.999978 (零绿幕)</strong></div>
+        <div class="demo-metric-box"><span>第一段掩码与骨骼</span><strong>SAM 3.1 Multiplex FP16</strong></div>
+        <div class="demo-metric-box"><span>第二段角色重绘</span><strong style="color:#38bdf8;">小肥猴 Easy-H3 v1.4.28</strong></div>
+        <div class="demo-metric-box"><span>遮挡物修脸与净除</span><strong>:3910 FaceFusion + Remover</strong></div>
+      </div>
+    </div>
+
     <div class="grid-2" id="hybridCardsGrid"></div>
   </div>
 </section>
@@ -1395,6 +1863,33 @@ html[data-theme="tactile-archival"] .sim-run-btn {
 
     <!-- 导演台 5 步运作机理带 -->
     <div class="mech-strip steps-5" id="directorFlowStrip"></div>
+
+    <!-- 多维动态演示舱 ⑤：3D 导演台 · 手机无线体感运镜 & CAM 1~6 多机位「⏺ 录切换」实时导播交互台 -->
+    <div class="multi-demo-stage" id="directorDemoStage">
+      <div class="demo-stage-header">
+        <div class="demo-stage-title">
+          <span class="demo-live-pill">⏺ LIVE SWITCHER · 5 PATENTS</span>
+          <span>多维动态演示 ⑤：3D 导演台 · 手机扫码体感运镜 &amp; CAM 1~6 多机位「⏺ 录切换」导播交互台（点击机位切换）</span>
+        </div>
+        <div class="demo-controls-bar" id="directorCamBtns">
+          <button class="demo-btn active" onclick="switchDirectorCam(1, this)">🎥 CAM 1 全景主镜</button>
+          <button class="demo-btn" onclick="switchDirectorCam(2, this)">🎥 CAM 2 过肩正打A</button>
+          <button class="demo-btn" onclick="switchDirectorCam(3, this)">🎥 CAM 3 过肩反打B</button>
+          <button class="demo-btn" onclick="switchDirectorCam(4, this)">🎥 CAM 4 眼神特写</button>
+          <button class="demo-btn" onclick="switchDirectorCam(5, this)">🚁 CAM 5 FPV压弯穿廊</button>
+          <button class="demo-btn warn" onclick="switchDirectorCam(6, this)">🚨 CAM 6 180°越轴测试</button>
+        </div>
+      </div>
+      <div class="demo-canvas-wrap">
+        <canvas id="directorLiveCanvas" height="270"></canvas>
+      </div>
+      <div class="demo-metrics-strip">
+        <div class="demo-metric-box"><span>当前播出机位 (PGM)</span><strong id="dirPgmLabel">CAM 1 · 24mm 殿堂全景主镜</strong></div>
+        <div class="demo-metric-box"><span>手机 33 点动捕滤波</span><strong style="color:#38bdf8;">XY=1.6Hz / Z=0.15Hz (0画面上传)</strong></div>
+        <div class="demo-metric-box"><span>zF 几何轴线警察</span><strong id="dirAxisStatus" style="color:#34d399;">✅ 180° 轴线安全区 · 无跳切</strong></div>
+        <div class="demo-metric-box"><span>防闪烁深度锁</span><strong>_se:global 全时间轴裁剪面并集</strong></div>
+      </div>
+    </div>
 
     <div class="grid-3" id="directorCardsGrid"></div>
   </div>
@@ -2921,30 +3416,59 @@ setInterval(() => {
   if (el) el.textContent = `TC ${hh}:${mm}:${ss}:${ff} · 24FPS`;
 }, 1000 / 12);
 
-// 银幕级背景光斑粒子动画 (轻量化 Canvas)
+// 银幕级液态流光与体积焦散粒子动画 (Volumetric Liquid Glass Aurora & Bokeh Canvas)
 function initHeroCanvas() {
   const canvas = document.getElementById("heroCanvas");
   if (!canvas) return;
   const ctx = canvas.getContext("2d");
-  let w = canvas.width = canvas.offsetWidth || 1280;
-  let h = canvas.height = canvas.offsetHeight || 520;
+  let w = canvas.width = window.innerWidth || 1440;
+  let h = canvas.height = window.innerHeight || 900;
 
   window.addEventListener("resize", () => {
-    w = canvas.width = canvas.offsetWidth || 1280;
-    h = canvas.height = canvas.offsetHeight || 520;
+    w = canvas.width = window.innerWidth || 1440;
+    h = canvas.height = window.innerHeight || 900;
   });
 
-  const particles = Array.from({ length: 28 }, (_, i) => ({
-    x: (i * 97) % w,
-    y: (i * 53) % h,
-    r: 1.5 + (i % 4) * 1.1,
-    vx: (i % 2 === 0 ? 0.25 : -0.2),
-    vy: -0.15 - (i % 3) * 0.08,
-    gold: i % 3 !== 0
+  const ribbons = [
+    { yRatio: 0.22, amp: 55, freq: 0.0022, speed: 0.015, color1: "rgba(245, 158, 11, 0.14)", color2: "rgba(56, 189, 248, 0.04)" },
+    { yRatio: 0.54, amp: 70, freq: 0.0018, speed: -0.012, color1: "rgba(56, 189, 248, 0.13)", color2: "rgba(168, 85, 247, 0.04)" },
+    { yRatio: 0.82, amp: 48, freq: 0.0025, speed: 0.018, color1: "rgba(16, 185, 129, 0.11)", color2: "rgba(245, 158, 11, 0.03)" }
+  ];
+
+  const particles = Array.from({ length: 36 }, (_, i) => ({
+    x: (i * 113) % w,
+    y: (i * 71) % h,
+    r: 1.8 + (i % 5) * 1.4,
+    vx: (i % 2 === 0 ? 0.32 : -0.26),
+    vy: -0.18 - (i % 3) * 0.1,
+    type: i % 3
   }));
 
+  let t = 0;
   function draw() {
+    t += 1;
     ctx.clearRect(0, 0, w, h);
+
+    // 绘制流动液态光带 (Liquid Light Ribbons)
+    for (const rb of ribbons) {
+      ctx.beginPath();
+      const baseY = h * rb.yRatio;
+      ctx.moveTo(0, baseY);
+      for (let x = 0; x <= w; x += 40) {
+        const y = baseY + Math.sin(x * rb.freq + t * rb.speed) * rb.amp + Math.cos(x * rb.freq * 0.6 - t * rb.speed) * (rb.amp * 0.4);
+        ctx.lineTo(x, y);
+      }
+      ctx.lineTo(w, baseY + 180);
+      ctx.lineTo(0, baseY + 180);
+      ctx.closePath();
+      const grad = ctx.createLinearGradient(0, baseY - rb.amp, w, baseY + 160);
+      grad.addColorStop(0, rb.color1);
+      grad.addColorStop(1, rb.color2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+    }
+
+    // 绘制景深折射光斑 (Bokeh Particles)
     for (const p of particles) {
       p.x += p.vx;
       p.y += p.vy;
@@ -2953,13 +3477,903 @@ function initHeroCanvas() {
       if (p.y < 0) p.y = h;
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = p.gold ? "rgba(245, 158, 11, 0.36)" : "rgba(34, 211, 238, 0.32)";
+      ctx.fillStyle = p.type === 0
+        ? "rgba(245, 158, 11, 0.42)"
+        : p.type === 1
+          ? "rgba(56, 189, 248, 0.38)"
+          : "rgba(168, 85, 247, 0.34)";
       ctx.fill();
     }
     requestAnimationFrame(draw);
   }
   draw();
 }
+
+// 3D 立体透明流动玻璃鼠标跟随折射与视差倾斜引擎
+function initLiquidGlass3D() {
+  document.addEventListener("mousemove", (e) => {
+    const target = e.target.closest(".cine-card, .model-card, .skill-card, .vault-card, .mech-step, .vs-col, .multi-demo-stage");
+    if (!target) return;
+    const rect = target.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const px = Math.round((x / Math.max(1, rect.width)) * 100);
+    const py = Math.round((y / Math.max(1, rect.height)) * 100);
+    target.style.setProperty("--mx", px + "%");
+    target.style.setProperty("--my", py + "%");
+
+    if (!target.classList.contains("multi-demo-stage")) {
+      const rx = ((0.5 - y / Math.max(1, rect.height)) * 4.2).toFixed(2);
+      const ry = ((x / Math.max(1, rect.width) - 0.5) * 4.2).toFixed(2);
+      target.style.setProperty("--rx", rx + "deg");
+      target.style.setProperty("--ry", ry + "deg");
+    }
+  });
+}
+
+// ============================================================================
+// 多维动态演示 ①：A/B 机 12 卡算力流 × 金泰 1-3 号模型智能路由沙盘 (#clusterDemoCanvas)
+// ============================================================================
+let clusterDemoMode = "hybrid";
+function setClusterDemoMode(mode, btn) {
+  clusterDemoMode = mode;
+  if (btn) {
+    btn.parentElement.querySelectorAll(".demo-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+  }
+  const map = {
+    hybrid: { bw: "14.45 TB/s (8/8 在线)", llm: "金泰 1–3 号全模态协同", pipe: "H3 SelfLift + Qwen 2.1 + Topaz 4K" },
+    drama:  { bw: "12.80 TB/s (文戏 6+4 步)", llm: "金泰 2 号 Argon + 3 号 Opus", pipe: "情绪六段反应链 + MysticXXX 去油光" },
+    combat: { bw: "14.45 TB/s (武戏 6+6 满载)", llm: "金泰 1 号 Astra + 爆老师四问链", pipe: "@四只兔子 speed=3 + 3×5s 98s蒙太奇" },
+    swap:   { bw: "13.90 TB/s (实拍二段式)", llm: "SAM 3.1 + 小肥猴 Easy-H3", pipe: "r=0.999978 无痕换角 + :3910 隔物修脸" }
+  };
+  const info = map[mode] || map.hybrid;
+  const elBw = document.getElementById("cmBw");
+  const elLlm = document.getElementById("cmLlm");
+  const elPipe = document.getElementById("cmPipe");
+  if (elBw) elBw.textContent = info.bw;
+  if (elLlm) elLlm.textContent = info.llm;
+  if (elPipe) elPipe.textContent = info.pipe;
+}
+
+function initClusterDemo() {
+  const canvas = document.getElementById("clusterDemoCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let w = canvas.width = canvas.parentElement.clientWidth || 1200;
+  let h = canvas.height = 240;
+  window.addEventListener("resize", () => {
+    w = canvas.width = canvas.parentElement.clientWidth || 1200;
+  });
+
+  const packets = Array.from({ length: 28 }, (_, i) => ({
+    progress: (i / 28),
+    lane: i % 3,
+    gpuIdx: i % 8,
+    speed: 0.0055 + (i % 4) * 0.0015
+  }));
+
+  let tick = 0;
+  function render() {
+    tick++;
+    ctx.clearRect(0, 0, w, h);
+
+    // 背景网格
+    ctx.strokeStyle = "rgba(255,255,255,0.04)";
+    ctx.lineWidth = 1;
+    for (let x = 0; x < w; x += 36) {
+      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
+    }
+    for (let y = 0; y < h; y += 36) {
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+    }
+
+    const col1X = Math.max(110, w * 0.13);
+    const col2X = w * 0.48;
+    const col3X = w * 0.84;
+
+    // 左侧：金泰 1-3 号模型节点
+    const models = [
+      { name: "金泰 1 号 · GPT-6 Astra", sub: "ASTRA控制 / 物理逻辑", y: 52, color: "#f59e0b" },
+      { name: "金泰 2 号 · Gemini Argon", sub: "主控总导演 / 分镜拉片", y: 120, color: "#38bdf8" },
+      { name: "金泰 3 号 · Claude Opus", sub: "文学润色 / 60fps代码", y: 188, color: "#a855f7" }
+    ];
+
+    // 中间：A机 8×H100 (8188-8195) 矩阵
+    const gpuStartX = col2X - 155;
+    const gpuW = 72, gpuH = 74;
+
+    // 绘制光纤连线与动态数据包
+    packets.forEach(pk => {
+      pk.progress += pk.speed * (clusterDemoMode === "combat" ? 1.45 : 1.0);
+      if (pk.progress > 1) pk.progress -= 1;
+
+      const m = models[pk.lane];
+      const gx = gpuStartX + (pk.gpuIdx % 4) * (gpuW + 10) + gpuW / 2;
+      const gy = (pk.gpuIdx < 4 ? 42 : 132) + gpuH / 2;
+
+      ctx.strokeStyle = "rgba(56, 189, 248, 0.14)";
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.moveTo(col1X + 85, m.y);
+      ctx.quadraticCurveTo((col1X + gx) * 0.5, m.y, gx - 32, gy);
+      ctx.stroke();
+
+      // 光纤脉冲点
+      const t = pk.progress;
+      const px = (1 - t) * (1 - t) * (col1X + 85) + 2 * (1 - t) * t * ((col1X + gx) * 0.5) + t * t * (gx - 32);
+      const py = (1 - t) * (1 - t) * m.y + 2 * (1 - t) * t * m.y + t * t * gy;
+      ctx.beginPath();
+      ctx.arc(px, py, 3.2, 0, Math.PI * 2);
+      ctx.fillStyle = m.color;
+      ctx.fill();
+
+      // 从 A 机到右侧 B机 Topaz & :4300 网关
+      const outY = pk.gpuIdx < 4 ? 78 : 165;
+      ctx.strokeStyle = "rgba(16, 185, 129, 0.15)";
+      ctx.beginPath();
+      ctx.moveTo(gpuStartX + 4 * (gpuW + 10), gy);
+      ctx.lineTo(col3X - 90, outY);
+      ctx.stroke();
+
+      const px2 = (gpuStartX + 4 * (gpuW + 10)) + t * (col3X - 90 - (gpuStartX + 4 * (gpuW + 10)));
+      const py2 = gy + t * (outY - gy);
+      ctx.beginPath();
+      ctx.arc(px2, py2, 2.8, 0, Math.PI * 2);
+      ctx.fillStyle = "#10b981";
+      ctx.fill();
+    });
+
+    // 绘制左侧 3 个模型玻璃盒
+    models.forEach((m, idx) => {
+      const isHighlight = (clusterDemoMode === "drama" && idx >= 1) || (clusterDemoMode === "combat" && idx <= 1) || clusterDemoMode === "hybrid" || clusterDemoMode === "swap";
+      ctx.fillStyle = isHighlight ? "rgba(15, 23, 42, 0.88)" : "rgba(15, 23, 42, 0.5)";
+      ctx.strokeStyle = isHighlight ? m.color : "rgba(255,255,255,0.15)";
+      ctx.lineWidth = isHighlight ? 2 : 1;
+      ctx.beginPath();
+      ctx.roundRect(col1X - 88, m.y - 24, 176, 48, 10);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.fillStyle = "#f8fafc";
+      ctx.font = "bold 12px sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillText(m.name, col1X, m.y - 4);
+      ctx.fillStyle = m.color;
+      ctx.font = "11px monospace";
+      ctx.fillText(m.sub, col1X, m.y + 14);
+    });
+
+    // 绘制中间 A 机 8×H100 (8188-8195) 实时显存柱状卡片
+    ctx.fillStyle = "#94a3b8";
+    ctx.font = "bold 11.5px monospace";
+    ctx.textAlign = "center";
+    ctx.fillText("A机 172.16.0.10 · 8×H100 SXM (ComfyUI :8188–8195 八卡并发池)", col2X, 22);
+
+    for (let i = 0; i < 8; i++) {
+      const r = Math.floor(i / 4);
+      const c = i % 4;
+      const x = gpuStartX + c * (gpuW + 10);
+      const y = 34 + r * (gpuH + 16);
+
+      ctx.fillStyle = "rgba(15, 23, 42, 0.85)";
+      ctx.strokeStyle = clusterDemoMode === "combat" ? "rgba(245, 158, 11, 0.65)" : "rgba(56, 189, 248, 0.55)";
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.roundRect(x, y, gpuW, gpuH, 9);
+      ctx.fill();
+      ctx.stroke();
+
+      const load = 0.62 + 0.26 * Math.sin(tick * 0.05 + i * 0.9);
+      const barW = Math.round((gpuW - 14) * load);
+      ctx.fillStyle = "rgba(255,255,255,0.1)";
+      ctx.fillRect(x + 7, y + 48, gpuW - 14, 7);
+      ctx.fillStyle = clusterDemoMode === "combat" ? "#f59e0b" : "#38bdf8";
+      ctx.fillRect(x + 7, y + 48, barW, 7);
+
+      ctx.fillStyle = "#f8fafc";
+      ctx.font = "bold 11px monospace";
+      ctx.textAlign = "left";
+      ctx.fillText(`GPU${i}:${8188 + i}`, x + 7, y + 18);
+      ctx.fillStyle = "#34d399";
+      ctx.font = "10px monospace";
+      ctx.fillText(`${Math.round(load * 80)}/80GB`, x + 7, y + 36);
+      ctx.fillStyle = "#cbd5e1";
+      ctx.fillText(clusterDemoMode === "swap" ? "SAM3+EasyH3" : (clusterDemoMode === "combat" ? "SelfLift 6+6" : "SelfLift 6+4"), x + 7, y + 68);
+    }
+
+    // 绘制右侧 B 机 4×5090 & :4300 国标网关
+    const outNodes = [
+      { title: "B机 4×RTX 5090 集群", sub: "Blender OptiX + Topaz 4K", y: 78, color: "#38bdf8" },
+      { title: ":4300 安全防火墙 v3.0", sub: "GB 45438 双签名 · 06/07双审", y: 165, color: "#10b981" }
+    ];
+    outNodes.forEach(n => {
+      ctx.fillStyle = "rgba(15, 23, 42, 0.88)";
+      ctx.strokeStyle = n.color;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.roundRect(col3X - 92, n.y - 30, 184, 60, 11);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "bold 12px sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillText(n.title, col3X, n.y - 5);
+      ctx.fillStyle = n.color;
+      ctx.font = "11px monospace";
+      ctx.fillText(n.sub, col3X, n.y + 15);
+    });
+
+    requestAnimationFrame(render);
+  }
+  render();
+}
+
+// ============================================================================
+// 多维动态演示 ②：48kHz 真声克隆 × HDemucs 四轨分离 × 130.5 BPM 频谱仪 (#audioSpectrumCanvas)
+// ============================================================================
+const audioStemActive = [true, true, true, true];
+function toggleAudioStem(idx, btn) {
+  audioStemActive[idx] = !audioStemActive[idx];
+  if (btn) btn.classList.toggle("active", audioStemActive[idx]);
+}
+
+function initAudioDemo() {
+  const canvas = document.getElementById("audioSpectrumCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let w = canvas.width = canvas.parentElement.clientWidth || 1200;
+  let h = canvas.height = 225;
+  window.addEventListener("resize", () => {
+    w = canvas.width = canvas.parentElement.clientWidth || 1200;
+  });
+
+  const stems = [
+    { name: "STEM 01 // VoxCPM2 48kHz 角色干声轨 (零样本解耦克隆)", color: "#f59e0b", freq: 0.08 },
+    { name: "STEM 02 // HDemucs 纯净拟音轨 (刀盾碰撞/脚步/0%人声串音)", color: "#38bdf8", freq: 0.16 },
+    { name: "STEM 03 // 《声仓》空间环境声场轨 (渭城朝雨/塞外狂风)", color: "#10b981", freq: 0.04 },
+    { name: "STEM 04 // MiniMax Music 3 整轨一次生成交响配乐 (130.5 BPM)", color: "#a855f7", freq: 0.11 }
+  ];
+
+  let t = 0;
+  function render() {
+    t += 0.08;
+    ctx.clearRect(0, 0, w, h);
+
+    const trackW = w * 0.72;
+    const rowH = (h - 16) / 4;
+
+    stems.forEach((st, idx) => {
+      const yTop = 8 + idx * rowH;
+      const yMid = yTop + rowH * 0.56;
+      const on = audioStemActive[idx];
+
+      ctx.fillStyle = "rgba(15, 23, 42, 0.65)";
+      ctx.strokeStyle = on ? "rgba(255,255,255,0.14)" : "rgba(255,255,255,0.05)";
+      ctx.beginPath();
+      ctx.roundRect(12, yTop + 2, trackW - 24, rowH - 6, 8);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.fillStyle = on ? st.color : "#64748b";
+      ctx.font = "bold 11px monospace";
+      ctx.textAlign = "left";
+      ctx.fillText(st.name + (on ? " [ACTIVE]" : " [MUTED]"), 22, yTop + 17);
+
+      // 绘制动态声波条
+      const bars = 48;
+      const startX = 24;
+      const availW = trackW - 48;
+      const stepX = availW / bars;
+      for (let b = 0; b < bars; b++) {
+        const amp = on
+          ? (0.25 + 0.75 * Math.abs(Math.sin(b * st.freq + t * (1.2 + idx * 0.3)) * Math.cos(b * 0.05 - t * 0.6)))
+          : 0.06;
+        const bh = Math.max(3, amp * (rowH * 0.46));
+        ctx.fillStyle = on ? st.color : "rgba(148,163,184,0.2)";
+        ctx.fillRect(startX + b * stepX, yMid - bh / 2 + 5, stepX * 0.65, bh);
+      }
+    });
+
+    // 右侧：LatentSync 1.6 余弦椭圆口型蒙版与 LUFS 响度表
+    const rightX = trackW + 8;
+    const rightW = w - rightX - 12;
+    ctx.fillStyle = "rgba(15, 23, 42, 0.82)";
+    ctx.strokeStyle = "rgba(56, 189, 248, 0.45)";
+    ctx.beginPath();
+    ctx.roundRect(rightX, 10, rightW, h - 20, 12);
+    ctx.fill();
+    ctx.stroke();
+
+    const cx = rightX + rightW * 0.5;
+    const cy = h * 0.48;
+    ctx.fillStyle = "#f8fafc";
+    ctx.font = "bold 12px sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("LatentSync 1.6 实心余弦椭圆口型锁", cx, 32);
+
+    // 椭圆余弦羽化层
+    const mouthOpen = audioStemActive[0] ? (6 + 12 * Math.abs(Math.sin(t * 2.1))) : 3;
+    ctx.strokeStyle = "rgba(56, 189, 248, 0.55)";
+    ctx.setLineDash([4, 3]);
+    ctx.beginPath();
+    ctx.ellipse(cx, cy, 58, 36, 0, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.fillStyle = "rgba(245, 158, 11, 0.22)";
+    ctx.strokeStyle = "#f59e0b";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.ellipse(cx, cy, 34, mouthOpen, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = "#34d399";
+    ctx.font = "11px monospace";
+    ctx.fillText("Inner Core r=0.58 · 零矩形接缝", cx, h - 42);
+    ctx.fillStyle = "#fbbf24";
+    ctx.fillText("Integrated: -14.0 LUFS · PASS", cx, h - 22);
+
+    requestAnimationFrame(render);
+  }
+  render();
+}
+
+// ============================================================================
+// 多维动态演示 ③：影视四联标准检视板 × S1/S2/S3 三级存储流 (#storageQuadCanvas)
+// ============================================================================
+let storageDemoPhase = "quad";
+function setStorageDemoPhase(phase, btn) {
+  storageDemoPhase = phase;
+  if (btn) {
+    btn.parentElement.querySelectorAll(".demo-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+  }
+}
+
+function initStorageDemo() {
+  const canvas = document.getElementById("storageQuadCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let w = canvas.width = canvas.parentElement.clientWidth || 1200;
+  let h = canvas.height = 245;
+  window.addEventListener("resize", () => {
+    w = canvas.width = canvas.parentElement.clientWidth || 1200;
+  });
+
+  let tick = 0;
+  function render() {
+    tick++;
+    ctx.clearRect(0, 0, w, h);
+
+    // 左侧 52%：影视四联标准检视板 (4-Quad Inspection Board)
+    const quadW = w * 0.50;
+    const qCellW = (quadW - 30) / 2;
+    const qCellH = (h - 46) / 2;
+
+    ctx.fillStyle = "#f8fafc";
+    ctx.font = "bold 12px sans-serif";
+    ctx.textAlign = "left";
+    ctx.fillText("【影视四联标准检视板】06视觉挑刺 (9.38) × 07防放水交叉审计 (9.62) 双签 PASS", 14, 22);
+
+    const quads = [
+      { tag: "QUAD 01 // 2K 考证写实母图", sub: "@CHR 明光铠将军 · 12×8网格锚定", color: "#f59e0b" },
+      { tag: "QUAD 02 // Blender 米制预演", sub: "8.0m×6.5m 零穿模 · 深度并集锁", color: "#38bdf8" },
+      { tag: "QUAD 03 // 100% 原尺寸人脸抽帧", sub: "KF01–KF24 逐帧扫描 · 0鬼脸伪影", color: "#10b981" },
+      { tag: "QUAD 04 // 声谱与退步刻度核验", sub: "退三步犁沟 · -14.0 LUFS 零截字", color: "#a855f7" }
+    ];
+
+    quads.forEach((q, idx) => {
+      const r = Math.floor(idx / 2);
+      const c = idx % 2;
+      const x = 14 + c * (qCellW + 8);
+      const y = 32 + r * (qCellH + 8);
+
+      const isFocus = storageDemoPhase === "quad";
+      ctx.fillStyle = "rgba(15, 23, 42, 0.85)";
+      ctx.strokeStyle = isFocus ? q.color : "rgba(255,255,255,0.18)";
+      ctx.lineWidth = isFocus ? 2 : 1;
+      ctx.beginPath();
+      ctx.roundRect(x, y, qCellW, qCellH, 9);
+      ctx.fill();
+      ctx.stroke();
+
+      // 扫描线动画
+      const scanY = y + ((tick * 1.4 + idx * 25) % qCellH);
+      ctx.strokeStyle = "rgba(52, 211, 153, 0.32)";
+      ctx.beginPath();
+      ctx.moveTo(x + 4, scanY);
+      ctx.lineTo(x + qCellW - 4, scanY);
+      ctx.stroke();
+
+      ctx.fillStyle = q.color;
+      ctx.font = "bold 11px monospace";
+      ctx.fillText(q.tag, x + 10, y + 22);
+      ctx.fillStyle = "#cbd5e1";
+      ctx.font = "11px sans-serif";
+      ctx.fillText(q.sub, x + 10, y + 44);
+      ctx.fillStyle = "#34d399";
+      ctx.font = "bold 10.5px monospace";
+      ctx.fillText("✓ AUDIT VERIFIED ≥ 9.0", x + 10, y + qCellH - 12);
+    });
+
+    // 右侧 48%：S1热 ➔ S2温 ➔ S3冷 三级存储与 :18899 秒搜拓扑
+    const rightX = quadW + 16;
+    const rightW = w - rightX - 14;
+    ctx.fillStyle = "#f8fafc";
+    ctx.font = "bold 12px sans-serif";
+    ctx.fillText("【S1/S2/S3 冷热温三级存储金库】77柜×24kW · :18899 (4.5ms 全局秒搜)", rightX, 22);
+
+    const tiers = [
+      { id: "s1", name: "🔥 S1 全闪热存储层 (NVMe RAID10 + 640GB HBM3)", desc: "81,917份母图八卡MFT硬链接 · 14.45 TB/s · 465ms冷启", color: "#f59e0b", y: 34 },
+      { id: "s2", name: "🌤️ S2 跨专业协同温存储 (100G 汇聚共享池)", desc: "CONTINUITY_LOCK.json + Context-IR 跨镜账本接力", color: "#38bdf8", y: 104 },
+      { id: "s3", name: "❄️ S3 冷金库 × :18899 全局秒搜驾驶舱", desc: "77机柜纠删码归档 · 1,014,761+ 资产 4.5ms 毫秒级检索", color: "#10b981", y: 174 }
+    ];
+
+    tiers.forEach((tr, i) => {
+      const active = storageDemoPhase === tr.id || storageDemoPhase === "quad";
+      ctx.fillStyle = active ? "rgba(15, 23, 42, 0.9)" : "rgba(15, 23, 42, 0.5)";
+      ctx.strokeStyle = storageDemoPhase === tr.id ? "#ffffff" : tr.color;
+      ctx.lineWidth = storageDemoPhase === tr.id ? 2.5 : 1.5;
+      ctx.beginPath();
+      ctx.roundRect(rightX, tr.y, rightW, 56, 10);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.fillStyle = tr.color;
+      ctx.font = "bold 12px sans-serif";
+      ctx.fillText(tr.name, rightX + 14, tr.y + 22);
+      ctx.fillStyle = "#e2e8f0";
+      ctx.font = "11px monospace";
+      ctx.fillText(tr.desc, rightX + 14, tr.y + 42);
+
+      // 动态进度球
+      const dotX = rightX + 14 + ((tick * 3 + i * 90) % Math.max(40, rightW - 28));
+      ctx.fillStyle = tr.color;
+      ctx.beginPath();
+      ctx.arc(dotX, tr.y + 52, 2.5, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    requestAnimationFrame(render);
+  }
+  render();
+}
+
+// ============================================================================
+// 多维动态演示 ④：教室真人实拍 ➔ SAM 3.1 ➔ 小肥猴 Easy-H3 0.999978 对比器 (#hybridWipeCanvas)
+// ============================================================================
+let hybridAutoSweep = true;
+let hybridSplitRatio = 0.5;
+let hybridXsegOn = true;
+
+function toggleHybridAutoSweep(btn) {
+  hybridAutoSweep = !hybridAutoSweep;
+  if (btn) btn.classList.toggle("active", hybridAutoSweep);
+}
+function setHybridSplitPos(val) {
+  hybridAutoSweep = false;
+  hybridSplitRatio = val;
+  const b = document.getElementById("btnHybridAuto");
+  if (b) b.classList.remove("active");
+}
+function toggleHybridXseg(btn) {
+  hybridXsegOn = !hybridXsegOn;
+  if (btn) btn.classList.toggle("active", hybridXsegOn);
+}
+function onHybridCanvasHover(e) {
+  const rect = e.currentTarget.getBoundingClientRect();
+  hybridAutoSweep = false;
+  hybridSplitRatio = Math.max(0.08, Math.min(0.92, (e.clientX - rect.left) / Math.max(1, rect.width)));
+  const b = document.getElementById("btnHybridAuto");
+  if (b) b.classList.remove("active");
+}
+
+function initHybridDemo() {
+  const canvas = document.getElementById("hybridWipeCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let w = canvas.width = canvas.parentElement.clientWidth || 1200;
+  let h = canvas.height = 255;
+  window.addEventListener("resize", () => {
+    w = canvas.width = canvas.parentElement.clientWidth || 1200;
+  });
+
+  let t = 0;
+  function drawActorPose(cx, cy, isAiSide) {
+    const swing = Math.sin(t * 0.07) * 18;
+    const bladeAngle = -0.35 + Math.sin(t * 0.07) * 0.25;
+
+    if (!isAiSide) {
+      // 左侧：普通排练教室实拍学生 + SAM 3.1 骨骼点
+      ctx.strokeStyle = "rgba(56, 189, 248, 0.85)";
+      ctx.lineWidth = 3;
+      // 躯干与四肢骨骼
+      ctx.beginPath();
+      ctx.arc(cx, cy - 58, 18, 0, Math.PI * 2); // 头
+      ctx.moveTo(cx, cy - 40); ctx.lineTo(cx, cy + 25); // 脊柱
+      ctx.moveTo(cx - 28, cy - 22); ctx.lineTo(cx + 28, cy - 22); // 肩
+      ctx.moveTo(cx - 28, cy - 22); ctx.lineTo(cx - 46, cy + 12 + swing * 0.4); // 左臂
+      ctx.moveTo(cx + 28, cy - 22); ctx.lineTo(cx + 54, cy - 18 - swing); // 右持剑臂
+      ctx.moveTo(cx, cy + 25); ctx.lineTo(cx - 26, cy + 82); // 左腿
+      ctx.moveTo(cx, cy + 25); ctx.lineTo(cx + 30, cy + 82); // 右腿
+      ctx.stroke();
+
+      // 33点关键点发光圆点
+      const joints = [[cx, cy - 58], [cx, cy - 22], [cx - 28, cy - 22], [cx + 28, cy - 22], [cx + 54, cy - 18 - swing], [cx, cy + 25], [cx - 26, cy + 82], [cx + 30, cy + 82]];
+      joints.forEach(([jx, jy]) => {
+        ctx.fillStyle = "#22d3ee";
+        ctx.beginPath(); ctx.arc(jx, jy, 4.2, 0, Math.PI * 2); ctx.fill();
+      });
+
+      // 木质排练道具剑
+      ctx.strokeStyle = "#94a3b8";
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.moveTo(cx + 54, cy - 18 - swing);
+      ctx.lineTo(cx + 54 + Math.cos(bladeAngle) * 95, cy - 18 - swing + Math.sin(bladeAngle) * 95);
+      ctx.stroke();
+    } else {
+      // 右侧：小肥猴 Easy-H3 盛唐明光铠将军重绘 (动作完全同步 r=0.999978)
+      // 披风动态飘动
+      ctx.fillStyle = "rgba(220, 38, 38, 0.48)";
+      ctx.beginPath();
+      ctx.moveTo(cx - 24, cy - 30);
+      ctx.quadraticCurveTo(cx - 85, cy + 15 + swing, cx - 70, cy + 78);
+      ctx.lineTo(cx + 10, cy + 45);
+      ctx.closePath();
+      ctx.fill();
+
+      // 金色明光铠胸甲与兜鍪
+      ctx.fillStyle = "rgba(245, 158, 11, 0.88)";
+      ctx.strokeStyle = "#fef08a";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(cx, cy - 58, 20, 0, Math.PI * 2); // 兜鍪金盔
+      ctx.fill(); ctx.stroke();
+
+      // 红缨
+      ctx.fillStyle = "#ef4444";
+      ctx.beginPath();
+      ctx.moveTo(cx, cy - 78);
+      ctx.quadraticCurveTo(cx - 22, cy - 96 + swing * 0.3, cx - 34, cy - 82);
+      ctx.lineTo(cx + 6, cy - 78);
+      ctx.fill();
+
+      // 明光铠甲身与吞肩兽
+      ctx.fillStyle = "rgba(217, 119, 6, 0.85)";
+      ctx.beginPath();
+      ctx.roundRect(cx - 30, cy - 36, 60, 64, 10);
+      ctx.fill(); ctx.stroke();
+
+      // 持唐横刀/陌刀寒光
+      ctx.strokeStyle = "#fde047";
+      ctx.lineWidth = 5;
+      ctx.beginPath();
+      ctx.moveTo(cx + 54, cy - 18 - swing);
+      ctx.lineTo(cx + 54 + Math.cos(bladeAngle) * 105, cy - 18 - swing + Math.sin(bladeAngle) * 105);
+      ctx.stroke();
+
+      // FaceFusion :3910 XSeg 隔物护脸层标识
+      if (hybridXsegOn) {
+        ctx.strokeStyle = "#10b981";
+        ctx.lineWidth = 1.8;
+        ctx.setLineDash([4, 3]);
+        ctx.beginPath();
+        ctx.arc(cx, cy - 58, 26, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+    }
+  }
+
+  function render() {
+    t += 1;
+    if (hybridAutoSweep) {
+      hybridSplitRatio = 0.5 + 0.14 * Math.sin(t * 0.026);
+    }
+    const splitX = Math.round(w * hybridSplitRatio);
+    ctx.clearRect(0, 0, w, h);
+
+    const cx = w * 0.5;
+    const cy = h * 0.52;
+
+    // 1. 绘制左半屏（普通教室实拍 + SAM 3.1 掩码）
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(0, 0, splitX, h);
+    ctx.clip();
+
+    ctx.fillStyle = "rgba(15, 23, 42, 0.92)";
+    ctx.fillRect(0, 0, w, h);
+    // 教室黑板与透视网格背景
+    ctx.strokeStyle = "rgba(148, 163, 184, 0.16)";
+    ctx.strokeRect(60, 28, w - 120, h - 56);
+    ctx.fillStyle = "#38bdf8";
+    ctx.font = "bold 13px sans-serif";
+    ctx.textAlign = "left";
+    ctx.fillText("【左屏：河传排练教室手机实拍原片 + SAM 3.1 33点骨骼掩码】", 22, 28);
+    ctx.fillStyle = "#94a3b8";
+    ctx.font = "11.5px monospace";
+    ctx.fillText("• 零绿幕棚 · 普通便服排练 · MiniMax-Remover 待擦除背景黑板", 22, 50);
+
+    drawActorPose(cx, cy, false);
+    ctx.restore();
+
+    // 2. 绘制右半屏（小肥猴 Easy-H3 盛唐金甲将军无痕换角成片）
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(splitX, 0, w - splitX, h);
+    ctx.clip();
+
+    const bgGrad = ctx.createLinearGradient(0, 0, w, h);
+    bgGrad.addColorStop(0, "rgba(45, 22, 12, 0.92)");
+    bgGrad.addColorStop(1, "rgba(15, 23, 42, 0.95)");
+    ctx.fillStyle = bgGrad;
+    ctx.fillRect(0, 0, w, h);
+
+    ctx.fillStyle = "#fbbf24";
+    ctx.font = "bold 13px sans-serif";
+    ctx.textAlign = "right";
+    ctx.fillText("【右屏：小肥猴 Easy-H3 二段式无痕换角 (r = 0.999978) + 边塞烽燧景深】", w - 22, 28);
+    ctx.fillStyle = "#34d399";
+    ctx.font = "11.5px monospace";
+    ctx.fillText(hybridXsegOn ? "• :3910 FaceFusion XSeg 隔刀刃护脸已开启 · 100% 锁定演员真容" : "• XSeg 遮挡保护已关闭", w - 22, 50);
+
+    drawActorPose(cx, cy, true);
+    ctx.restore();
+
+    // 3. 绘制中间液态玻璃分割滑杆 (Liquid Glass Wipe Handle)
+    ctx.strokeStyle = "#ffffff";
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.moveTo(splitX, 0);
+    ctx.lineTo(splitX, h);
+    ctx.stroke();
+
+    ctx.fillStyle = "rgba(245, 158, 11, 0.95)";
+    ctx.beginPath();
+    ctx.roundRect(splitX - 44, h - 38, 88, 26, 13);
+    ctx.fill();
+    ctx.fillStyle = "#090d16";
+    ctx.font = "bold 11px monospace";
+    ctx.textAlign = "center";
+    ctx.fillText(`◄ ${Math.round(hybridSplitRatio * 100)}% ►`, splitX, h - 21);
+
+    requestAnimationFrame(render);
+  }
+  render();
+}
+
+// ============================================================================
+// 多维动态演示 ⑤：3D 导演台 · 手机无线运镜 & CAM 1~6 实时导播交互台 (#directorLiveCanvas)
+// ============================================================================
+let activeDirectorCam = 1;
+const directorShotHistory = [
+  { cam: 1, name: "CAM 1 全景", tc: "00:00:00:00", ok: true },
+  { cam: 2, name: "CAM 2 正打A", tc: "00:00:03:12", ok: true },
+  { cam: 3, name: "CAM 3 反打B", tc: "00:00:06:08", ok: true }
+];
+
+const DIRECTOR_CAM_META = {
+  1: { name: "CAM 1 · 24mm 殿堂全景主镜", x: 0.25, y: 0.78, angle: -0.9, fov: 0.65, axisOk: true, note: "交代四柱殿堂空间关系与双人几何站位" },
+  2: { name: "CAM 2 · 50mm 过肩正打 A角", x: 0.16, y: 0.64, angle: -0.45, fov: 0.42, axisOk: true, note: "位于 180° 轴线南侧安全区，聚焦 A角微表情" },
+  3: { name: "CAM 3 · 50mm 过肩反打 B角", x: 0.34, y: 0.64, angle: -2.65, fov: 0.42, axisOk: true, note: "严守 180° 轴线同侧关系，视线方向完全匹配" },
+  4: { name: "CAM 4 · 85mm 寒眸极特写", x: 0.21, y: 0.56, angle: -0.6, fov: 0.28, axisOk: true, note: "浅景深焦外散景，捕捉瞳孔微缩反应链" },
+  5: { name: "CAM 5 · FPV 向心压弯穿廊 (φ=38°)", x: 0.11, y: 0.48, angle: 0.0, fov: 0.75, axisOk: true, note: "按走廊锚点自动解算压弯横滚角 φ=arctan(v²κ/9.8)" },
+  6: { name: "CAM 6 · ⚠️ 180° 越轴违规机位", x: 0.25, y: 0.18, angle: 1.57, fov: 0.50, axisOk: false, note: "🚨 zF 几何算法拦截：越过人物视线轴北侧，导致左右视线颠倒！" }
+};
+
+function switchDirectorCam(camId, btn) {
+  activeDirectorCam = camId;
+  if (btn) {
+    btn.parentElement.querySelectorAll(".demo-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+  }
+  const meta = DIRECTOR_CAM_META[camId];
+  const pgmEl = document.getElementById("dirPgmLabel");
+  const axisEl = document.getElementById("dirAxisStatus");
+  if (pgmEl) pgmEl.textContent = meta.name;
+  if (axisEl) {
+    if (meta.axisOk) {
+      axisEl.textContent = "✅ 180° 轴线安全区 · 无跳切";
+      axisEl.style.color = "#34d399";
+    } else {
+      axisEl.textContent = "🚨 zF 告警：检测到 180° 越轴！已拦截";
+      axisEl.style.color = "#f87171";
+    }
+  }
+  const now = new Date();
+  const tc = `00:${String(now.getMinutes()).padStart(2, "0")}:${String(now.getSeconds()).padStart(2, "0")}:${String(tcFrame).padStart(2, "0")}`;
+  directorShotHistory.push({ cam: camId, name: `CAM ${camId}`, tc, ok: meta.axisOk });
+  if (directorShotHistory.length > 5) directorShotHistory.shift();
+}
+
+function initDirectorDemo() {
+  const canvas = document.getElementById("directorLiveCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let w = canvas.width = canvas.parentElement.clientWidth || 1200;
+  let h = canvas.height = 270;
+  window.addEventListener("resize", () => {
+    w = canvas.width = canvas.parentElement.clientWidth || 1200;
+  });
+
+  let tick = 0;
+  function render() {
+    tick++;
+    ctx.clearRect(0, 0, w, h);
+
+    const stageW = w * 0.48;
+    const meta = DIRECTOR_CAM_META[activeDirectorCam] || DIRECTOR_CAM_META[1];
+
+    // 1. 左半区：3D 导演台俯视米制蓝图与 180° 轴线雷达
+    ctx.fillStyle = "rgba(10, 16, 30, 0.9)";
+    ctx.strokeStyle = "rgba(56, 189, 248, 0.35)";
+    ctx.beginPath();
+    ctx.roundRect(10, 10, stageW - 16, h - 20, 12);
+    ctx.fill();
+    ctx.stroke();
+
+    // 绘制 180° 禁区（上半部红色半透明）与安全区（下半部绿色半透明）
+    const axisY = h * 0.44;
+    ctx.fillStyle = "rgba(239, 68, 68, 0.08)";
+    ctx.fillRect(14, 14, stageW - 24, axisY - 14);
+    ctx.fillStyle = "rgba(16, 185, 129, 0.07)";
+    ctx.fillRect(14, axisY, stageW - 24, h - 24 - axisY);
+
+    // 180° 轴线分割线
+    ctx.strokeStyle = meta.axisOk ? "#10b981" : "#ef4444";
+    ctx.lineWidth = 2;
+    ctx.setLineDash([6, 4]);
+    ctx.beginPath();
+    ctx.moveTo(22, axisY);
+    ctx.lineTo(stageW - 22, axisY);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.fillStyle = "#f87171";
+    ctx.font = "bold 10.5px monospace";
+    ctx.textAlign = "left";
+    ctx.fillText("⛔ 180° 越轴禁区 (Axis Violation Zone)", 22, 30);
+    ctx.fillStyle = "#34d399";
+    ctx.fillText("✅ 180° 轴线安全区 (@空间名 12.0m × 8.5m)", 22, h - 20);
+
+    // 绘制演员 A 与 演员 B
+    const actorAX = stageW * 0.36, actorAY = axisY;
+    const actorBX = stageW * 0.66, actorBY = axisY;
+    [
+      { x: actorAX, y: actorAY, label: "演员A (唐将)", color: "#f59e0b" },
+      { x: actorBX, y: actorBY, label: "演员B (使臣)", color: "#38bdf8" }
+    ].forEach(ac => {
+      ctx.fillStyle = ac.color;
+      ctx.beginPath(); ctx.arc(ac.x, ac.y, 9, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "bold 11px sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillText(ac.label, ac.x, ac.y - 14);
+    });
+
+    // 绘制当前选中机位视锥 (Camera Frustum)
+    const camX = stageW * (meta.x * 2.0);
+    const camY = h * meta.y;
+    const targetX = activeDirectorCam === 2 ? actorAX : (activeDirectorCam === 3 ? actorBX : (actorAX + actorBX) * 0.5);
+    const targetY = axisY;
+
+    ctx.fillStyle = meta.axisOk ? "rgba(245, 158, 11, 0.20)" : "rgba(239, 68, 68, 0.30)";
+    ctx.strokeStyle = meta.axisOk ? "#f59e0b" : "#ef4444";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(camX, camY);
+    ctx.lineTo(targetX - 42, targetY);
+    ctx.lineTo(targetX + 42, targetY);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = meta.axisOk ? "#fbbf24" : "#ef4444";
+    ctx.beginPath(); ctx.arc(camX, camY, 7, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 11px monospace";
+    ctx.fillText(`CAM ${activeDirectorCam}`, camX, camY + 20);
+
+    // 2. 右半区：PGM 实时导播监视器 + 手机 33 点非对称滤波 + 录切换时间轴
+    const rightX = stageW + 6;
+    const rightW = w - rightX - 12;
+
+    ctx.fillStyle = "rgba(10, 16, 30, 0.92)";
+    ctx.strokeStyle = meta.axisOk ? "rgba(245, 158, 11, 0.55)" : "#ef4444";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.roundRect(rightX, 10, rightW, h - 20, 12);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = meta.axisOk ? "#fbbf24" : "#f87171";
+    ctx.font = "bold 12.5px sans-serif";
+    ctx.textAlign = "left";
+    ctx.fillText(`⏺ PGM 实时导播画面 // ${meta.name}`, rightX + 16, 34);
+    ctx.fillStyle = "#cbd5e1";
+    ctx.font = "11.5px sans-serif";
+    ctx.fillText(meta.note, rightX + 16, 54);
+
+    // 手机陀螺仪与 XY=1.6Hz / Z=0.15Hz 滤波曲线框
+    const waveY = 72;
+    const waveH = 88;
+    ctx.fillStyle = "rgba(4, 8, 18, 0.78)";
+    ctx.strokeStyle = "rgba(255,255,255,0.12)";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.roundRect(rightX + 14, waveY, rightW - 28, waveH, 8);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = "#38bdf8";
+    ctx.font = "bold 11px monospace";
+    ctx.fillText("📱 手机扫码零上传 33点动捕 · XY=1.6Hz (跟手) / Z=0.15Hz (锁深度防滑步)", rightX + 24, waveY + 18);
+
+    // 绘制原始 Z 轴抖动虚线 vs 0.15Hz 滤波平滑实线
+    ctx.strokeStyle = "rgba(244, 63, 94, 0.45)";
+    ctx.lineWidth = 1.2;
+    ctx.beginPath();
+    for (let x = 0; x < rightW - 48; x += 6) {
+      const y = waveY + 56 + Math.sin(x * 0.25 + tick * 0.2) * 18 + Math.cos(x * 0.6 - tick * 0.35) * 9;
+      if (x === 0) ctx.moveTo(rightX + 24 + x, y);
+      else ctx.lineTo(rightX + 24 + x, y);
+    }
+    ctx.stroke();
+
+    ctx.strokeStyle = "#34d399";
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    for (let x = 0; x < rightW - 48; x += 6) {
+      const y = waveY + 56 + Math.sin(x * 0.04 + tick * 0.06) * 10;
+      if (x === 0) ctx.moveTo(rightX + 24 + x, y);
+      else ctx.lineTo(rightX + 24 + x, y);
+    }
+    ctx.stroke();
+
+    // 底部：⏺ 录切换 shotSequence 多机位导播轨
+    const tlY = 174;
+    ctx.fillStyle = "#f8fafc";
+    ctx.font = "bold 11.5px monospace";
+    ctx.fillText("⏺ 实时录切换轨 (shotSequence) — 支持键盘 1~6 键实时切镜：", rightX + 16, tlY + 14);
+
+    const clipW = (rightW - 36) / directorShotHistory.length;
+    directorShotHistory.forEach((sh, idx) => {
+      const cx = rightX + 16 + idx * clipW;
+      ctx.fillStyle = sh.ok ? "rgba(56, 189, 248, 0.18)" : "rgba(239, 68, 68, 0.28)";
+      ctx.strokeStyle = sh.ok ? "#38bdf8" : "#ef4444";
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.roundRect(cx, tlY + 24, clipW - 6, 46, 7);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "bold 11px monospace";
+      ctx.fillText(sh.name, cx + 8, tlY + 43);
+      ctx.fillStyle = sh.ok ? "#94a3b8" : "#fca5a5";
+      ctx.font = "10px monospace";
+      ctx.fillText(sh.tc, cx + 8, tlY + 60);
+    });
+
+    requestAnimationFrame(render);
+  }
+  render();
+}
+
+// 键盘数字键 1~6 直接联动第 09 章导播台
+window.addEventListener("keydown", (e) => {
+  if (["INPUT", "TEXTAREA", "SELECT"].includes((e.target && e.target.tagName) || "")) return;
+  const n = parseInt(e.key, 10);
+  if (n >= 1 && n <= 6) {
+    const btns = document.querySelectorAll("#directorCamBtns .demo-btn");
+    switchDirectorCam(n, btns[n - 1]);
+  }
+});
 
 // 初始化全页所有动态组件
 window.addEventListener("DOMContentLoaded", () => {
@@ -2977,6 +4391,12 @@ window.addEventListener("DOMContentLoaded", () => {
   renderGenreCards("all");
   loadSimPreset(0);
   initHeroCanvas();
+  initLiquidGlass3D();
+  initClusterDemo();
+  initAudioDemo();
+  initStorageDemo();
+  initHybridDemo();
+  initDirectorDemo();
 });
 </script>
 </body>
