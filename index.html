@@ -910,8 +910,26 @@ html[data-theme="tactile-archival"] .sim-run-btn {
         <button class="ctrl-btn" id="fontBtnStandard" onclick="setFontScale('standard')">标准</button>
         <button class="ctrl-btn active" id="fontBtnLarge" onclick="setFontScale('large')">18.5pt 舒适</button>
         <button class="ctrl-btn" id="fontBtnXlarge" onclick="setFontScale('xlarge')">21pt 大字</button>
+        <a href="m.html" id="mobileSwitchBtn" class="ctrl-btn" style="text-decoration:none;border-color:var(--accent-secondary);color:var(--accent-secondary);">📱 手机版</a>
       </div>
     </div>
+    <script>
+      (function(){
+        var isPortal = location.pathname.indexOf('hbcm.html') !== -1;
+        var mTarget = isPortal ? 'hbcm-m.html' : 'm.html';
+        var btn = document.getElementById('mobileSwitchBtn');
+        if (btn) {
+          if (location.protocol === 'file:') {
+            btn.href = '05_金泰AI影视艺术全栈智算平台_面向河传师生手机版.html';
+          } else {
+            btn.href = mTarget;
+          }
+        }
+        if (window.innerWidth <= 760 && location.search.indexOf('desktop=1') === -1 && location.protocol !== 'file:') {
+          location.replace(mTarget + location.hash);
+        }
+      })();
+    </script>
 
     <nav class="hud-nav" aria-label="章节导航">
       <a href="#sec-models">01 金泰1–3模型底座</a>

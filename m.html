@@ -1,0 +1,2064 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="cinema-imax" data-font="standard">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="format-detection" content="telephone=no">
+<title>金泰 AI 影视艺术全栈智算平台 · 河传师生手机版</title>
+<style>
+:root {
+  --font-sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI", system-ui, -apple-system, sans-serif;
+  --font-serif: "Songti SC", "Noto Serif SC", "Source Han Serif SC", Georgia, serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+  --base-size: 16px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --border-width: 1px;
+  --shadow-card: 0 10px 28px rgba(0, 0, 0, 0.42);
+  --transition: 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html[data-font="standard"] { --base-size: 15.5px; }
+html[data-font="large"] { --base-size: 17px; }
+html[data-font="xlarge"] { --base-size: 18.5px; }
+
+/* 1. 默认：IMAX 银幕暗房 · 黑金胶片导播版 (cinema-imax) */
+html[data-theme="cinema-imax"] {
+  --bg-outer: #030508;
+  --bg-primary: #07090e;
+  --bg-secondary: #0e131f;
+  --bg-card: rgba(17, 23, 36, 0.96);
+  --bg-card-hover: rgba(24, 33, 52, 0.99);
+  --bg-glass: rgba(8, 11, 19, 0.98);
+  --text-primary: #f4f6fb;
+  --text-secondary: #bac4d6;
+  --text-muted: #7f8ca3;
+  --accent-primary: #f59e0b;
+  --accent-secondary: #22d3ee;
+  --accent-tertiary: #a855f7;
+  --accent-success: #10b981;
+  --accent-danger: #f43f5e;
+  --border-color: rgba(245, 158, 11, 0.28);
+  --border-subtle: rgba(255, 255, 255, 0.09);
+  --badge-bg: rgba(245, 158, 11, 0.15);
+  --badge-text: #fbbf24;
+  --hero-gradient: radial-gradient(circle at 20% 12%, rgba(245, 158, 11, 0.18) 0%, rgba(34, 211, 238, 0.10) 45%, rgba(7, 9, 14, 0.98) 85%);
+}
+
+/* 2. 瑞士国际主义 · 电影工业场记网格版 (swiss-grid) */
+html[data-theme="swiss-grid"] {
+  --bg-outer: #dcd6c8;
+  --bg-primary: #f4f1ea;
+  --bg-secondary: #eae5da;
+  --bg-card: #ffffff;
+  --bg-card-hover: #fcfaf5;
+  --bg-glass: rgba(244, 241, 234, 0.94);
+  --text-primary: #111318;
+  --text-secondary: #2e3440;
+  --text-muted: #5e6778;
+  --accent-primary: #d9232e;
+  --accent-secondary: #0f4c81;
+  --accent-tertiary: #111318;
+  --accent-success: #0d7a4f;
+  --accent-danger: #c81e1e;
+  --border-color: #111318;
+  --border-subtle: rgba(17, 19, 24, 0.22);
+  --badge-bg: #111318;
+  --badge-text: #ffffff;
+  --radius-card: 4px;
+  --radius-pill: 4px;
+  --border-width: 2px;
+  --shadow-card: 4px 4px 0px #111318;
+  --hero-gradient: linear-gradient(135deg, #f4f1ea 0%, #e8e2d5 100%);
+}
+
+/* 3. 2027审美④ 留白·宋式极简水墨电影版 (song-ink) */
+html[data-theme="song-ink"] {
+  --bg-outer: #e5dfd1;
+  --bg-primary: #f7f4eb;
+  --bg-secondary: #efeadd;
+  --bg-card: rgba(252, 250, 244, 0.96);
+  --bg-card-hover: #ffffff;
+  --bg-glass: rgba(247, 244, 235, 0.93);
+  --text-primary: #1c2024;
+  --text-secondary: #3d464d;
+  --text-muted: #6c767d;
+  --accent-primary: #2c5e66;
+  --accent-secondary: #b91c1c;
+  --accent-tertiary: #5c4b37;
+  --accent-success: #2c6e49;
+  --accent-danger: #b91c1c;
+  --border-color: rgba(44, 94, 102, 0.42);
+  --border-subtle: rgba(28, 32, 36, 0.16);
+  --badge-bg: rgba(185, 28, 28, 0.10);
+  --badge-text: #991b1b;
+  --radius-card: 6px;
+  --shadow-card: 0 8px 22px rgba(44, 94, 102, 0.09);
+  --hero-gradient: radial-gradient(circle at 80% 15%, rgba(44, 94, 102, 0.12) 0%, rgba(247, 244, 235, 0.96) 72%);
+}
+
+/* 4. 2027审美① 笨拙·新野兽派孔版撞色版 (neo-risograph) */
+html[data-theme="neo-risograph"] {
+  --bg-outer: #e6dec8;
+  --bg-primary: #fbf7ec;
+  --bg-secondary: #f3ebd6;
+  --bg-card: #fffdf7;
+  --bg-card-hover: #ffffff;
+  --bg-glass: rgba(251, 247, 236, 0.95);
+  --text-primary: #121316;
+  --text-secondary: #292b30;
+  --text-muted: #575b66;
+  --accent-primary: #ff2e63;
+  --accent-secondary: #1d4ed8;
+  --accent-tertiary: #059669;
+  --accent-success: #047857;
+  --accent-danger: #e11d48;
+  --border-color: #121316;
+  --border-subtle: rgba(18, 19, 22, 0.28);
+  --badge-bg: #ffde59;
+  --badge-text: #121316;
+  --radius-card: 12px;
+  --border-width: 2px;
+  --shadow-card: 4px 4px 0px #1d4ed8, -2px -2px 0px #ff2e63;
+  --hero-gradient: radial-gradient(circle at 20% 20%, rgba(255, 46, 99, 0.12) 0%, rgba(29, 78, 216, 0.10) 55%, #fbf7ec 100%);
+}
+
+/* 5. 2027审美②&③ 触觉·盲压浮雕与半调档案版 (tactile-archival) */
+html[data-theme="tactile-archival"] {
+  --bg-outer: #cfc8b8;
+  --bg-primary: #e6e1d6;
+  --bg-secondary: #dad3c5;
+  --bg-card: #ece8de;
+  --bg-card-hover: #f3efe6;
+  --bg-glass: rgba(230, 225, 214, 0.93);
+  --text-primary: #1e1b18;
+  --text-secondary: #3b352e;
+  --text-muted: #665d52;
+  --accent-primary: #8c3b2b;
+  --accent-secondary: #2b4c59;
+  --accent-tertiary: #4a3f35;
+  --accent-success: #2d5a43;
+  --accent-danger: #9e2a2b;
+  --border-color: rgba(30, 27, 24, 0.35);
+  --border-subtle: rgba(30, 27, 24, 0.16);
+  --badge-bg: #d5cdbd;
+  --badge-text: #1e1b18;
+  --radius-card: 14px;
+  --shadow-card: inset 2px 2px 5px rgba(255,255,255,0.7), inset -3px -3px 7px rgba(0,0,0,0.12), 0 6px 16px rgba(0,0,0,0.08);
+  --hero-gradient: linear-gradient(180deg, #ded8ca 0%, #e6e1d6 100%);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html { font-size: var(--base-size); scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-outer);
+  color: var(--text-primary);
+  line-height: 1.62;
+  overflow-x: hidden;
+}
+
+/* 手机壳容器：在手机真机上100%全屏，在电脑端预览时居中展现为460px旗舰手机视窗 */
+.mobile-shell {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: var(--bg-primary);
+  position: relative;
+  padding-bottom: calc(4.8rem + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.65);
+}
+@media (max-width: 520px) {
+  .mobile-shell {
+    max-width: 100%;
+    box-shadow: none;
+  }
+}
+
+/* 顶部紧凑导播栏 (Sticky Mobile Topbar) */
+.m-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 950;
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: var(--border-width) solid var(--border-color);
+  padding: 0.5rem 0.85rem 0.45rem;
+}
+.m-top-row1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+}
+.m-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.42rem;
+  min-width: 0;
+}
+.rec-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ef4444;
+  box-shadow: 0 0 8px #ef4444;
+  animation: pulseRec 1.6s infinite;
+  flex-shrink: 0;
+}
+@keyframes pulseRec {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.85); }
+}
+.m-brand-text {
+  font-weight: 900;
+  font-size: 0.84rem;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.m-top-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+.m-select, .m-mini-btn {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.42rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.m-select {
+  max-width: 102px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.m-mini-btn.accent {
+  background: var(--badge-bg);
+  color: var(--badge-text);
+}
+
+/* 顶部横向滑动章节胶囊条 */
+.m-pill-strip {
+  display: flex;
+  gap: 0.38rem;
+  overflow-x: auto;
+  padding-top: 0.42rem;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.m-pill-strip::-webkit-scrollbar { display: none; }
+.m-pill-strip a {
+  font-size: 0.73rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.22rem 0.62rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-secondary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.m-pill-strip a:active, .m-pill-strip a.active {
+  background: var(--accent-primary);
+  color: #07090e;
+  border-color: var(--accent-primary);
+}
+
+/* 首屏手机版 Hero Stage */
+.m-hero {
+  background: var(--hero-gradient);
+  padding: 0.9rem 0.85rem 1.1rem;
+  border-bottom: var(--border-width) solid var(--border-color);
+}
+.m-viewfinder {
+  position: relative;
+  background: var(--bg-card);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--radius-card);
+  padding: 1.1rem 1rem;
+  box-shadow: var(--shadow-card);
+}
+.vf-c {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--accent-primary);
+  border-style: solid;
+  pointer-events: none;
+}
+.vf-tl { top: 8px; left: 8px; border-width: 2.5px 0 0 2.5px; }
+.vf-tr { top: 8px; right: 8px; border-width: 2.5px 2.5px 0 0; }
+.vf-bl { bottom: 8px; left: 8px; border-width: 0 0 2.5px 2.5px; }
+.vf-br { bottom: 8px; right: 8px; border-width: 0 2.5px 2.5px 0; }
+
+.m-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.62rem;
+  background: var(--badge-bg);
+  color: var(--badge-text);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-pill);
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-bottom: 0.65rem;
+}
+
+/* 手机竖屏三行零孤字标题 */
+.m-hero-title {
+  font-weight: 900;
+  line-height: 1.34;
+  margin-bottom: 0.8rem;
+}
+.m-hero-line1 {
+  display: block;
+  font-size: 0.84rem;
+  color: var(--accent-secondary);
+  font-weight: 800;
+  margin-bottom: 0.2rem;
+}
+.m-hero-line2 {
+  display: block;
+  font-size: 1.24rem;
+  color: var(--text-primary);
+}
+.m-hero-line3 {
+  display: block;
+  font-size: 1.28rem;
+  color: var(--accent-primary);
+  text-decoration: underline;
+  text-decoration-color: rgba(245, 158, 11, 0.4);
+  text-underline-offset: 4px;
+  margin-top: 0.1rem;
+}
+
+.m-hero-desc {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  line-height: 1.62;
+  background: var(--bg-secondary);
+  padding: 0.75rem 0.85rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  margin-bottom: 0.65rem;
+}
+.m-hero-desc strong { color: var(--text-primary); }
+
+.m-quote-banner {
+  font-size: 0.82rem;
+  line-height: 1.58;
+  padding: 0.7rem 0.85rem;
+  border-left: 3.5px solid var(--accent-primary);
+  background: var(--bg-secondary);
+  border-radius: 0 10px 10px 0;
+  margin-bottom: 0.85rem;
+}
+.m-quote-banner strong { color: var(--accent-primary); }
+
+/* 2×3 手机端六维遥测矩阵 */
+.m-telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.52rem;
+}
+.m-t-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 0.62rem 0.7rem;
+}
+.m-t-val {
+  font-family: var(--font-mono);
+  font-size: 1.02rem;
+  font-weight: 900;
+  color: var(--accent-primary);
+  line-height: 1.15;
+  white-space: nowrap;
+}
+.m-t-label {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-top: 0.2rem;
+  white-space: nowrap;
+}
+.m-t-sub {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  margin-top: 0.1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 全局展开/收起详情控制条 */
+.m-global-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0.85rem;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* 手机版章节容器 */
+.m-section {
+  padding: 1.35rem 0.85rem;
+  scroll-margin-top: 92px;
+  border-bottom: var(--border-width) solid var(--border-subtle);
+}
+.m-sec-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--accent-secondary);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.m-sec-title {
+  font-size: 1.16rem;
+  font-weight: 900;
+  line-height: 1.34;
+  margin: 0.2rem 0 0.45rem;
+  color: var(--text-primary);
+}
+.m-sec-desc {
+  font-size: 0.83rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 0.85rem;
+}
+
+/* 横向可滑动分类 Tab 胶囊 */
+.m-tabs-scroll {
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  padding-bottom: 0.35rem;
+  margin-bottom: 0.8rem;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.m-tabs-scroll::-webkit-scrollbar { display: none; }
+.m-tab-btn {
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 0.36rem 0.78rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  white-space: nowrap;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.m-tab-btn.active {
+  background: var(--accent-primary);
+  color: #07090e;
+  border-color: var(--accent-primary);
+}
+html[data-theme="swiss-grid"] .m-tab-btn.active,
+html[data-theme="song-ink"] .m-tab-btn.active,
+html[data-theme="tactile-archival"] .m-tab-btn.active {
+  color: #ffffff;
+}
+
+/* 手机端卡片列表与渐进展开设计 */
+.m-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.78rem;
+}
+.m-card {
+  background: var(--bg-card);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--radius-card);
+  padding: 0.95rem 0.95rem;
+  box-shadow: var(--shadow-card);
+}
+.m-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  margin-bottom: 0.45rem;
+}
+.m-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.16rem 0.55rem;
+  border-radius: var(--radius-pill);
+  background: var(--badge-bg);
+  color: var(--badge-text);
+  border: 1px solid var(--border-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.m-badge.cyan {
+  background: rgba(34, 211, 238, 0.14);
+  color: var(--accent-secondary);
+  border-color: var(--accent-secondary);
+}
+.m-badge.green {
+  background: rgba(16, 185, 129, 0.14);
+  color: var(--accent-success);
+  border-color: var(--accent-success);
+}
+.m-metric {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: var(--accent-primary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.m-card-title {
+  font-size: 0.98rem;
+  font-weight: 800;
+  line-height: 1.35;
+  color: var(--text-primary);
+  margin-bottom: 0.38rem;
+}
+.m-card-desc {
+  font-size: 0.83rem;
+  line-height: 1.58;
+  color: var(--text-secondary);
+  margin-bottom: 0.55rem;
+}
+.m-details-box {
+  display: none;
+  margin: 0.5rem 0 0.6rem;
+  padding: 0.65rem 0.7rem;
+  background: var(--bg-secondary);
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+}
+.m-card.expanded .m-details-box {
+  display: block;
+}
+.m-spec-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.42rem;
+}
+.m-spec-list li {
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  padding-left: 0.95rem;
+  position: relative;
+}
+.m-spec-list li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--accent-primary);
+  font-weight: bold;
+}
+.m-spec-list li strong { color: var(--text-primary); }
+
+.m-expand-btn {
+  width: 100%;
+  text-align: center;
+  padding: 0.38rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px dashed var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 0.55rem;
+}
+.m-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--border-subtle);
+}
+.m-chip {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  padding: 0.14rem 0.45rem;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 5px;
+  white-space: nowrap;
+}
+
+/* 模块 02：手机专属垂直交互式 ASTRA 6节点控制链（替代电脑端宽屏SVG） */
+.m-astra-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.m-astra-node {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: 0.8rem 0.9rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.m-astra-node.active {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.22);
+}
+.m-node-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.m-node-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 900;
+  font-size: 0.92rem;
+  color: var(--text-primary);
+}
+.m-node-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  color: #07090e;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 900;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.m-node-sub {
+  font-size: 0.76rem;
+  color: var(--accent-secondary);
+  margin-top: 0.22rem;
+  font-weight: 600;
+}
+.m-node-detail {
+  display: none;
+  margin-top: 0.65rem;
+  padding-top: 0.65rem;
+  border-top: 1px dashed var(--border-color);
+}
+.m-astra-node.active .m-node-detail {
+  display: block;
+}
+.m-patent-box {
+  font-size: 0.75rem;
+  padding: 0.42rem 0.6rem;
+  background: var(--badge-bg);
+  color: var(--badge-text);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  margin: 0.45rem 0;
+}
+.m-cmd-box {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.45rem 0.6rem;
+  background: var(--bg-secondary);
+  color: var(--accent-secondary);
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+  overflow-x: auto;
+  white-space: nowrap;
+  margin-top: 0.45rem;
+}
+
+/* 搜索框 */
+.m-search {
+  width: 100%;
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+/* 工业级提示词样本盒 */
+.m-prompt-box {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  line-height: 1.6;
+  padding: 0.75rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 240px;
+  overflow-y: auto;
+  margin-top: 0.55rem;
+}
+
+/* 章节 07：手机端创演沙盘 */
+.m-sim-box {
+  background: var(--bg-card);
+  border: 2px solid var(--accent-primary);
+  border-radius: var(--radius-card);
+  padding: 0.95rem;
+}
+.m-sim-textarea {
+  width: 100%;
+  min-height: 88px;
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  line-height: 1.55;
+  padding: 0.65rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  margin: 0.55rem 0;
+  resize: vertical;
+}
+.m-sim-btn {
+  width: 100%;
+  padding: 0.68rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 900;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
+  color: #07090e;
+  cursor: pointer;
+  margin-bottom: 0.75rem;
+}
+.m-sim-stages {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.42rem;
+  margin-bottom: 0.75rem;
+}
+.m-stage-pill {
+  padding: 0.42rem 0.55rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--accent-success);
+  border-radius: 8px;
+}
+
+/* 底部常驻 5-Tab 拇指导航坞 (Bottom Thumb Dock) */
+.m-bottom-dock {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  z-index: 990;
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: var(--border-width) solid var(--border-color);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 0.35rem 0.25rem calc(0.35rem + env(safe-area-inset-bottom, 0px));
+}
+@media (max-width: 520px) {
+  .m-bottom-dock { max-width: 100%; }
+}
+.m-dock-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.12rem;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.66rem;
+  font-weight: 700;
+  padding: 0.2rem 0;
+  border-radius: 8px;
+  transition: var(--transition);
+}
+.m-dock-item .ico {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+.m-dock-item.active, .m-dock-item:active {
+  color: var(--accent-primary);
+}
+</style>
+</head>
+<body>
+<div class="mobile-shell">
+
+  <!-- 顶部紧凑导播栏 -->
+  <header class="m-topbar">
+    <div class="m-top-row1">
+      <div class="m-brand">
+        <span class="rec-dot"></span>
+        <span class="m-brand-text">金泰 AI · 河传手机版</span>
+      </div>
+      <div class="m-top-actions">
+        <select id="mThemeSelect" class="m-select" onchange="switchMobileTheme(this.value)" aria-label="切换审美主题">
+          <option value="cinema-imax">🎬 黑金胶片</option>
+          <option value="swiss-grid">📐 瑞士网格</option>
+          <option value="song-ink">🏔️ 宋式水墨</option>
+          <option value="neo-risograph">🎨 孔版撞色</option>
+          <option value="tactile-archival">🏛️ 盲压档案</option>
+        </select>
+        <button class="m-mini-btn" id="mFontCycleBtn" onclick="cycleMobileFont()">字号:标</button>
+        <a href="index.html?desktop=1" class="m-mini-btn accent" id="desktopSwitchLink">💻电脑版</a>
+      </div>
+    </div>
+
+    <nav class="m-pill-strip" aria-label="快速章节跳转">
+      <a href="#m-sec-models">01 金泰1–3模型</a>
+      <a href="#m-sec-astra">02 ASTRA零抽卡</a>
+      <a href="#m-sec-skills">03 812项Skills</a>
+      <a href="#m-sec-audio">04 录音与配乐</a>
+      <a href="#m-sec-vault">05 百万双图库</a>
+      <a href="#m-sec-mcp">06 后台MCP/CLI</a>
+      <a href="#m-sec-sim">07 创演沙盘</a>
+    </nav>
+  </header>
+
+  <!-- 首屏主视觉 (Hero) -->
+  <section class="m-hero" id="m-top">
+    <div class="m-viewfinder">
+      <div class="vf-c vf-tl"></div>
+      <div class="vf-c vf-tr"></div>
+      <div class="vf-c vf-bl"></div>
+      <div class="vf-c vf-br"></div>
+
+      <div class="m-eyebrow">🎥 金泰 AI × 河北传媒学院（河传）产教融合底座</div>
+
+      <h1 class="m-hero-title">
+        <span class="m-hero-line1">化繁为简 · 信手拈来</span>
+        <span class="m-hero-line2">从「盲盒抽卡工具」跃迁为</span>
+        <span class="m-hero-line3">「懂电影语言的智能制片厂」</span>
+      </h1>
+
+      <p class="m-hero-desc">
+        立足<strong>本地 A/B 机 H100/5090 满血集群</strong>与合规调优<strong>「金泰 1–3 号模型」（GPT · Gemini Argon/Carbon · Claude）</strong>，集合 <strong>Image 2.5 / NanoBanana Pro / 本地 Qwen 2.1</strong>，搭载每日进化 <strong>812 项编导摄录美武 Skills</strong>，以 <strong>ASTRA 直控 Blender、达芬奇、VFX 与 3D Tripo</strong>，配合 <strong>138.1 万+ 考证与镜头词库</strong>及后台实时 <strong>MCP + CLI</strong>。
+      </p>
+
+      <div class="m-quote-banner">
+        💡 <strong>河传师生极简范式：</strong>老师与同学们只需提出创意与想法，AI 已能完全领会导演意图，并交付超越预期的电影级作品。
+      </div>
+
+      <!-- 2×3 手机端遥测核心指标 -->
+      <div class="m-telemetry-grid">
+        <div class="m-t-card">
+          <div class="m-t-val">3.80 PFLOPS</div>
+          <div class="m-t-label">本地 A/B 机集群</div>
+          <div class="m-t-sub">8×H100 + 4×5090</div>
+        </div>
+        <div class="m-t-card">
+          <div class="m-t-val">金泰 1–3 号</div>
+          <div class="m-t-label">三大认知与编导模型</div>
+          <div class="m-t-sub">GPT · Gemini · Claude</div>
+        </div>
+        <div class="m-t-card">
+          <div class="m-t-val">812 Skills</div>
+          <div class="m-t-label">编导摄录美武全搭载</div>
+          <div class="m-t-sub">56名导 + 128奥斯卡摄影</div>
+        </div>
+        <div class="m-t-card">
+          <div class="m-t-val">0 抽卡烦恼</div>
+          <div class="m-t-label">ASTRA 工业控制链</div>
+          <div class="m-t-sub">Blender · 达芬奇 · Tripo</div>
+        </div>
+        <div class="m-t-card">
+          <div class="m-t-val">138.1 万+</div>
+          <div class="m-t-label">百万镜头与考证词库</div>
+          <div class="m-t-sub">106.8万镜 + 31.3万考证</div>
+        </div>
+        <div class="m-t-card">
+          <div class="m-t-val">MCP + CLI</div>
+          <div class="m-t-label">后台 7×24 实时自愈</div>
+          <div class="m-t-sub">6,237节点 · ≥9.0分双审</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 全局一键展开/折叠开关 -->
+  <div class="m-global-bar">
+    <span>👆 轻触任意卡片「展开详情」可查阅底层参数</span>
+    <button class="m-mini-btn accent" id="globalExpandBtn" onclick="toggleAllMobileDetails()">全部展开 ▾</button>
+  </div>
+
+  <!-- 章节 01：金泰 1–3 号模型与本地集群 -->
+  <section class="m-section" id="m-sec-models">
+    <div class="m-sec-tag">PILLAR 01 // JINTAI 1-3 MODELS &amp; LOCAL CLUSTER</div>
+    <h2 class="m-sec-title">一、本地集群 ×「金泰 1–3 号模型」底座</h2>
+    <p class="m-sec-desc">融合金泰 1–3 号语言/编导大模型、Image 2.5 / NanoBanana Pro / 本地 Qwen 2.1 生图矩阵与 A/B 机 H100/5090 视频集群。</p>
+
+    <div class="m-tabs-scroll" id="mModelTabs">
+      <button class="m-tab-btn active" onclick="filterMobileModels('all', this)">全部 (8)</button>
+      <button class="m-tab-btn" onclick="filterMobileModels('llm', this)">金泰1–3号语言/编导</button>
+      <button class="m-tab-btn" onclick="filterMobileModels('image', this)">Image 2.5 / Qwen生图</button>
+      <button class="m-tab-btn" onclick="filterMobileModels('video-cluster', this)">本地H3集群与安全</button>
+    </div>
+
+    <div class="m-card-list" id="mModelList"></div>
+  </section>
+
+  <!-- 章节 02：ASTRA 零抽卡工业控制链（手机专属垂直交互流） -->
+  <section class="m-section" id="m-sec-astra">
+    <div class="m-sec-tag">PILLAR 02 // ZERO-GACHA DETERMINISTIC CONTROL</div>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:0.5rem;">
+      <h2 class="m-sec-title" style="margin-bottom:0.3rem;">二、ASTRA 零抽卡跨软件工业链</h2>
+      <button class="m-mini-btn accent" onclick="pulseMobileAstra()">▶ 自动巡检</button>
+    </div>
+    <p class="m-sec-desc">点击下方 6 大工业控制节点，查看 ASTRA 如何直控 <strong>3D Tripo、Blender、VFX 与达芬奇</strong> 彻底免去抽卡烦恼（9项国家发明专利护航）：</p>
+
+    <div class="m-astra-flow" id="mAstraFlow"></div>
+  </section>
+
+  <!-- 章节 03：传统编导摄录美武 812 项 Skills -->
+  <section class="m-section" id="m-sec-skills">
+    <div class="m-sec-tag">PILLAR 03 // 812 PROFESSIONAL FILM SKILLS</div>
+    <h2 class="m-sec-title">三、编导摄录美武 812 项顶级 Skills</h2>
+    <p class="m-sec-desc">对接河传 18 个专业，每日热同步迭代，含 56 位中外名导、128 部奥斯卡摄影、2027 四大审美与爆老师四问武指。</p>
+
+    <input type="text" id="mSkillSearch" class="m-search" placeholder="🔍 搜专业、导演、Skill（如：杜琪峰、奥斯卡、陌刀、宋式）..." oninput="renderMobileSkills()">
+
+    <div class="m-tabs-scroll" id="mSkillTabs">
+      <button class="m-tab-btn active" onclick="filterMobileSkills('all', this)">全部 (9)</button>
+      <button class="m-tab-btn" onclick="filterMobileSkills('screenplay', this)">✍️ 编剧文学</button>
+      <button class="m-tab-btn" onclick="filterMobileSkills('directing', this)">🎬 56位名导</button>
+      <button class="m-tab-btn" onclick="filterMobileSkills('camera', this)">🎥 128奥斯卡摄影</button>
+      <button class="m-tab-btn" onclick="filterMobileSkills('art', this)">🎨 美术与四审美</button>
+      <button class="m-tab-btn" onclick="filterMobileSkills('combat', this)">⚔️ 文武动作戏</button>
+      <button class="m-tab-btn" onclick="filterMobileSkills('postvfx', this)">🎞️ 达芬奇/VFX</button>
+    </div>
+
+    <div class="m-card-list" id="mSkillsList"></div>
+  </section>
+
+  <!-- 章节 04：全栈录音、配音、拟音与整轨配乐 -->
+  <section class="m-section" id="m-sec-audio">
+    <div class="m-sec-tag">PILLAR 04 // OPEN &amp; CLOSED AUDIO &amp; SCORING</div>
+    <h2 class="m-sec-title">四、录音、配音、拟音与整轨配乐</h2>
+    <p class="m-sec-desc">本地 H100 常驻 VoiceStudio (:3900) / VoxCPM2 48kHz + ElevenLabs / 豆包语音 + HDemucs 拟音提纯 + MiniMax Music 3 整轨配乐。</p>
+
+    <div class="m-card-list" id="mAudioList"></div>
+  </section>
+
+  <!-- 章节 05：百万级双图库与四大视听资源库 -->
+  <section class="m-section" id="m-sec-vault">
+    <div class="m-sec-tag">PILLAR 05 // 1.38M+ PROMPT &amp; SHOT VAULT</div>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:0.5rem;">
+      <h2 class="m-sec-title" style="margin-bottom:0.3rem;">五、每日扩库 138.1 万+ 双图库</h2>
+      <a href="https://aikingtai-ctrl.github.io/jintai-domestic-portal/" target="_blank" rel="noopener" class="m-mini-btn accent">🌐 四库总入口 ↗</a>
+    </div>
+    <p class="m-sec-desc">国内手机/微信免代理秒开，统一门禁一次验证四站通用，每日 20:00–24:00 自动扩库。</p>
+
+    <div class="m-card-list" id="mVaultList"></div>
+
+    <!-- 手机端工业级提示词真品抽样 -->
+    <div class="m-card" style="margin-top:0.85rem;">
+      <div class="m-card-head">
+        <span class="m-badge">📜 百万图库 × Skill 编译真品样本</span>
+        <button class="m-mini-btn accent" onclick="copyMobilePrompt()">📋 一键复制</button>
+      </div>
+      <div class="m-tabs-scroll" id="mPromptTabs" style="margin-bottom:0.3rem;">
+        <button class="m-tab-btn active" onclick="showMobilePrompt(0, this)">① 盛唐明光铠陌刀</button>
+        <button class="m-tab-btn" onclick="showMobilePrompt(1, this)">② 杜琪峰雨夜三角</button>
+        <button class="m-tab-btn" onclick="showMobilePrompt(2, this)">③ 四问因果链破盾</button>
+        <button class="m-tab-btn" onclick="showMobilePrompt(3, this)">④ 宋式留白朝雨</button>
+      </div>
+      <div id="mPromptMeta" style="font-size:0.72rem;color:var(--text-muted);"></div>
+      <div id="mPromptBox" class="m-prompt-box"></div>
+    </div>
+  </section>
+
+  <!-- 章节 06：后台实时部署调优 MCP 与 CLI -->
+  <section class="m-section" id="m-sec-mcp">
+    <div class="m-sec-tag">PILLAR 06 // REAL-TIME MCP &amp; CLI GUARDRAILS</div>
+    <h2 class="m-sec-title">六、后台实时部署调优 MCP 与 CLI</h2>
+    <p class="m-sec-desc">跨机协议直连、20+ 生产级 CLI 调度器、每日 20:00 RunningHub 防毒优选与凌晨 01:00 三重自愈守护。</p>
+
+    <div class="m-card-list" id="mMcpList"></div>
+  </section>
+
+  <!-- 章节 07：河传师生创意即成片推演沙盘 -->
+  <section class="m-section" id="m-sec-sim">
+    <div class="m-sec-tag">PILLAR 07 // IDEA-TO-CINEMA LIVE SIMULATOR</div>
+    <h2 class="m-sec-title">七、河传师生「创意即成片」推演沙盘</h2>
+    <p class="m-sec-desc">点选命题或输入您的创意想法，观摩金泰 AI 如何调动全栈模型与 Skills 交付超越预期的方案：</p>
+
+    <div class="m-sim-box">
+      <div class="m-tabs-scroll" id="mSimTabs">
+        <button class="m-tab-btn active" onclick="loadMobileSim(0, this)">命题① 唐魂送元二</button>
+        <button class="m-tab-btn" onclick="loadMobileSim(1, this)">命题② 陌刀破盾武戏</button>
+        <button class="m-tab-btn" onclick="loadMobileSim(2, this)">命题③ 雨夜棋局文戏</button>
+        <button class="m-tab-btn" onclick="loadMobileSim(3, this)">命题④ 敦煌万剑视效</button>
+      </div>
+
+      <textarea id="mSimInput" class="m-sim-textarea"></textarea>
+      <button class="m-sim-btn" onclick="runMobileSim()">🚀 启动金泰全栈领会与推演</button>
+
+      <div class="m-sim-stages" id="mSimStages"></div>
+      <div id="mSimOutput"></div>
+    </div>
+  </section>
+
+  <footer style="padding:1.4rem 0.9rem;text-align:center;font-size:0.74rem;color:var(--text-muted);">
+    <div><strong style="color:var(--text-primary);">金泰 AI 影视艺术全栈智算平台 · 河北传媒学院产教融合方案</strong></div>
+    <div style="margin-top:0.3rem;">A/B 机 H100/5090 集群 ｜ 金泰 1–3 号模型 ｜ 812 Skills ｜ 138.1万+ 词库 ｜ :4300 国标防火墙</div>
+  </footer>
+
+  <!-- 底部固定 5-Tab 拇指导航坞 -->
+  <nav class="m-bottom-dock" aria-label="底部拇指导航">
+    <a href="#m-top" class="m-dock-item active" onclick="activateDock(this)">
+      <span class="ico">🏠</span>
+      <span>总览/模型</span>
+    </a>
+    <a href="#m-sec-astra" class="m-dock-item" onclick="activateDock(this)">
+      <span class="ico">🎛️</span>
+      <span>ASTRA控制</span>
+    </a>
+    <a href="#m-sec-skills" class="m-dock-item" onclick="activateDock(this)">
+      <span class="ico">⚡</span>
+      <span>812 Skills</span>
+    </a>
+    <a href="#m-sec-vault" class="m-dock-item" onclick="activateDock(this)">
+      <span class="ico">🏛️</span>
+      <span>声画/图库</span>
+    </a>
+    <a href="#m-sec-sim" class="m-dock-item" onclick="activateDock(this)">
+      <span class="ico">🚀</span>
+      <span>创演沙盘</span>
+    </a>
+  </nav>
+
+</div>
+<script>
+const MODEL_CARDS = [
+  {
+    cat: "llm",
+    badge: "金泰 1 号模型 · 工业控制与逻辑中枢",
+    badgeClass: "",
+    metric: "GPT-6 Astra / Sol",
+    title: "金泰 1 号：OpenAI GPT-6 Astra 跨软件控制核心",
+    desc: "不止于语言对话，而是影视工业管线的「神经中枢」。搭载最新 GPT-6 Astra 与 GPT-6.1 Sol，按《Rethinking Skills and Prompts for GPT-6 Astra》规范深度调优，直接控制三维、调色与视效工程软件。",
+    specs: [
+      "<strong>ASTRA 跨软件直控</strong>：直接生成并执行 Blender Python 空间预演脚本、DaVinci Resolve 调色节点树、Tripo 3D 网格拓扑转换与 VFX 合成指令。",
+      "<strong>复杂制片调度与参数编译</strong>：将导演自然语言意图精准编译为 ComfyUI 6,237 个节点的 DAG 拓扑图参数，消除人工连线试错。",
+      "<strong>三级任务弹性路由</strong>：按日常构思、分镜编译、全栈工程控制智能分配算力，秒级响应。"
+    ],
+    chips: ["GPT-6 Astra", "GPT-6.1 Sol", "Astra-Blender-Control", "Astra-DaVinci-Control", "DAG 拓扑编译"]
+  },
+  {
+    cat: "llm",
+    badge: "金泰 2 号模型 · 编剧创作与主控总导演",
+    badgeClass: "cyan",
+    metric: "Gemini Argon / Carbon",
+    title: "金泰 2 号：Google Gemini Argon / Carbon 旗舰编导大脑",
+    desc: "编剧创作与影视全流程统筹的巅峰配置。集合目前最强的 Gemini Argon 与 Gemini Carbon，凭借百万级原生多模态上下文，统揽从剧本立项、全片拉片到 7 人制双盲对抗审计的全过程。",
+    specs: [
+      "<strong>顶级编剧创作（Argon + Carbon）</strong>：一句话创意自动延展为严谨的三幕剧结构、场次分镜表、人物小传与情绪六段反应链，彻底告别套路化剧情。",
+      "<strong>01 号主控总导演与 06/07 双盲审计官</strong>：主持 /grill-me 反向盘问，锁定《ART_BIBLE.md》与《CONTINUITY_LOCK.json》，并对四联检视板执行 5 维度严苛打分（<9.0 分强制退回）。",
+      "<strong>原生多模态视频拉片与听审</strong>：直接读取原片逐帧画面与提取音轨，逐字核验台词发音与画面构图。"
+    ],
+    chips: ["Gemini 4 Argon", "Gemini Carbon", "01-Master-Showrunner", "06/07 双盲审计", "百万上下文拉片"]
+  },
+  {
+    cat: "llm",
+    badge: "金泰 3 号模型 · 文学深潜与代码级动效",
+    badgeClass: "green",
+    metric: "Claude Opus 5.5",
+    title: "金泰 3 号：Anthropic Claude Opus 5.5 文学与动效大师",
+    desc: "搭载 Claude Opus 5.5 四级推理路由，专为人物潜台词打磨、去 AI 腔中文深度写作、历史文献考据，以及确定性代码渲染视频（Remotion / HyperFrames / Three.js）而生。",
+    specs: [
+      "<strong>去 AI 味剧本与台词精修</strong>：联动 de-ai-writing-orchestrator 与 humanizer-zh，赋予角色鲜活的时代语感、潜台词张力与呼吸停顿。",
+      "<strong>代码直出 60fps 电影级宣传片与 MV</strong>：驱动 Remotion、GSAP 8件套、SeeCode 与 WebGL/Three.js，生成零抽卡、帧级卡点的片头字卡与概念短片（如《一念万象》1080p60 MV）。",
+      "<strong>18 专业通版教材与学术考据</strong>：支撑河传 18 个专业方向实训规范、分镜表单与史料核验。"
+    ],
+    chips: ["Claude Opus 5.5", "去AI腔台词打磨", "Remotion 60fps", "HyperFrames", "WebGL/Three.js"]
+  },
+  {
+    cat: "image",
+    badge: "云端旗舰生图 · 2K/4K 电影级母图",
+    badgeClass: "",
+    metric: "Image 2.5 + NanoBanana Pro",
+    title: "全球顶级云端生图双璧：GPT Image 2.5 × NanoBanana Pro",
+    desc: "集合当前最顶尖的商业级图像生成模型 Image 2.5 与满血版 NanoBanana Pro（gemini-3-pro-image / gemini-3.1-flash-image 原生 2K/4K 无损 PNG 通道），锁定全片最高审美基准。",
+    specs: [
+      "<strong>NanoBanana Pro 满血 2K/4K 通道</strong>：严禁使用有损压缩缩水图，直接输出 2K/4K 电影级概念设计图与第 5 步写实目标板（Target Plate）。",
+      "<strong>GPT Image 2.5 角色与空间锁定</strong>：一键出齐 @CHR 角色正/侧/背三视图定妆卡（含免冠与细节特写）、@SCN 场景空镜母图与 @PRP 考证级道具母图。",
+      "<strong>跨镜头光影与材质锚定</strong>：结合 128 部奥斯卡摄影词库，精准还原 35mm 胶片颗粒、变形宽银幕散景与真实皮肤肌理。"
+    ],
+    chips: ["GPT Image 2.5", "NanoBanana Pro 2K/4K", "@CHR 角色定妆卡", "@SCN 空间母图", "@PRP 道具特写"]
+  },
+  {
+    cat: "image",
+    badge: "本地满血生图与受控编辑 · A机8卡零排队",
+    badgeClass: "cyan",
+    metric: "Qwen 2.1 + Edit 2511 + MOSS",
+    title: "本地调优图像三剑客：Qwen-2.1 · Edit-2511 · OpenMOSS 13B",
+    desc: "部署于金泰本地 A 机 8×H100 集群，零公网排队、数据不出私网，彻底攻克中文古籍牌匾乱码、局部改姿变脸与多人站位构图失控三大难题。",
+    specs: [
+      "<strong>Qwen-Image-2.1（S级纯净 40 步 & 原生 2K RGBA）</strong>：28 秒直出 2048×2048 带 Alpha 透明通道资产，89 秒直出 2624×1472「弘文館」等复杂中文匾额/书法零乱码剧照。",
+      "<strong>Qwen-Image-Edit-2511 × SeedVR2 直出 2K</strong>：4 步 Lightning 极速高一致换装、以真实锚帧为底仅改手臂/姿态而不改脸型头身比，支持三图跨画幅融合。",
+      "<strong>复旦 OpenMOSS / MOSS-Image 13B（SFT BF16）</strong>：支持 JSON BBoxes 像素级坐标框布局排版，精准指定画面中每位角色的站位区间与景深层次。"
+    ],
+    chips: ["Qwen-Image-2.1 (2K/RGBA)", "Qwen-Edit-2511", "SeedVR2 2K超分", "OpenMOSS 13B BBox", "中文匾额零乱码"]
+  },
+  {
+    cat: "video-cluster",
+    badge: "本地视频王牌 · 文武双全内生二采",
+    badgeClass: "green",
+    metric: "MiniMax H3 SelfLift + Pika Flex",
+    title: "本地 A 机 8×H100 视频引擎：MiniMax H3 文武双全 & Pika Flex",
+    desc: "A 机 8188–8195 八卡 H100 同步并行，全量搭载《MiniMax H3 终极篇·文武双全》8 份精调模型与 Pika-H3-Flex 6 步极速长镜，兼顾微表情文戏与高燃冷兵器武戏。",
+    specs: [
+      "<strong>SelfLift 内生渐进二采管线</strong>：0.60 低分采样锁死大幅度动态 + h3_upscaler_lms 渐进放大 + MysticXXX(0.45) 彻底去 AI 油光 + DMAD(0.80) 融合加速。",
+      "<strong>文武双轨精准分流</strong>：文戏走 6+4=10 步细腻捕捉眼神呼吸；武戏挂载 @四只兔子 武打四件套（速度滑块 3.0）走 6+6=12 步，拳拳到肉不糊帧。",
+      "<strong>Pika-H3-Flex & 人物无缝替换</strong>：支持 15 秒（362帧）FL2VA 首尾帧锁死与 3×5s 多卡蒙太奇并发；搭载 SAM 3.1 + 小肥猴二段式人物替换与 FaceFusion H100（:3910）隔镜框修脸。"
+    ],
+    chips: ["SelfLiftH3Sampler", "文戏6+4 / 武戏6+6", "@四只兔子武打LoRA", "Pika-H3-Flex 6步", "SAM3.1 + 小肥猴换角"]
+  },
+  {
+    cat: "video-cluster",
+    badge: "本地智算硬件与三级存储底座",
+    badgeClass: "",
+    metric: "8×H100 + 4×5090 + 77柜存储",
+    title: "金泰自有 A/B 双机 GPU 集群 × 77 架三级数字资产金库",
+    desc: "所有重计算 100% 运行于金泰本地机房服务器，师生终端电脑零显卡负担、零卡顿，且创作全过程资产自动归档为学校与师生共有的私有数字资产库。",
+    specs: [
+      "<strong>A 机（8×NVIDIA H100 80GB HBM3）</strong>：BF16 算力 3.80 PFLOPS、显存带宽 14.45 TB/s、PCIe Gen5 DMA 414 GB/s，常驻 CUDA Context 锚点消除冷启动。",
+      "<strong>B 机（4×NVIDIA RTX 5090）</strong>：专职承载 Blender 3D 物理碰撞预演、多机位 OptiX 光追渲染与 Topaz Video AI 4K 影视级超分精修。",
+      "<strong>S1/S2/S3 三级存储底座</strong>：S1 全闪 NVMe 实时热读写 ➔ S2 跨专业协同温存 ➔ S3 冷金库永久保存河传教学案例、母图、分镜与成片母带。"
+    ],
+    chips: ["8×H100 80GB (3.8 PFLOPS)", "4×RTX 5090 (Blender/Topaz)", "77柜三级存储", "本机零卡顿", "私有资产沉淀"]
+  },
+  {
+    cat: "video-cluster",
+    badge: "校园合规护城河 · 国标双重签名",
+    badgeClass: "cyan",
+    metric: ":4300 防火墙 v3.0",
+    title: "金泰 :4300 三级内容安全防火墙 × GB 45438-2025 合规水印",
+    desc: "专为高校教学与广电总局实验室共建打造的工业级内容安全护栏，采用生产级 Fail-Closed 故障闭锁架构与戏剧创作白名单反向熔断机制。",
+    specs: [
+      "<strong>L0 ➔ L1 ➔ L2 三级毫秒级过滤漏斗</strong>：L0 感知哈希（P50 4.9ms）➔ L1 本地 A 机 Qwen-27B-FP8 实时文本与视频抽帧视觉审查 ➔ L2 绿网合规基线。",
+      "<strong>受控剧组白名单 × 现实敏感词反向熔断</strong>：支持古典战争、武侠刀剑、悬疑侦破等正常戏剧冲突创作，同时精准拦截 36 类现实违规风险。",
+      "<strong>GB 45438-2025 国标显隐式双轨标识</strong>：自动注入附录 E 七要素 AIGC JSON 元数据签名、视频显式角标与防篡改加密哈希链审计日志。"
+    ],
+    chips: [":4300 防火墙网关", "L1 视觉抽帧VLM审查", "戏剧白名单防误杀", "GB 45438-2025 水印", "HMAC-SHA256 溯源"]
+  }
+];
+
+function renderModelCards(filter = "all") {
+  const grid = document.getElementById("modelCardsGrid");
+  const list = filter === "all" ? MODEL_CARDS : MODEL_CARDS.filter(c => c.cat === filter);
+  grid.innerHTML = list.map(c => `
+    <article class="cine-card">
+      <div>
+        <div class="card-badge-row">
+          <span class="pill-badge ${c.badgeClass}">${c.badge}</span>
+          <span style="font-family:var(--font-mono);font-size:0.84rem;font-weight:800;color:var(--accent-primary);">${c.metric}</span>
+        </div>
+        <h3 class="card-title">${c.title}</h3>
+        <p class="card-body">${c.desc}</p>
+        <ul class="spec-list">
+          ${c.specs.map(s => `<li>${s}</li>`).join("")}
+        </ul>
+      </div>
+      <div class="skill-tag-wrap">
+        ${c.chips.map(ch => `<span class="skill-chip">${ch}</span>`).join("")}
+      </div>
+    </article>
+  `).join("");
+}
+
+function filterModelCards(cat, btn) {
+  document.querySelectorAll("#modelTabBar .tab-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  renderModelCards(cat);
+}
+
+// ============================================================================
+// 2. ASTRA 零抽卡工业控制链节点检视器 (Pillar 02)
+// ============================================================================
+const ASTRA_NODES = {
+  astra: {
+    badge: "核心控制大脑 · 金泰 1 号 (GPT-6 Astra) × 金泰 2 号 (Gemini Argon)",
+    title: "ASTRA × ARGON 跨软件工业控制中枢",
+    summary: "将河传师生的自然语言创意，自动拆解为三维空间坐标、摄影机物理运动方程、视频采样拓扑与达芬奇调色节点参数，彻底告别靠“改提示词撞大运”的抽卡时代。",
+    patent: "关联金泰独占发明专利：多节点 GPU 集群计算图拓扑锁定与进程读写物理隔离质控方法",
+    bullets: [
+      "<strong>自然语言转工程脚本</strong>：输入“盛唐酒肆二楼俯拍侠客拍案而起”，自动生成 Blender 场景米制坐标（m）、35mm 镜头倾角与 H3 6+6 步采样配置。",
+      "<strong>跨软件状态锁死（CONTINUITY_LOCK.json）</strong>：全局锁死角色面部锚图、服装色彩 Hex、主光方向角与轴线方向，跨百镜不漂移。",
+      "<strong>MCP + CLI 零人工干预调度</strong>：前台一句话指令，后台自动串联 Tripo 3D ➔ Blender ➔ A机H3 ➔ VoiceStudio ➔ 达芬奇。"
+    ],
+    cmd: "astra-orchestrator --model gpt-6-astra --director gemini-argon --lock CONTINUITY_LOCK.json"
+  },
+  tripo: {
+    badge: "三维资产即刻构建 · Tripo 3D & 混元 3D & Meshy 3D",
+    title: "ASTRA 控制 3D TRIPO：2D 考证设定图一键转高精度 3D 资产",
+    summary: "为什么传统 AI 拍建筑、特殊兵器或马车转场必崩？因为 2D 模型不懂三维结构。金泰集成 Tripo 3D 与腾讯混元 3D Skill，将考证母图秒级转化为标准 GLB/FBX 三维网格。",
+    patent: "关联金泰独占发明专利：《一种三维场景网格自动降维体块化、非站位空节点折叠及角色位移冲突消解方法》",
+    bullets: [
+      "<strong>单图/多视图直出 PBR 三维模型</strong>：将《中国历史文化图库》生成的唐代明光铠、陌刀、飞檐斗拱或奇幻法器一键转为带贴图的 3D 模型。",
+      "<strong>自动体块降维与 @空间名 复用</strong>：导入 GLB 后自动剥离冗余顶点并坍缩为有向包围盒体块，构建可反复换机位拍摄的 3D 虚拟影棚。",
+      "<strong>2D 实拍背景板 + 真 3D 人偶混排</strong>：支持将 2K 概念母图转为 3D 舞台背景板，前置真 3D 骨骼人偶精准走位。"
+    ],
+    cmd: "skill: tripo-3d / tencent-hunyuan3d / 3d-asset-production -> export_glb --to-blender-stage"
+  },
+  blender: {
+    badge: "空间蓝图与零穿模预演 · jintai-b-media / jintai-blender-3d-previs",
+    title: "ASTRA 控制 BLENDER：米制机位蓝图 · 手机无线动捕 · 零穿模预演",
+    summary: "在真正调用 H100 生成视频前，先由 ASTRA 驱动 Blender 完成第 6 步米制平面图与 3D 物理预演，把机位、走位、焦点与轴线 100% 锁死。",
+    patent: "关联金泰 4 项发明专利：手机零上传动捕滤波、多机位录切换越轴检测、FPV/钟摆物理运镜、落轨前几何防穿模自检",
+    bullets: [
+      "<strong>带米制尺寸（m）的俯视平面蓝图</strong>：自动标注房间长宽、演员起止站位坐标与摄影机视锥角，实拍参考图叠编号网格解算真实机位。",
+      "<strong>手机扫码无线运镜 + 33点零上传体感动捕</strong>：师生用手机扫码即可无线推拉摇移虚拟摄影机，内置 XY=1.6Hz / Z=0.15Hz 非对称滤波驱动 3D 人偶表演。",
+      "<strong>多机位「⏺ 录切换」与 180° 越轴/30° 跳切拦截</strong>：边回放边按数字键 1~9 实时切镜，自动检测越轴与刚体穿模，导出防闪烁深度图（Depth）锁死视频结构。"
+    ],
+    cmd: "mcp: jintai-b-media -> blender_previs_blueprint_and_collision_check + blender_render_multicam"
+  },
+  h3vfx: {
+    badge: "结构受控生成与特效 · Genjutsu VFX & SAM 3.1 & MiniMax-Remover",
+    title: "ASTRA 控制 VFX 与人物替换：四大幻术 · 像素粒子 · 动态无痕擦除",
+    summary: "将 Blender 导出的深度/骨骼序列与 2K 考证目标板注入 A 机 8 卡 H3 SelfLift 与本地 VFX 管线，实现从写实换角到高燃奇幻特效的精准受控合成。",
+    patent: "关联金泰独占发明专利：《全时间轴裁剪面并集防闪烁归一化》与《分阶段显存卸载二采方法》",
+    bullets: [
+      "<strong>本地化 Genjutsu 四大幻术特效引擎</strong>：支持关键帧锚点变身、空间崩解、维度传送门、流体粒子爆发，A 机 8 卡 1080P 原生直出。",
+      "<strong>高概念战斗特效可描述化编译</strong>：搭载 glitch-pixel-particle-vfx-combat（故障像素粒子）与 xianxia-sword-array-vfx-prompts（天穹法阵万剑特效）。",
+      "<strong>SAM 3.1 + 小肥猴二段式换角 + MiniMax-Remover 擦除</strong>：精准锁死原片动作骨骼替换指定演员，并一键净除动态漂移水印与穿帮杂物。"
+    ],
+    cmd: "python jintai_feihou_easy_h3_runner.py & jintai_rh_approved_runner.py --task minimax-remover"
+  },
+  render: {
+    badge: "A/B 机集群并发渲染 · 8×H100 (8188-8195) + 4×5090 Topaz 4K",
+    title: "八卡 H100 SelfLift 内生二采 × B 机 Topaz 4K 影视级超分",
+    summary: "依托 A 机 8×H100（3.80 PFLOPS）八端口并发与 B 机 Topaz 4K 超分流水线，一段 15 秒复杂蒙太奇可拆分为 3×5s 三卡同步渲染，耗时仅 98 秒，较单卡提速 4.8 倍。",
+    patent: "关联金泰独占发明专利：《面向多节点GPU集群的计算图拓扑锁定、三级降级容错与分阶段显存卸载采样方法》",
+    bullets: [
+      "<strong>SelfLift 0.60 内生渐进二采</strong>：先以 0.60 比例捕获大动态骨骼因果，再经 h3_upscaler_lms 渐进放大并开启 highres_tiling 与 upscaler_unload 即时释放显存。",
+      "<strong>MysticXXX 去油光 + DMAD 融合加速</strong>：彻底消除 AI 视频常见的面部塑料反光，还原真实毛孔、汗水与粗麻织物肌理。",
+      "<strong>pipeline_blender_to_topaz_4k 跨机联动</strong>：A 机 1080P 成片自动流转至 B 机执行 Topaz 4K 超分与帧率平滑，直达影院放映标准。"
+    ],
+    cmd: "python jintai_h3_selflift_runner.py --ports 8188-8195 --mode drama_6plus4 / action_6plus6"
+  },
+  davinci: {
+    badge: "后期调色与双盲终审 · DaVinci Resolve 10项Skills × 06/07双审计官",
+    title: "ASTRA 控制 达芬奇 AI 调色 × 7人制双盲对抗审计（≥9.0分放行）",
+    summary: "成片进入最终工业后期：由 ASTRA 驱动 DaVinci Resolve 完成 ACES 色彩空间校色与风格化影调统一，并强制提交 06 号视觉审计官与 07 号交叉审计官双签 PASS。",
+    patent: "关联金泰独占发明专利：《基于进程级读写权限物理隔离与双通道交叉否决的多进程多媒体质量控制方法》",
+    bullets: [
+      "<strong>达芬奇全栈调色 Skills（10 项专精）</strong>：涵盖 davinci-ai-color-workflow、color-grade-resolve、音频降噪、多平台母带导出与字幕包装。",
+      "<strong>06 号对抗式视觉审计官（只读物理隔离）</strong>：审查【影视四联标准检视板】，按物理合理性、角色一致性、光影质感等 5 维度打分，每轮必挑 3 项瑕疵，不到 9.0 分强制 REJECT。",
+      "<strong>07 号防放水交叉审计官</strong>：复核声画同步、动作剂量与亲耳听审记录，拥有对 06 号放水评分的一票否决权（CRITIC_OVERRIDE）。"
+    ],
+    cmd: "skill: davinci-ai-color-workflow + subagent: 06-adversarial-visual-critic & 07-cross-auditor"
+  }
+};
+
+function selectAstraNode(key) {
+  document.querySelectorAll(".topo-node").forEach(el => el.classList.remove("active"));
+  const target = document.getElementById("node-" + key);
+  if (target) target.classList.add("active");
+  const d = ASTRA_NODES[key];
+  const panel = document.getElementById("astraInspector");
+  panel.innerHTML = `
+    <div>
+      <span class="pill-badge">${d.badge}</span>
+      <h3 class="card-title" style="margin-top:0.65rem;">${d.title}</h3>
+      <p class="card-body" style="margin-bottom:0.75rem;">${d.summary}</p>
+      <div style="font-size:0.82rem;padding:0.5rem 0.75rem;background:var(--badge-bg);color:var(--badge-text);border-radius:8px;border:1px solid var(--border-color);margin-bottom:0.8rem;">
+        🛡️ <strong>${d.patent}</strong>
+      </div>
+      <ul class="spec-list">
+        ${d.bullets.map(b => `<li>${b}</li>`).join("")}
+      </ul>
+    </div>
+    <div style="margin-top:auto;">
+      <div style="font-size:0.78rem;color:var(--text-muted);margin-bottom:0.3rem;">底层调用指令 / MCP 路由：</div>
+      <div class="prompt-specimen" style="margin-top:0;padding:0.55rem 0.8rem;font-size:0.78rem;">${d.cmd}</div>
+    </div>
+  `;
+}
+
+function triggerTopologyPulse() {
+  const keys = ["astra", "tripo", "blender", "h3vfx", "render", "davinci"];
+  let idx = 0;
+  selectAstraNode(keys[0]);
+  const timer = setInterval(() => {
+    idx++;
+    if (idx >= keys.length) {
+      clearInterval(timer);
+      return;
+    }
+    selectAstraNode(keys[idx]);
+  }, 650);
+}
+
+// ============================================================================
+// 3. 传统「编、导、摄、录、美、武」搭载 812 项顶级 Skills 数据 (Pillar 03)
+// ============================================================================
+const SKILL_CARDS = [
+  {
+    dept: "screenplay",
+    deptLabel: "✍️ 编剧与戏剧文学",
+    modelTag: "Argon · Carbon · Opus",
+    title: "从模糊灵感到标准拍摄剧本与分镜表",
+    desc: "解决学生“有好点子但不会写标准分镜剧本”的痛点。由 Gemini Argon 与 Carbon 领衔，将一句话创意、小说章节或史料扩写为工业级文学剧本与分镜执行表。",
+    highlights: [
+      "<strong>一句话转剧本/分镜脚本</strong>：自动规划场次、景别、运镜、时长与戏剧冲突转折点。",
+      "<strong>网梗/短剧高能反转编排</strong>：内置短剧黄金前 3 秒钩子、痛点爽点节奏器与去 AI 腔口语化台词打磨。",
+      "<strong>跨镜头状态与伏笔锁定</strong>：自动生成道具与人物状态交接表，杜绝前后剧情穿帮。"
+    ],
+    skills: ["vague-idea-to-playscript", "vague-idea-to-shooting-script", "novel-story-to-playscript", "short-drama-combat-plot-design", "de-ai-writing-orchestrator", "humanizer-zh"]
+  },
+  {
+    dept: "screenplay",
+    deptLabel: "✍️ 编剧与表演指导",
+    modelTag: "Argon · 情绪六段反应链",
+    title: "人物情绪「六段反应链」微表情编译器",
+    desc: "根治 AI 角色“木偶脸、只会僵硬微笑或干瞪眼”。把剧本中的抽象心理动机转化为可被 MiniMax H3 精准执行的六阶段生理与微表情反应链。",
+    highlights: [
+      "<strong>六段式生理反应链</strong>：外部刺激源 ➔ 第一瞬生理微反应（瞳孔/呼吸）➔ 视线转移轨迹 ➔ 肢体微小顿挫 ➔ 情绪爆发或克制 ➔ 余韵定格。",
+      "<strong>跨切镜情绪因果传递</strong>：基于 Singularity × PRISM 微表演模板，前镜头的隐忍泪光自然传递至下一镜头的颤抖指尖。",
+      "<strong>模糊导演反馈秒级转译</strong>：老师说“演得再压抑一点”，自动转译为低头角度、眨眼频率与面部阴影比参数。"
+    ],
+    skills: ["character-emotion-performance", "ai-micro-expression-director", "ai-actor-performance", "flova-vague-feedback-director"]
+  },
+  {
+    dept: "directing",
+    deptLabel: "🎬 导演与场面调度",
+    modelTag: "全球 56 位中外名导库",
+    title: "全球 56 位中外名导风格 Skill 矩阵",
+    desc: "将世界影史大师的抽象艺术风格，拆解为可量化的焦段选择、色彩矩阵、构图几何、站位调度与剪辑呼吸，河传师生可一键调用或融合大师视觉语法。",
+    highlights: [
+      "<strong>28 位国际大师手册（#01–#28）</strong>：涵盖诺兰、维伦纽瓦、大卫·芬奇、库布里克、塔可夫斯基等完整视觉参数卡。",
+      "<strong>28 位华语名导大师团</strong>：张艺谋（高饱和色彩仪式）、王家卫（抽帧慢门霓虹）、杜琪峰（银河映像冷夜三角几何站位）、胡金铨（禅意空间武侠）、徐克等。",
+      "<strong>16 位作者电影风格镜</strong>：韦斯·安德森（绝对对称粉彩）、昆汀·塔伦蒂诺（仰拍后备箱视角与暴力美学）等。"
+    ],
+    skills: ["director-style-prompts-handbook", "chinese-directors", "cinematic-director", "cinema-character-staging-dispatch", "documentary-director"]
+  },
+  {
+    dept: "directing",
+    deptLabel: "🎬 导演统筹与质控",
+    modelTag: "01–07 七人制对抗工作组",
+    title: "Argon 六步法 × 金泰 7 人双盲工作流",
+    desc: "将单打独斗升级为正规影视剧组编制：1 名主控总导演 + 4 名专业施工专员并发作业 + 2 名只读权限隔离的挑刺审计官交叉把关。",
+    highlights: [
+      "<strong>01 号总导演 /grill-me 反向盘问</strong>：开工前先追问锁定时代背景、核心色调、摄影机体系，冻结《ART_BIBLE.md》。",
+      "<strong>02–05 四专员并发施工</strong>：美术目标板（02）、米制蓝图与 Blender 预演（03）、H3 视频渲染（04）、连续配音配乐与四联板封装（05）。",
+      "<strong>06 视觉挑刺 × 07 交叉防放水审计</strong>：每轮强制挑出 ≥3 个具体缺陷，低于 9.0 分一律 REJECT 重修。"
+    ],
+    skills: ["jintai-six-step-adversarial-workflow", "jintai-film-semantic-production-chain", "film-crew-masters", "film-qc", "deep-task-protocol"]
+  },
+  {
+    dept: "camera",
+    deptLabel: "🎥 摄影与灯光艺术",
+    modelTag: "128部奥斯卡 + 河传HEC",
+    title: "奥斯卡百年摄影体系 × 河传 HEC 实验",
+    desc: "基于 128 部奥斯卡最佳摄影获奖与提名影片深度考证，结合专为河传定制的 10 项 HEC 摄影研究实验 Skill，让每一束光与每一次运镜都有据可依。",
+    highlights: [
+      "<strong>8 大奥斯卡摄影核心模块</strong>：明暗对照法（Chiaroscuro）、色彩戏剧学、IMAX 史诗画幅、自然光效、数字虚拟摄影等。",
+      "<strong>10 大河传 HEC 摄影实验模块</strong>：景深与纵深调度（frame-depth-blocking）、有源道具光逻辑（motivated-practical-light）、动作曝光节奏等。",
+      "<strong>斯坦尼康一镜到底五维运镜</strong>：内置六大运镜母型与呼吸感步频控制，消除 AI 镜头机械平移感。"
+    ],
+    skills: ["oscar-cine-chiaroscuro", "oscar-cine-color", "oscar-cine-natural-light", "hec-frame-depth-blocking", "hec-motivated-practical-light", "steadicam-tracking-shot", "cinematic-9-camera-movements"]
+  },
+  {
+    dept: "art",
+    deptLabel: "🎨 影视美术服化道",
+    modelTag: "Image 2.5 · NanoBanana",
+    title: "考证级 @CHR/@SCN/@PRP 定妆母图",
+    desc: "遵循“先考证、后生成”铁律，自动联通《中国历史文化图库》31.3 万条考证词，为角色、场景、建筑、器物生成高一致性的工业母图。",
+    highlights: [
+      "<strong>历代服饰冠履与器物严苛考证</strong>：依据《宋史》《营造法式》与馆藏文物锁死形制（如唐代明光铠、单头长柄陌刀、西夏秃发令旋襕袍）。",
+      "<strong>标准三视图 + 12×8 面部网格锚定</strong>：支持真人演员/医护/师生照片 1:1 锚定定妆，局部换装不换脸。",
+      "<strong>327 套手绘与概念风格库</strong>：内置 story-to-handdrawn-video（297 种笔触 + 30 套色板），一键切换彩铅、水墨、敦煌重彩或赛博概念风。"
+    ],
+    skills: ["build-film-preproduction-assets", "gpt-image2-character-board", "h3-visual-design", "story-to-handdrawn-video", "moss-image-prompt-enhancer"]
+  },
+  {
+    dept: "art",
+    deptLabel: "🎨 当代视觉与字卡",
+    modelTag: "2027 四大反AI精致审美",
+    title: "2027 四大反 AI 精致审美视觉编译器",
+    desc: "针对常规 AI 生图“过度光滑、廉价塑料感、伪古风堆砌”痛点，金泰独家拆解封装 2027 四大反 AI 精致审美 Skill，均内置物理成因编译器与违禁词拦截器。",
+    highlights: [
+      "<strong>① 留白·宋式极简（Song Minimalism）</strong>：80%–92% 生宣计白当黑 + 宿墨毛细渗化 + 0.25pt 宋刻乌丝栏线，拦截伪古风红灯笼堆砌。",
+      "<strong>② 笨拙·新野兽派（Neo-Fauvism Risograph）</strong>：荧光专色撞色 + 孔版双滚筒 2–3mm 套印错位 + 手撕再生纸毛边。",
+      "<strong>③ 触觉·材质主义 & ④ 旧时间·半调档案</strong>：600g 棉浆无墨盲压浮雕、冲压金属铭牌、30 LPI 粗目报纸半调圆网点与十字折痕做旧。"
+    ],
+    skills: ["song-dynasty-ink-minimalism-aesthetic", "neo-fauvist-risograph-aesthetic", "tactile-materialism-embossed-aesthetic", "archival-xerox-halftone-aesthetic", "huashu-design", "impeccable"]
+  },
+  {
+    dept: "combat",
+    deptLabel: "⚔️ 武侠与冷兵器武指",
+    modelTag: "H3 6+6 · 爆老师四问链",
+    title: "画风分流双轨 ×「四问因果链」武打编译",
+    desc: "为什么别人用 AI 拍打戏总是“两人隔空挥舞、莫名其妙摔倒”？金泰搭载爆老师打斗双 Skill 与 @四只兔子 武打四件套，让冷兵器交锋具备真实物理重量。",
+    highlights: [
+      "<strong>先看画风，反着写提示词</strong>：3D 国漫锁死「角度+轨迹+定格」（禁写退几步）；真人写实锁死「受力+退几步+扬多少土+每击落点」（禁写动画感）。",
+      "<strong>单回合必答四问因果链</strong>：①谁发力 ➔ ②打在哪（刀碰刀还是刀砍盾）➔ ③退了几步（退一步是晃，退三步是崩，单膝拄刃滑擦卸力）➔ ④站住没有。",
+      "<strong>八大功夫名家与九宫格 15 秒一镜到底</strong>：内置秦剑、疯魔棍、蛇矛、双拐等 8 项宗师动作库及九宫格单图驱动 15 秒长镜头武打模板。"
+    ],
+    skills: ["stylized-vs-photoreal-combat-prompts", "four-questions-combat-exchange-prompts", "ai-martial-arts-oner-choreography", "cold-weapon-vfx-choreography", "kungfu-mayi-qin-sword", "kungfu-dongzhihua-staff"]
+  },
+  {
+    dept: "postvfx",
+    deptLabel: "🎞️ 后期剪辑调色VFX",
+    modelTag: "达芬奇 · 剪映 · Remotion",
+    title: "达芬奇调色 · VFX 幻术 · 剪映草稿直出",
+    desc: "打通从粗剪、特效包装、调色到成片交付的最后一公里，既支持达芬奇与剪映专业工程导出，也支持代码级 60fps 动态图形渲染。",
+    highlights: [
+      "<strong>达芬奇 AI 调色 + 剪映本地草稿直出</strong>：jianying-editor 直接生成 Windows 剪映可编辑时间线草稿，davinci-ai-color-workflow 统一电影级 LUT。",
+      "<strong>Genjutsu 幻术 + 仙侠万剑法阵 + 故障粒子 VFX</strong>：内置毫秒级闪白冲击帧（Impact Frames）、战旗扫镜无缝转场与高概念粒子特效。",
+      "<strong>152 张镜头配方卡 + SeeCode 多维动态图表</strong>：video-shotcraft 2.5D 运镜卡点、pixel2motion 迪士尼 12 原则矢量片头、SeeCode 5×5×8 多维视觉工作台。"
+    ],
+    skills: ["davinci-ai-color-workflow", "genjutsu-vfx-director", "xianxia-sword-array-vfx-prompts", "glitch-pixel-particle-vfx-combat", "video-shotcraft", "jianying-editor", "pixel2motion", "seecode"]
+  }
+];
+
+let currentSkillDept = "all";
+
+function filterSkills(dept, btn) {
+  currentSkillDept = dept;
+  document.querySelectorAll("#skillDeptTabs .tab-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  renderSkillCards();
+}
+
+function renderSkillCards() {
+  const q = (document.getElementById("skillSearchInput").value || "").trim().toLowerCase();
+  const grid = document.getElementById("skillsGrid");
+  const filtered = SKILL_CARDS.filter(c => {
+    const matchDept = currentSkillDept === "all" || c.dept === currentSkillDept;
+    if (!matchDept) return false;
+    if (!q) return true;
+    const hay = (c.deptLabel + " " + c.modelTag + " " + c.title + " " + c.desc + " " + c.highlights.join(" ") + " " + c.skills.join(" ")).toLowerCase();
+    return hay.includes(q);
+  });
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div class="cine-card" style="grid-column:1/-1;text-align:center;padding:2.5rem;">未找到匹配的 Skill 模块，请尝试搜索“编剧”、“杜琪峰”、“奥斯卡”、“陌刀”、“宋式”或切换上方专业分类。</div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(c => `
+    <article class="cine-card">
+      <div>
+        <div class="card-badge-row">
+          <span class="pill-badge">${c.deptLabel}</span>
+          <span style="font-family:var(--font-mono);font-size:0.76rem;color:var(--accent-secondary);font-weight:700;">${c.modelTag}</span>
+        </div>
+        <h3 class="card-title">${c.title}</h3>
+        <p class="card-body">${c.desc}</p>
+        <ul class="spec-list">
+          ${c.highlights.map(h => `<li>${h}</li>`).join("")}
+        </ul>
+      </div>
+      <div class="skill-tag-wrap">
+        ${c.skills.map(s => `<span class="skill-chip">${s}</span>`).join("")}
+      </div>
+    </article>
+  `).join("");
+}
+
+// ============================================================================
+// 4. 录音、配音、拟音与整轨配乐数据 (Pillar 04)
+// ============================================================================
+const AUDIO_CARDS = [
+  {
+    badge: "本地 H100 零样本克隆",
+    badgeClass: "",
+    metric: "VoiceStudio + VoxCPM2",
+    title: "开源旗舰：VoiceStudio × VoxCPM2 克隆",
+    desc: "部署于 A 机 H100 本地端口，支持零样本声音克隆、声纹与情绪韵律独立控制，已在实际生产中完成多位真人专家/主任声线 1:1 克隆与百镜连续配音。",
+    specs: [
+      "<strong>VoiceStudio v0.5.7（A机 :3900 常驻）</strong>：覆盖 646 种语言与方言，集声音克隆、音色设计、有声书制作、WhisperX 词级对齐与 MCP 接口于一体。",
+      "<strong>VoxCPM2（48kHz 广播级双输入克隆）</strong>：参考音色（声纹）与表演参考（情绪起伏/语速节奏）完全解耦，零截字、零电音。",
+      "<strong>Qwen3-TTS & H3 原生 VAEDecodeAudio</strong>：支持中文古诗词平仄韵律朗诵，以及 MiniMax H3 音视频原生同轨发声。"
+    ],
+    chips: ["VoiceStudio (:3900)", "VoxCPM2 48kHz", "Qwen3-TTS", "VAEDecodeAudio", "ROLE_VOICE_LOCK"]
+  },
+  {
+    badge: "全球顶级闭源语音矩阵",
+    badgeClass: "cyan",
+    metric: "ElevenLabs · 豆包 · MiniMax",
+    title: "闭源巅峰：ElevenLabs · 火山豆包 · Fish",
+    desc: "无缝聚合全球表现力最强的商业语音模型与低延迟实时对话节点，河传师生可根据角色年龄、国籍、戏剧张力自由混搭调用。",
+    specs: [
+      "<strong>ElevenLabs 5 大专项 Skills</strong>：涵盖 elevenlabs-tts、voice-design（凭描述捏造全新角色嗓音）、sound-effects、dubbing 多语种译制与 scribe 转写。",
+      "<strong>华语影视戏剧表现力矩阵</strong>：集成火山引擎豆包语音（volcengine-doubao-speech-tts）、BytePlus Seed Speech、MiniMax Speech 与 Fish Audio。",
+      "<strong>超低延迟交互与旁白解说</strong>：搭载 OpenAI Realtime Voice、Gemini Live Audio、Cartesia Sonic、Kokoro TTS 与 narrator-ai-cli（63种影视解说配音）。"
+    ],
+    chips: ["elevenlabs-tts/design", "volcengine-doubao-tts", "minimax-speech", "fish-audio-tts", "cartesia-sonic", "narrator-ai-cli"]
+  },
+  {
+    badge: "纯正拟音 · 口型 · 整轨配乐",
+    badgeClass: "green",
+    metric: "HDemucs + Music 3",
+    title: "HDemucs 拟音 × 椭圆口型 × 整轨配乐",
+    desc: "解决 AI 视频“战场伪人声乱叫、口型糊脸、逐镜配乐割裂”三大痛点，建立从声画同步到 -14 LUFS 广播级母带混音的工业标准。",
+    specs: [
+      "<strong>A 机 HDemucs 四轨干湿分离提纯拟音（Foley）</strong>：精准剥离 H3 视频中的伪人声干声轨（vocals），100% 保留逐帧对齐的刀劈圆盾、战靴踩碎砂砾与衣袂摩擦原生拟音。",
+      "<strong>LatentSync 1.6 + 实心核余弦椭圆蒙版口型锁相</strong>：6DoF 逆仿射贴回，杜绝方框贴嘴痕迹，配合 17k+5 合法帧长向上锁相零截字。",
+      "<strong>整轨一次生成与成片等长配乐</strong>：本地 MiniMax Music 3 + ACE-Step 1.5 + Suno，按全片总时长一次生成完整情绪起伏的配乐，且每部成片强制执行 read_file 亲耳逐句听审。"
+    ],
+    chips: ["HDemucs 拟音提纯", "LatentSync 1.6", "椭圆蒙版口型专利", "MiniMax Music 3 (整轨)", "ACE-Step 1.5", "-14 LUFS 母带"]
+  }
+];
+
+function renderAudioCards() {
+  const grid = document.getElementById("audioCardsGrid");
+  grid.innerHTML = AUDIO_CARDS.map(c => `
+    <article class="cine-card">
+      <div>
+        <div class="card-badge-row">
+          <span class="pill-badge ${c.badgeClass}">${c.badge}</span>
+          <span style="font-family:var(--font-mono);font-size:0.82rem;font-weight:800;color:var(--accent-primary);">${c.metric}</span>
+        </div>
+        <h3 class="card-title">${c.title}</h3>
+        <p class="card-body">${c.desc}</p>
+        <ul class="spec-list">
+          ${c.specs.map(s => `<li>${s}</li>`).join("")}
+        </ul>
+      </div>
+      <div class="skill-tag-wrap">
+        ${c.chips.map(ch => `<span class="skill-chip">${ch}</span>`).join("")}
+      </div>
+    </article>
+  `).join("");
+}
+
+// ============================================================================
+// 5. 每日自动扩库的百万级双图库与四大视听资源库 (Pillar 05)
+// ============================================================================
+const VAULT_CARDS = [
+  {
+    badge: "世界殿堂级影史镜头库 · 每日 20:00 / 23:00 扩库",
+    badgeClass: "cyan",
+    count: "1,067,982 条镜头词",
+    subCount: "27,900 部世界影史名作 · 100% 满 5–104 镜",
+    title: "①《影视参考图集》—— 超越 ShotDeck 的百万镜引擎",
+    desc: "全面合拢全球百大最佳摄影权威体系（3,946 部：2,151 部获奖巨作满 104 镜、提名作满 92 镜）、1,951 部影史经典满 62 镜、4,490 部中外核心导演编剧大奖满 52 镜、13,658 部世界电影大奖满 36 镜。",
+    specs: [
+      "<strong>即拷即用的专业摄影提示词</strong>：每镜均精确提炼景别、焦段、机位高度、主辅光比、色温色调、场面调度与构图几何。",
+      "<strong>按导演/摄影师/年代/情绪秒级检索</strong>：无论是小津安二郎的低机位、杜琪峰的冷夜群像，还是罗杰·迪金斯的逆光剪影，一搜即得。",
+      "<strong>后台双定时守护日更</strong>：每日 20:00 与 23:00 自动巡检扩库，为河传摄影系、导演系提供取之不竭的拉片与分镜弹药。"
+    ],
+    url: "https://aikingtai-ctrl.github.io/jintai-history-image-library/film.html",
+    btnText: "🎬 直达《影视参考图集》(106.8万镜) ↗"
+  },
+  {
+    badge: "先考证后生成 · 每日 21:00 / 24:00 自动扩库",
+    badgeClass: "",
+    count: "313,412 条考证词",
+    subCount: "61,779 个历史条目 · 16,000+ 历史名人 · 65 级子朝代",
+    title: "②《中国历史文化图库》—— 66/66 格大满贯视觉基因库",
+    desc: "按 65 级中国历史子朝代编年正序架构，实现全库 11 大板块 × 6 大非名人资产类别（人物、场景、建筑 8,820+ 座、器物 4,800+ 组、配套 1,419+ 组、历史事件 1,543+ 组）100% 全满大满贯！",
+    specs: [
+      "<strong>中文十二段零否定词工业结构</strong>：每条提示词严格包含朝代地域、身份骨相、冠巾发式、衣裳形制、器物构件、空间光影等 12 段正向上下文。",
+      "<strong>四大独立文学与神话专集</strong>：内置《红楼梦》（2,327词）、《聊斋志异》（2,998词）、《57部古代志怪神魔》（10,668项）、《古典文学与多民族史诗》（6,280词）。",
+      "<strong>史料实证与推拟边界清晰</strong>：明确标注正史出处与出土文物依据，一键复制并跳转 Image 2.5 / NanoBanana Pro / 本地 Qwen 2.1 生成。"
+    ],
+    url: "https://aikingtai-ctrl.github.io/jintai-history-image-library/index.html",
+    btnText: "🏛️ 直达《中国历史文化图库》(31.3万词) ↗"
+  },
+  {
+    badge: "原生无损影视声效库 · 国内双 CDN 免代理秒开",
+    badgeClass: "green",
+    count: "203 项原生音效",
+    subCount: "全量离线托管 · 零延迟试听与入轨",
+    title: "③《声仓（Shengcang）》—— 找到画面之外的原生音效",
+    desc: "专为影视后期与声音设计打造的精选声效资产库，彻底脱离外网封锁，通过国内双 CDN 加速实现手机微信与电脑端毫秒级加载试听。",
+    specs: [
+      "<strong>全场景影视拟音覆盖</strong>：涵盖自然风雨雷电、古建木门轴转动、冷兵器出鞘交锋、鞍马奔腾、城市环境氛围与戏剧转场低音轰鸣。",
+      "<strong>与 A 机音频管线无缝衔接</strong>：支持作为 MiniMax H3、VoiceStudio 与 HDemucs 混音工程的标准环境底噪与动作锚点音效。"
+    ],
+    url: "https://aikingtai-ctrl.github.io/shengcang-sound-library/#sound-library",
+    btnText: "🔊 直达《声仓 · 声音资产库》 ↗"
+  },
+  {
+    badge: "课堂教学与考古级美术参考 · 云端每 30 分钟同步",
+    badgeClass: "cyan",
+    count: "678 部纪录片 + 9,604 图",
+    subCount: "纪录片教学资源库 × 中华文明影像库",
+    title: "④《纪录片教学资源库》&《中华文明影像库》双底座",
+    desc: "直接赋能河传专业课堂教学与历史美术考古，与前两大图库共享统一门禁（微信或浏览器验证一次，四站自动通用）。",
+    specs: [
+      "<strong>《纪录片教学资源库》（678 部课程档案）</strong>：每部均含教学切入点、课堂讨论命题、关联课程映射、经典片段解析与获奖出处。",
+      "<strong>《中华文明影像库》（9,604 张高清馆藏图）</strong>：按朝代脉络归档近万张博物馆高清器物、壁画、雕塑与书画缩略图及考证元数据，为服化道提供第一手铁证。"
+    ],
+    url: "https://aikingtai-ctrl.github.io/jintai-domestic-portal/",
+    btnText: "📚 直达《纪录片库 & 中华文明影像库》 ↗"
+  }
+];
+
+const PROMPT_SAMPLES = [
+  {
+    meta: "来源：《中国历史文化图库》盛唐军事考证条目（HL-TANG-CO-0004 × HL-TANG-PR-0008）｜适用：NanoBanana Pro / Qwen-Image-2.1 / H3 母图",
+    text: "【盛唐边塞明光铠陌刀校尉 · 中文十二段零否定词考证提示词】\n1. 时代与地域：唐开元盛期西北安西都护府戈壁烽燧戍堡；2. 人物与骨相：三十五岁关中宿将，方颐阔面，浓眉深目，胡茬刚硬，目光如炬直视前方；3. 冠盔形制：头戴精铁锻造唐式兜，钵形盔顶立红缨抹额，两侧垂乌锤护耳与顿项铁叶；4. 铠甲制度：身披全套盛唐明光铠，前胸后背各置两面椭圆打磨抛光护心圆护（反射大漠冷冽天光），肩覆覆膊鱼鳞甲叶，腰束蹀躞革带并缀山文与鱼鳞甲裙；5. 内衬袍服：内着茜红织锦窄袖戎袍，腕缠熟皮护腕，足蹬乌皮六合战靴；6. 核心器物（考证级陌刀）：双手紧握一柄两米长单头长木柄宽刃唐代陌刀，朱漆梣木长柄末端包棱角铜鐏抵住砂石地面，宽厚直脊精钢刀身寒光凛冽；7. 场景建筑：背后为黄土版筑夹芦苇层的唐代夯土烽燧高台，垛口悬挂玄底赤纹军旗随狂风猎猎翻卷；8. 环境介质：塞外黄昏凛冽狂风卷起粗粝黄沙与碎石掠过甲叶；9. 摄影机位：35mm 定焦镜头，低机位 15 度仰拍全身英雄站姿，景深适中；10. 光影戏剧：低角度夕阳金橙色侧逆光勾勒兜与陌刀刃口高光，冷青色天光填充护心镜暗部；11. 材质肌理：真实锻铁锤揲痕迹、战损划痕、粗麻戎袍经纬与风沙颗粒感；12. 影调美学：中国古典战争史诗实拍胶片质感，高动态范围，色彩浑厚庄重。"
+  },
+  {
+    meta: "来源：《影视参考图集》× `chinese-directors`（#05 杜琪峰银河映像风格编译）｜适用：Image 2.5 / MiniMax H3 文戏",
+    text: "【杜琪峰银河映像风格 · 雨夜街头三角几何站位对峙镜头】\n景别与画幅：2.39:1 变形宽银幕全景（Anamorphic Widescreen Wide Shot），50mm 变形镜头拍摄。空间与场面调度：深夜空旷湿滑的香港旧街十字路口，三名身穿深色风衣的男演员呈严密的「不等边三角形几何站位」静止对峙——前景左侧一人背对镜头微侧脸、手按伞柄；中景右侧一人立于报刊亭屋檐阴影下指间夹烟；远景正中一人孤立于路灯正下方。光影与色彩科学：极致高反差冷暖碰撞（Chiaroscuro），高空唯一一盏钠灯投下刺目的暖黄顶光光锥，四周暗部浸入浓郁的冷青蓝色夜雾，柏油路面雨水积洼如镜面般倒映出霓虹残影与三人修长剪影。动态与呼吸：静待爆发的极度克制感（Static Tension before Explosion），唯有密集的雨丝斜穿光柱与风衣下摆微颤。"
+  },
+  {
+    meta: "来源：`stylized-vs-photoreal-combat-prompts` × `four-questions-combat-exchange-prompts`（爆老师四问因果链）｜适用：MiniMax H3 SelfLift 6+6 武戏",
+    text: "【真人写实古战场 · 单回合四问四句因果链提示词（盛唐陌刀破盾）】\n[画风轨：真人写实重物理受力，严禁动画悬浮感]\n第一句（谁发力）：前景右侧盛唐明光铠校尉双臂青筋暴起，腰胯拧转带动两米长柄宽刃陌刀自右上方抡圆劈落，刀锋撕裂空气带起灰白气浪；\n第二句（打在哪）：沉重精钢宽刃以泰山压顶之势正中左侧敌兵高举的包铁圆木盾牌中心，精铁与硬木猛烈撞击迸射出十几颗刺眼金黄火星与崩碎木屑；\n第三句（退几步/如何承受）：持盾敌兵双臂剧震弯曲，脚下战靴在粗粝砂砾地上猛烈向后连退三步（退三步是崩），靴底在黄土上犁出两道深达寸许的翻卷尘沟，扬起半人高的浓密黄尘；\n第四句（站住没有/什么结果）：敌兵退至第三步末终于抵受不住沛然巨力，右膝砰然砸地单膝跪倒，手中破损圆盾脱手翻滚入尘，明光铠校尉顺势欺身前踏一步，陌刀刀尖稳稳停在敌兵咽喉前三寸处定格收势。"
+  },
+  {
+    meta: "来源：`song-dynasty-ink-minimalism-aesthetic`（2027反AI精致审美④ 宋式极简留白）｜适用：王维《送元二使安西》河传唐魂短片",
+    text: "【2027审美④ 留白·宋式极简（Song Dynasty Minimalism）· 渭城朝雨浥轻尘】\n构图与留白法则：严格遵循「计白当黑」东方极简构图，画面 85% 面积为温润生宣纸肌理的晨雾烟雨留白（Negative Space），仅在画面左下角 15% 区域布置客舍青柳与两位揖别行人。物理媒材与光影：湿画宿墨毛细渗化（Capillary Ink Bloom）形成的淡墨远山与汝窑天青色（Celadon Mist）微雨薄雾自然晕染交融，柳枝如宋徽宗瘦金体干笔飞白般清隽疏朗，细雨打湿地面浅灰轻尘。边框与字卡排印：画面四周内嵌 0.25pt 宋刻本乌丝极细双栏线，右上角以高字距瘦长细宋体竖排微字题写「渭城朝雨浥轻尘」，钤一方暗朱砂小印。动态意境：35mm 镜头极缓慢横移，柳丝随微风轻拂，行人与骏马在烟雨留白中渐行渐远。"
+  }
+];
+
+let currentPromptIdx = 0;
+
+function renderVaultCards() {
+  const grid = document.getElementById("vaultCardsGrid");
+  grid.innerHTML = VAULT_CARDS.map(c => `
+    <article class="cine-card">
+      <div>
+        <div class="card-badge-row">
+          <span class="pill-badge ${c.badgeClass}">${c.badge}</span>
+          <span style="font-family:var(--font-mono);font-size:1.05rem;font-weight:900;color:var(--accent-primary);">${c.count}</span>
+        </div>
+        <h3 class="card-title">${c.title}</h3>
+        <div style="font-size:0.84rem;font-weight:700;color:var(--accent-secondary);margin-bottom:0.55rem;">📊 最新实测规模：${c.subCount}</div>
+        <p class="card-body">${c.desc}</p>
+        <ul class="spec-list">
+          ${c.specs.map(s => `<li>${s}</li>`).join("")}
+        </ul>
+      </div>
+      <div style="margin-top:auto;padding-top:0.8rem;border-top:1px dashed var(--border-subtle);display:flex;justify-content:flex-end;">
+        <a href="${c.url}" target="_blank" rel="noopener" class="ctrl-btn" style="text-decoration:none;">${c.btnText}</a>
+      </div>
+    </article>
+  `).join("");
+}
+
+function showPromptSample(idx, btn) {
+  currentPromptIdx = idx;
+  if (btn) {
+    btn.parentElement.querySelectorAll(".ctrl-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+  }
+  document.getElementById("promptSampleDisplay").textContent = PROMPT_SAMPLES[idx].text;
+  document.getElementById("promptSampleMeta").textContent = PROMPT_SAMPLES[idx].meta;
+}
+
+function copyCurrentPrompt() {
+  const txt = PROMPT_SAMPLES[currentPromptIdx].text;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(txt);
+  }
+  const metaEl = document.getElementById("promptSampleMeta");
+  const old = metaEl.textContent;
+  metaEl.textContent = "✅ 已成功复制该条工业级提示词至剪贴板！可直接粘贴至金泰画布或 ComfyUI 工作流。";
+  metaEl.style.color = "var(--accent-success)";
+  setTimeout(() => {
+    metaEl.textContent = old;
+    metaEl.style.color = "var(--text-muted)";
+  }, 2600);
+}
+
+// ============================================================================
+// 6. 后台实时部署调优 MCP + CLI 工程底座数据 (Pillar 06)
+// ============================================================================
+const MCP_CARDS = [
+  {
+    badge: "MCP 实时协议总线",
+    badgeClass: "",
+    metric: "comfyui + jintai-b",
+    title: "全栈 MCP 跨机实时协议调优中枢",
+    desc: "AI 智能体不再只是“给建议的聊天框”，而是通过 MCP 协议直接挂载 A 机 8 卡 H100、B 机 4 卡 5090、VoiceStudio 与逆向分析引擎的实操工程师。",
+    specs: [
+      "<strong>comfyui-mcp（A机 8188–8195 八卡直连）</strong>：支持毫秒级读取 6,237 个节点 Schema、自动分块上传参考图、动态改写 JSON 工作流参数、8 卡并发入队与成片自动回传。",
+      "<strong>jintai-b-media MCP（B机 Blender + Topaz 专道）</strong>：封装 blender_inspect_scene、collision_check、render_optix、topaz_enhance_video、pipeline_blender_to_topaz_4k 等 14 个原生工具。",
+      "<strong>REA 逆向工程与 Sites MCP</strong>：随时拆解全球最新顶尖影视软件与网页动效底层实现，秒级转化为金泰内部工具。"
+    ],
+    chips: ["comfyui-mcp (8端口)", "jintai-b-media MCP", "VoiceStudio MCP", "REA 逆向 MCP", "Sites MCP"]
+  },
+  {
+    badge: "CLI 生产级命令行矩阵",
+    badgeClass: "cyan",
+    metric: "20+ 专属 Runner",
+    title: "一键信手拈来的 20+ CLI 生产调度器",
+    desc: "将复杂的模型组合与显存管理固化为经过千次实战检验的标准 CLI 命令行工具，支持单镜精修与全集 200+ 镜头无人值守批量生产。",
+    specs: [
+      "<strong>视频与换角主力 CLI</strong>：jintai_h3_selflift_runner.py（文武双全二采）、jintai_pika_h3_flex_runner.py（6步极速长镜）、jintai_feihou_easy_h3_runner.py & jintai_h3_character_swap_runner.py（精准换角）。",
+      "<strong>生图与社区优选 CLI</strong>：jintai_moss_image_runner.py（BBox受控生图）、jintai_rh_approved_runner.py（Qwen 2.1 / 2511 / MiniMaxRemover 一键直出）。",
+      "<strong>提示词编译与自检 CLI</strong>：build_combat_prompt.py --lint、build_four_questions_prompt.py、build_director_style_prompt.py、narrator-ai-cli。"
+    ],
+    chips: ["jintai_h3_selflift_runner", "jintai_pika_h3_flex_runner", "jintai_feihou_easy_h3_runner", "jintai_rh_approved_runner", "narrator-ai-cli"]
+  },
+  {
+    badge: "7×24 防毒优选与自愈",
+    badgeClass: "green",
+    metric: "20:00 优选 + 01:00 自愈",
+    title: "每日静态防毒优选 × 01:00 三重自愈守护",
+    desc: "平台不仅每天变强，而且越用越稳。后台自动化守护进程每日定时吸纳社区最优工作流，并在夜间自动完成全集群健康体检与故障自愈。",
+    specs: [
+      "<strong>每日 20:00 RunningHub 静态防毒审计（rh_daily_curator.py）</strong>：自动巡检最新社区工作流，四重门控严厉拦截扣费黑盒、违规权重与破坏常驻显存节点，获批 S 级流零重启热装上阵。",
+      "<strong>每日 01:00 三重自动查修 BUG 守护</strong>：自动驱逐残留模型碎片、回收僵尸子进程、校验 499 份 safetensors 权重 0 损坏、同步 81,917 份八卡素材与 205 套工作流，ECC 错误恒为 0。",
+      "<strong>:8899 技能热同步与 :18899 秒搜驾驶舱</strong>：全机 101 万+ 资产与 812 项 Skills 实现 4.5ms 毫秒级检索与六端同步。"
+    ],
+    chips: ["rh_daily_curator (20:00)", "三重自愈守护 (01:00)", "6,237 节点 100%对齐", ":8899 技能中枢", ":18899 全局秒搜"]
+  }
+];
+
+function renderMcpCards() {
+  const grid = document.getElementById("mcpCardsGrid");
+  grid.innerHTML = MCP_CARDS.map(c => `
+    <article class="cine-card">
+      <div>
+        <div class="card-badge-row">
+          <span class="pill-badge ${c.badgeClass}">${c.badge}</span>
+          <span style="font-family:var(--font-mono);font-size:0.82rem;font-weight:800;color:var(--accent-primary);">${c.metric}</span>
+        </div>
+        <h3 class="card-title">${c.title}</h3>
+        <p class="card-body">${c.desc}</p>
+        <ul class="spec-list">
+          ${c.specs.map(s => `<li>${s}</li>`).join("")}
+        </ul>
+      </div>
+      <div class="skill-tag-wrap">
+        ${c.chips.map(ch => `<span class="skill-chip">${ch}</span>`).join("")}
+      </div>
+    </article>
+  `).join("");
+}
+
+// ============================================================================
+// 7. 河传师生「一句话创意 ➔ 超越预期成片」实时创演沙盘模拟器 (Pillar 07)
+// ============================================================================
+const SIM_PRESETS = [
+  {
+    idea: "【河传诗词文博短片命题】把王维《送元二使安西》（渭城朝雨浥轻尘，客舍青青柳色新）拍成一部 3 分钟的电影级短片：既有唐代安西都护府与渭城客舍的严谨历史形制，又融合 2027 宋式极简留白水墨意境，配王永利老师温润深沉的中英双语吟诵与古琴交响整轨配乐。",
+    models: "金泰 2 号 (Gemini Argon 主控编导) + 金泰 3 号 (Claude Opus 5.5 诗词节奏精修) + NanoBanana Pro 2K 母图 + 本地 Qwen-Image-2.1 (零乱码题字) + A机 H3 SelfLift (6+4 文戏管线)",
+    vault: "自动调取《中国历史文化图库》盛唐渭城客舍建筑、唐代圆领袍揖别礼仪、安西驿道考证词（共 12 组十二段提示词）+ 《影视参考图集》胡金铨/侯孝贤留白镜头语法",
+    astra: "ASTRA 驱动 Blender 生成客舍庭院与渭城古道米制俯视机位图（m），设定 35mm 镜头缓慢横移轨迹并执行全时间轴深度并集防闪烁锁；驱动达芬奇加载汝窑天青胶片 LUT",
+    audio: "A机 VoiceStudio (:3900) + VoxCPM2 48kHz 克隆并合成双语深情吟诵 + LatentSync 1.6 实心核椭圆蒙版精准对口型 + MiniMax Music 3 一次生成 180 秒整轨古琴箫管交响母带 (-14 LUFS)",
+    skills: ["vague-idea-to-shooting-script", "song-dynasty-ink-minimalism-aesthetic", "chinese-directors", "hec-landscape-natural-light", "character-emotion-performance", "jintai-six-step-adversarial-workflow"],
+    exceed: "不仅生成 180 秒 1080P/4K 零抽卡成片，更自动交付：① 带“渭城朝雨”零乱码宋刻字卡的 2K 定妆图集、② 10 段落完整声画分镜表、③ 史料考证来源台账、④ 经 06(9.42分)/07(9.65分) 双盲审计通过的四联检视板与可二次编辑剪映/达芬奇工程包！"
+  },
+  {
+    idea: "【河传动作导演系命题】拍一段 15 秒一镜到底的盛唐边塞冷兵器交锋：荒漠夯土烽燧下，身穿明光铠的唐军校尉持两米长柄陌刀迎战突厥狼骑，要求刀劈圆盾火星四溅、敌兵連退三步单膝跪地卸力，动作拳拳到肉，拒绝动画悬浮感与假摔。",
+    models: "金泰 1 号 (GPT-6 Astra 物理控制) + 金泰 2 号 (Gemini Argon 动作分镜) + 本地 Qwen-Image-Edit-2511 (九宫格关键帧锁死) + A机 8×H100 MiniMax H3 SelfLift (6+6 武戏管线 + @四只兔子 武打四件套 speed=3.0)",
+    vault: "自动调取《中国历史文化图库》HL-TANG-CO-0004（唐代明光铠武士）、HL-TANG-PR-0008（单头长木柄宽刃陌刀，自动拦截双头刀错画）、HL-XHAN-LS-0001（边塞夯土烽燧）",
+    astra: "ASTRA 驱动 Tripo 3D 构建陌刀与圆盾三维刚体，在 Blender 中通过手机无线体感运镜设计 15 秒斯坦尼康贴身跟拍轨迹，执行落轨前零穿模校验与 180° 越轴检测",
+    audio: "A机 H100 运行 HDemucs (HDEMUCS_HIGH_MUSDB_PLUS) 四轨分离，100% 剥离战场伪人声嘶喊，完整提纯逐帧对齐的精钢劈木盾爆裂声、战靴犁碎砂砾声与重甲碰撞拟音 + 《声仓》塞外狂风底噪",
+    skills: ["stylized-vs-photoreal-combat-prompts", "four-questions-combat-exchange-prompts", "ai-martial-arts-oner-choreography", "steadicam-tracking-shot", "hec-action-exposure-rhythm"],
+    exceed: "严格按爆老师「四问四句因果链」量化“退三步是崩、战靴犁出寸许尘沟”，通过 3×5s 三卡并发蒙太奇与九宫格单图驱动双版本交付，98 秒极速出片，物理重量感与兵器形制远超传统抽卡！"
+  },
+  {
+    idea: "【河传戏剧影视表演与摄影系命题】雨夜旧街茶楼内，两位昔日挚友隔桌对弈，表面平静叙旧，实则暗流涌动。要求采用杜琪峰银河映像冷暖高反差布光，细腻展现角色从听到试探台词、瞳孔微缩、指尖捻棋停顿到苦笑落子的完整微表情变化。",
+    models: "金泰 2 号 (Gemini Carbon 微表演拉片) + 金泰 3 号 (Claude Opus 5.5 潜台词精修) + GPT Image 2.5 (角色 12×8 面部网格锚定) + A机 H3 PRISM 跨切镜状态传递管线",
+    vault: "自动调取《影视参考图集》杜琪峰《黑社会》《枪火》及奥斯卡最佳摄影 Chiaroscuro 明暗对照经典镜次共 18 条镜头描述",
+    astra: "ASTRA 驱动 Blender 布置茶楼「三角几何站位」与唯一顶置暖光吊灯 + 窗外冷青雨夜光比（8:1），正反打切镜严格通过 XZ 平面有符号距离越轴校验，驱动达芬奇执行二级肤色隔离调色",
+    audio: "VoxCPM2 双输入声纹/韵律解耦配音（精准还原欲言又止的气声与停顿）+ LatentSync 1.6 逐帧口型精修（严禁静态贴嘴，全用原生帧重渲）+ 《声仓》窗外夜雨敲击瓦片与棋子落盘清脆拟音",
+    skills: ["character-emotion-performance", "ai-micro-expression-director", "chinese-directors", "oscar-cine-chiaroscuro", "hec-motivated-practical-light", "davinci-ai-color-workflow"],
+    exceed: "将抽象的“暗流涌动”拆解为可执行的「情绪六段反应链」，跨正反打切镜保持人物眼神光、面部微汗与手指微颤因果连贯，100% 原尺寸人脸密集抽帧零崩坏！"
+  },
+  {
+    idea: "【河传数字媒体艺术与动画视效系命题】创作一部敦煌壁画飞天破壁苏醒、继而在赛博苍穹之上展开太极万剑金色法阵的 30 秒奇幻视效宣传片，需要极具冲击力的关键帧变身幻术、故障粒子流体与毫秒级闪白冲击帧。",
+    models: "金泰 1 号 (GPT-6 Astra 特效编排) + NanoBanana Pro 4K 概念设定 + 本地 OpenMOSS 13B (BBox 阵法构图) + A机 H3 SelfLift + B机 Topaz 4K 60fps 超分管线",
+    vault: "自动调取《中国历史文化图库》敦煌莫高窟飞天与神话天工专集 + 《中华文明影像库》唐代壁画矿物设色色谱",
+    astra: "ASTRA 驱动 Tripo 3D 生成飞天琵琶与古剑 3D 阵列，在 Blender 中解算 FPV 穿越向心压弯横滚角与能量守恒钟摆穿楼轨迹，联动本地 Genjutsu 四大幻术工作流执行关键帧锚点变身",
+    audio: "A机 MiniMax Music 3 一次生成 30 秒敦煌琵琶 × 赛博电子交响高燃曲 + 毫秒级节拍对齐（Beat-Synced Cuts）+ 剑阵破空粒子音效封装",
+    skills: ["genjutsu-vfx-director", "xianxia-sword-array-vfx-prompts", "glitch-pixel-particle-vfx-combat", "tripo-3d", "jintai-b-topaz-blender-mcp", "remotion-best-practices"],
+    exceed: "融合微观孤影×宏观巨阵尺度反差、六阶几何阵法拓扑演进与 0.3s 剑刃挡半脸寒眸极特写，A 机 8 卡渲染后直通 B 机 Topaz 4K 60fps 母带封装，直接达到国际电影节展映与学院年度大秀水准！"
+  }
+];
+
+const SIM_STAGE_NAMES = [
+  { step: "STEP 01", name: "金泰1-3号意图领会", sub: "Argon/Carbon/Opus 剧本与反应链拆解" },
+  { step: "STEP 02", name: "百万图库考证锚定", sub: "138.1万+ 历史考证词与奥斯卡镜头匹配" },
+  { step: "STEP 03", name: "2K/4K 零乱码母图", sub: "NanoBanana Pro + 本地 Qwen 2.1 定妆" },
+  { step: "STEP 04", name: "ASTRA 3D 零穿模预演", sub: "Tripo 3D + Blender 米制机位与防闪烁锁" },
+  { step: "STEP 05", name: "八卡H3 + 全栈录音VFX", sub: "SelfLift 二采 + VoiceStudio/HDemucs/达芬奇" },
+  { step: "STEP 06", name: "06/07 双盲审计放行", sub: "四联检视板 ≥9.0 PASS · 超越预期交付" }
+];
+
+
+
+let allMobileExpanded = false;
+let currentMobileSkillDept = "all";
+let currentMobilePromptIdx = 0;
+
+function renderMobileCardList(items, containerId) {
+  const el = document.getElementById(containerId);
+  el.innerHTML = items.map((c, idx) => {
+    const badgeText = c.badge || c.deptLabel || "";
+    const badgeCls = c.badgeClass || "";
+    const metricText = c.metric || c.modelTag || c.count || "";
+    const bullets = c.specs || c.highlights || [];
+    const chips = c.chips || c.skills || [];
+    const expandClass = allMobileExpanded ? "expanded" : "";
+    const btnLabel = allMobileExpanded ? "▴ 收起详细技术指标" : `▾ 展开 ${bullets.length} 项核心技术详情`;
+    const externalBtn = c.url ? `<div style="margin-top:0.55rem;"><a href="${c.url}" target="_blank" rel="noopener" class="m-mini-btn accent" style="display:inline-block;">${c.btnText}</a></div>` : "";
+    return `
+      <article class="m-card ${expandClass}">
+        <div class="m-card-head">
+          <span class="m-badge ${badgeCls}">${badgeText}</span>
+          <span class="m-metric">${metricText}</span>
+        </div>
+        <h3 class="m-card-title">${c.title}</h3>
+        ${c.subCount ? `<div style="font-size:0.75rem;font-weight:700;color:var(--accent-secondary);margin-bottom:0.35rem;">📊 ${c.subCount}</div>` : ""}
+        <p class="m-card-desc">${c.desc}</p>
+        <button class="m-expand-btn" onclick="toggleSingleCard(this)">${btnLabel}</button>
+        <div class="m-details-box">
+          <ul class="m-spec-list">
+            ${bullets.map(b => `<li>${b}</li>`).join("")}
+          </ul>
+        </div>
+        ${chips.length ? `<div class="m-chip-row">${chips.map(ch => `<span class="m-chip">${ch}</span>`).join("")}</div>` : ""}
+        ${externalBtn}
+      </article>
+    `;
+  }).join("");
+}
+
+function toggleSingleCard(btn) {
+  const card = btn.closest(".m-card");
+  card.classList.toggle("expanded");
+  const isExp = card.classList.contains("expanded");
+  const count = card.querySelectorAll(".m-spec-list li").length;
+  btn.textContent = isExp ? "▴ 收起详细技术指标" : `▾ 展开 ${count} 项核心技术详情`;
+}
+
+function toggleAllMobileDetails() {
+  allMobileExpanded = !allMobileExpanded;
+  const gBtn = document.getElementById("globalExpandBtn");
+  gBtn.textContent = allMobileExpanded ? "全部收起 ▴" : "全部展开 ▾";
+  document.querySelectorAll(".m-card").forEach(card => {
+    const expBtn = card.querySelector(".m-expand-btn");
+    if (!expBtn) return;
+    const count = card.querySelectorAll(".m-spec-list li").length;
+    if (allMobileExpanded) {
+      card.classList.add("expanded");
+      expBtn.textContent = "▴ 收起详细技术指标";
+    } else {
+      card.classList.remove("expanded");
+      expBtn.textContent = `▾ 展开 ${count} 项核心技术详情`;
+    }
+  });
+}
+
+function filterMobileModels(cat, btn) {
+  if (btn) {
+    document.querySelectorAll("#mModelTabs .m-tab-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+  }
+  const list = cat === "all" ? MODEL_CARDS : MODEL_CARDS.filter(c => c.cat === cat);
+  renderMobileCardList(list, "mModelList");
+}
+
+const ASTRA_ORDER = [
+  { key: "astra", num: "1", short: "ASTRA × ARGON 主控大脑", tag: "自然语言意图编译 · MCP+CLI总线" },
+  { key: "tripo", num: "2", short: "ASTRA 控制 3D TRIPO & 混元3D", tag: "2D考证母图 ➔ 高精度3D网格体块" },
+  { key: "blender", num: "3", short: "ASTRA 控制 BLENDER 预演", tag: "米制平面图 · 手机无线动捕 · 零穿模" },
+  { key: "h3vfx", num: "4", short: "VFX · Genjutsu · SAM3.1 换角", tag: "四大幻术 · SelfLift二采 · 动态擦除" },
+  { key: "render", num: "5", short: "8×H100 并发 + Topaz 4K 超分", tag: "文戏6+4 / 武戏6+6 · 全时间轴防闪烁" },
+  { key: "davinci", num: "6", short: "ASTRA 控制达芬奇 + 双盲审计", tag: "ACES色彩科学 · 06/07双签≥9.0放行" }
+];
+
+function renderMobileAstra(activeKey = "astra") {
+  const container = document.getElementById("mAstraFlow");
+  container.innerHTML = ASTRA_ORDER.map(item => {
+    const d = ASTRA_NODES[item.key];
+    const isAct = item.key === activeKey ? "active" : "";
+    return `
+      <div class="m-astra-node ${isAct}" id="m-node-${item.key}" onclick="selectMobileAstra('${item.key}')">
+        <div class="m-node-header">
+          <div class="m-node-step">
+            <span class="m-node-num">${item.num}</span>
+            <span>${item.short}</span>
+          </div>
+          <span style="font-size:0.72rem;color:var(--accent-primary);font-weight:700;">${isAct ? "当前检视 ▾" : "点击展开 ▸"}</span>
+        </div>
+        <div class="m-node-sub">${item.tag}</div>
+        <div class="m-node-detail">
+          <p style="font-size:0.81rem;color:var(--text-secondary);line-height:1.56;">${d.summary}</p>
+          <div class="m-patent-box">🛡️ <strong>${d.patent}</strong></div>
+          <ul class="m-spec-list">
+            ${d.bullets.map(b => `<li>${b}</li>`).join("")}
+          </ul>
+          <div class="m-cmd-box">${d.cmd}</div>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+function selectMobileAstra(key) {
+  renderMobileAstra(key);
+}
+
+function pulseMobileAstra() {
+  let i = 0;
+  renderMobileAstra(ASTRA_ORDER[0].key);
+  const timer = setInterval(() => {
+    i++;
+    if (i >= ASTRA_ORDER.length) {
+      clearInterval(timer);
+      return;
+    }
+    renderMobileAstra(ASTRA_ORDER[i].key);
+  }, 600);
+}
+
+function filterMobileSkills(dept, btn) {
+  currentMobileSkillDept = dept;
+  if (btn) {
+    document.querySelectorAll("#mSkillTabs .m-tab-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+  }
+  renderMobileSkills();
+}
+
+function renderMobileSkills() {
+  const q = (document.getElementById("mSkillSearch").value || "").trim().toLowerCase();
+  const filtered = SKILL_CARDS.filter(c => {
+    const matchDept = currentMobileSkillDept === "all" || c.dept === currentMobileSkillDept;
+    if (!matchDept) return false;
+    if (!q) return true;
+    const hay = (c.deptLabel + " " + c.modelTag + " " + c.title + " " + c.desc + " " + c.highlights.join(" ") + " " + c.skills.join(" ")).toLowerCase();
+    return hay.includes(q);
+  });
+  if (filtered.length === 0) {
+    document.getElementById("mSkillsList").innerHTML = `<div class="m-card" style="text-align:center;">未找到匹配项，请清空搜索词或切换分类。</div>`;
+    return;
+  }
+  renderMobileCardList(filtered, "mSkillsList");
+}
+
+function showMobilePrompt(idx, btn) {
+  currentMobilePromptIdx = idx;
+  if (btn) {
+    document.querySelectorAll("#mPromptTabs .m-tab-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+  }
+  document.getElementById("mPromptMeta").textContent = PROMPT_SAMPLES[idx].meta;
+  document.getElementById("mPromptBox").textContent = PROMPT_SAMPLES[idx].text;
+}
+
+function copyMobilePrompt() {
+  const txt = PROMPT_SAMPLES[currentMobilePromptIdx].text;
+  if (navigator.clipboard) navigator.clipboard.writeText(txt);
+  const meta = document.getElementById("mPromptMeta");
+  const old = meta.textContent;
+  meta.textContent = "✅ 已复制该工业级提示词至手机剪贴板！";
+  meta.style.color = "var(--accent-success)";
+  setTimeout(() => {
+    meta.textContent = old;
+    meta.style.color = "var(--text-muted)";
+  }, 2400);
+}
+
+function loadMobileSim(idx, btn) {
+  if (btn) {
+    document.querySelectorAll("#mSimTabs .m-tab-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+  }
+  document.getElementById("mSimInput").value = SIM_PRESETS[idx].idea;
+  runMobileSim();
+}
+
+function runMobileSim() {
+  const val = (document.getElementById("mSimInput").value || "").trim();
+  const stagesEl = document.getElementById("mSimStages");
+  stagesEl.innerHTML = SIM_STAGE_NAMES.map(s => `
+    <div class="m-stage-pill">
+      <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--accent-success);font-weight:800;">✓ ${s.step}</div>
+      <div style="font-size:0.8rem;font-weight:800;color:var(--text-primary);">${s.name}</div>
+    </div>
+  `).join("");
+
+  let p = SIM_PRESETS.find(item => item.idea === val) || SIM_PRESETS[0];
+  document.getElementById("mSimOutput").innerHTML = `
+    <div style="background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:12px;padding:0.8rem;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.55rem;">
+        <span class="m-badge green">✅ 全栈领会与调度方案已生成</span>
+        <span style="font-family:var(--font-mono);font-size:0.72rem;color:var(--accent-primary);">双审 ≥9.0 PASS</span>
+      </div>
+      <ul class="m-spec-list">
+        <li><strong>金泰 1–3 号与生图集群</strong>：${p.models}</li>
+        <li><strong>百万双图库考证匹配</strong>：${p.vault}</li>
+        <li><strong>ASTRA 零抽卡控制链</strong>：${p.astra}</li>
+        <li><strong>全栈录音与整轨配乐</strong>：${p.audio}</li>
+      </ul>
+      <div style="margin-top:0.6rem;padding:0.55rem;background:rgba(16,185,129,0.10);border:1px solid var(--accent-success);border-radius:8px;font-size:0.78rem;line-height:1.55;">
+        <strong style="color:var(--accent-success);">🌟 超越预期交付物：</strong>${p.exceed}
+      </div>
+    </div>
+  `;
+}
+
+function switchMobileTheme(t) {
+  document.documentElement.setAttribute("data-theme", t);
+}
+
+const FONT_MODES = [
+  { key: "standard", label: "字号:标" },
+  { key: "large", label: "字号:大" },
+  { key: "xlarge", label: "字号:特" }
+];
+let fontIdx = 0;
+function cycleMobileFont() {
+  fontIdx = (fontIdx + 1) % FONT_MODES.length;
+  document.documentElement.setAttribute("data-font", FONT_MODES[fontIdx].key);
+  document.getElementById("mFontCycleBtn").textContent = FONT_MODES[fontIdx].label;
+}
+
+function activateDock(el) {
+  document.querySelectorAll(".m-bottom-dock .m-dock-item").forEach(a => a.classList.remove("active"));
+  el.classList.add("active");
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  // Adjust desktop switch link if hosted on jintai-domestic-portal or local file
+  const link = document.getElementById("desktopSwitchLink");
+  if (link) {
+    if (location.protocol === "file:") {
+      link.href = "01_金泰AI影视艺术全栈智算平台_面向河传师生能力全景动态展映台.html?desktop=1";
+    } else if (location.pathname.includes("hbcm-m")) {
+      link.href = "hbcm.html?desktop=1";
+    }
+  }
+  filterMobileModels("all");
+  renderMobileAstra("astra");
+  renderMobileSkills();
+  renderMobileCardList(AUDIO_CARDS, "mAudioList");
+  renderMobileCardList(VAULT_CARDS, "mVaultList");
+  showMobilePrompt(0);
+  renderMobileCardList(MCP_CARDS, "mMcpList");
+  loadMobileSim(0);
+});
+</script>
+</body>
+</html>
