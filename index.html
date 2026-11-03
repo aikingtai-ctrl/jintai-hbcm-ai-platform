@@ -222,8 +222,8 @@ html[data-theme="song-ink"] .serif-title {
 }
 .hud-nav {
   display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: 0.42rem;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.38rem;
 }
 @media (max-width: 1100px) {
   .hud-nav {
@@ -477,7 +477,7 @@ html[data-theme="cinema-imax"] .ctrl-btn.active {
 /* 通用章节 Section 样式 */
 .section-block {
   padding: 2.9rem 0;
-  scroll-margin-top: 86px;
+  scroll-margin-top: 128px;
   border-bottom: var(--border-width) solid var(--border-subtle);
 }
 .section-header {
@@ -781,6 +781,58 @@ html[data-theme="tactile-archival"] .tab-btn.active {
   outline: 2px solid var(--accent-primary);
 }
 
+/* 运作机理四步/五步横向状态流水线 (How-It-Works Mechanism Strip) */
+.mech-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.95rem;
+  margin-bottom: 1.45rem;
+}
+.mech-strip.steps-5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+@media (max-width: 1200px) {
+  .mech-strip, .mech-strip.steps-5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 720px) {
+  .mech-strip, .mech-strip.steps-5 { grid-template-columns: 1fr; }
+}
+.mech-step {
+  background: var(--bg-secondary);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--radius-card);
+  padding: 1.05rem 1.15rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.mech-step-num {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 900;
+  color: var(--accent-primary);
+  letter-spacing: 0.05em;
+}
+.mech-step-title {
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.32;
+}
+.mech-step-body {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  line-height: 1.58;
+}
+.mech-step-code {
+  margin-top: auto;
+  padding-top: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent-secondary);
+}
+
 /* 河传师生创演沙盘模拟器 (Idea-to-Cinema Simulator) */
 .simulator-box {
   background: var(--bg-card);
@@ -936,9 +988,14 @@ html[data-theme="tactile-archival"] .sim-run-btn {
       <a href="#sec-astra">02 ASTRA零抽卡工业链</a>
       <a href="#sec-skills">03 编导摄录美Skills</a>
       <a href="#sec-audio">04 全栈录音与配乐</a>
-      <a href="#sec-vault">05 百万级双图库</a>
+      <a href="#sec-vault">05 149万+双图库</a>
       <a href="#sec-mcp">06 后台MCP与CLI</a>
-      <a href="#sec-simulator">07 河传师生创演沙盘</a>
+      <a href="#sec-storage">07 审核与冷热温存储</a>
+      <a href="#sec-hybrid">08 真人实拍×AI融合</a>
+      <a href="#sec-director">09 导演台与手机导播</a>
+      <a href="#sec-oneclick">10 一键式全链路产出</a>
+      <a href="#sec-genre">11 六大类型化定制</a>
+      <a href="#sec-simulator">12 河传师生创演沙盘</a>
     </nav>
   </div>
 </header>
@@ -958,7 +1015,7 @@ html[data-theme="tactile-archival"] .sim-run-btn {
           <span>🎥 金泰 AI × 河北传媒学院（河传）产教融合底座</span>
         </div>
         <div class="hero-eyebrow secondary">
-          <span>⚡ A/B 本地集群 × 金泰 1–3 号模型 × 812 项专业 Skills × 138.1 万+ 考证与镜头词库</span>
+          <span>⚡ A/B 本地集群 × 金泰 1–3 号模型 × 812 项专业 Skills × 149.4 万+ 考证与镜头词库</span>
         </div>
       </div>
 
@@ -1001,14 +1058,14 @@ html[data-theme="tactile-archival"] .sim-run-btn {
           <div class="telemetry-sub">Blender · 达芬奇 · Tripo</div>
         </div>
         <div class="telemetry-card">
-          <div class="telemetry-val">138.1 万+</div>
+          <div class="telemetry-val">149.4 万+</div>
           <div class="telemetry-label">影史镜头与考证词库</div>
-          <div class="telemetry-sub">106.8万镜 + 31.3万考证</div>
+          <div class="telemetry-sub">117.6万镜 + 31.8万考证</div>
         </div>
         <div class="telemetry-card">
-          <div class="telemetry-val">MCP + CLI</div>
-          <div class="telemetry-label">后台 7×24 实时自愈</div>
-          <div class="telemetry-sub">6,237节点 · ≥9.0分双审</div>
+          <div class="telemetry-val">S1/S2/S3</div>
+          <div class="telemetry-label">77柜三级数字资产金库</div>
+          <div class="telemetry-sub">101万+资产 4.5ms 秒搜</div>
         </div>
       </div>
     </div>
@@ -1226,14 +1283,14 @@ html[data-theme="tactile-archival"] .sim-run-btn {
     <div class="section-header">
       <div class="sec-head-top">
         <div>
-          <div class="sec-tag">PILLAR 05 // 1.38 MILLION+ DAILY-EXPANDING FILM &amp; HISTORICAL PROMPT VAULT</div>
+          <div class="sec-tag">PILLAR 05 // 1.49 MILLION+ DAILY-EXPANDING FILM &amp; HISTORICAL PROMPT VAULT</div>
           <h2 class="sec-title serif-title">五、图库提示词每日自动扩库已达百万资源：四大视听库国内免代理直连</h2>
         </div>
         <div>
           <a href="https://aikingtai-ctrl.github.io/jintai-domestic-portal/" target="_blank" rel="noopener" class="ctrl-btn active" style="text-decoration:none;display:inline-block;">🌐 打开金泰四大视听资源库总入口 ↗</a>
         </div>
       </div>
-      <p class="sec-desc">河传师生无需再面对空白输入框苦思提示词。金泰已建成<strong>国内手机/微信/电脑免代理秒开、统一门禁一键通用</strong>的四大国家级文化与视听资源库，后台配置每日 20:00 / 21:00 / 23:00 / 24:00 定时巡检守护，<strong>总提示词与镜头描述资源已突破 138.1 万条！</strong></p>
+      <p class="sec-desc">河传师生无需再面对空白输入框苦思提示词。金泰已建成<strong>国内手机/微信/电脑免代理秒开、统一门禁一键通用</strong>的四大国家级文化与视听资源库，后台配置每日 20:00 / 21:00 / 23:00 / 24:00 定时巡检守护，<strong>总提示词与镜头描述资源已突破 149.4 万条！</strong></p>
     </div>
 
     <div class="grid-2" id="vaultCardsGrid"></div>
@@ -1273,24 +1330,142 @@ html[data-theme="tactile-archival"] .sim-run-btn {
   </div>
 </section>
 
-<!-- 章节 07：河传师生「提出创意 ➔ 超越预期成片」实时创演沙盘模拟器 -->
+<!-- 章节 07：工作流 ➔ 产出 ➔ 审核 ➔ 冷热温三级存储与校园数字资产金库 -->
+<section class="section-block" id="sec-storage">
+  <div class="container">
+    <div class="section-header">
+      <div class="sec-head-top">
+        <div>
+          <div class="sec-tag">PILLAR 07 // WORKFLOW ➔ PRODUCTION ➔ DUAL-BLIND AUDIT ➔ S1/S2/S3 TIERED STORAGE &amp; DIGITAL ASSET VAULT</div>
+          <h2 class="sec-title serif-title">七、全生命周期闭环：工作流 ➔ 产出 ➔ 双盲审核 ➔ 冷热温存储与数字资产沉淀</h2>
+        </div>
+        <div>
+          <span class="pill-badge green">77架×24kW 存储底座 · 101.4万+ 资产 4.5ms 全局秒搜</span>
+        </div>
+      </div>
+      <p class="sec-desc">普通公网 AI 工具生成完视频即散落各处、换个学生或换门课就彻底丢失。金泰平台围绕<strong>「工作流编译 ➔ 并发产出与国标签名 ➔ 06/07 读写隔离双盲审核 ➔ S1热/S2温/S3冷三级存储落盘」</strong>构建了严密的工业级闭环，将河传师生每一次创作 100% 转化为可检索、可跨专业接力、可确权复用的永久校园数字资产：</p>
+    </div>
+
+    <!-- 运作机理四阶流水线 -->
+    <div class="mech-strip" id="storageFlowStrip"></div>
+
+    <!-- S1/S2/S3 冷热温三级存储与数字资产管理卡片 -->
+    <div class="grid-3" id="storageCardsGrid"></div>
+  </div>
+</section>
+
+<!-- 章节 08：AI 与真人实拍深度结合（虚实共生四大工业管线） -->
+<section class="section-block" id="sec-hybrid">
+  <div class="container">
+    <div class="section-header">
+      <div class="sec-head-top">
+        <div>
+          <div class="sec-tag">PILLAR 08 // LIVE-ACTION × AI HYBRID FILMMAKING PIPELINE</div>
+          <h2 class="sec-title serif-title">八、AI 与真人实拍深度结合：真容声纹 1:1 锚定 · 实拍无痕换角 · 隔物修脸 · 虚实混排</h2>
+        </div>
+        <div>
+          <span class="pill-badge cyan">动作相关系数 0.999978 · 免绿幕 · 免威亚</span>
+        </div>
+      </div>
+      <p class="sec-desc">影视教学与专业创作绝非“纯虚拟动画”所能替代。金泰平台打通了<strong>真人实拍素材与 AI 工业管线的双向融合通道</strong>：河传表演系学生可在普通教室实拍走位，直接无痕替换为身披甲胄的盛唐将军；名师专家仅需提供数张照片与 15 秒语音，即可生成口型与微表情浑然天成的 4K 数字主讲人。</p>
+    </div>
+
+    <!-- 运作机理四步链 -->
+    <div class="mech-strip" id="hybridFlowStrip"></div>
+
+    <div class="grid-2" id="hybridCardsGrid"></div>
+  </div>
+</section>
+
+<!-- 章节 09：3D 导演台 · 手机扫码无线运镜 · 33点零上传动捕 · 多机位「⏺ 录切换」实时导播 -->
+<section class="section-block" id="sec-director">
+  <div class="container">
+    <div class="section-header">
+      <div class="sec-head-top">
+        <div>
+          <div class="sec-tag">PILLAR 09 // 3D DIRECTOR CONSOLE · SMARTPHONE WIRELESS CAMERA &amp; LIVE MULTI-CAM SWITCHER</div>
+          <h2 class="sec-title serif-title">九、导演台手机无线运镜与实时导播：把电视台春晚导播台装进每位河传学子口袋</h2>
+        </div>
+        <div>
+          <span class="pill-badge">5项金泰独占发明专利 · 零视频上传 · 180°越轴自动拦截</span>
+        </div>
+      </div>
+      <p class="sec-desc">针对传统三维软件门槛高、学生不会调关键帧的痛点，金泰自研线上 <strong>3D 导演台（64 个核心模块）与总导演控制台（director_console.html）</strong>。<strong>它是如何工作的？</strong>无需安装任何 App，手机扫码即刻化身无线体感摄影机与 33 点动作捕捉仪，边回放边按数字键 <strong>1~9</strong> 即可完成多机位实时切镜与越轴自检：</p>
+    </div>
+
+    <!-- 导演台 5 步运作机理带 -->
+    <div class="mech-strip steps-5" id="directorFlowStrip"></div>
+
+    <div class="grid-3" id="directorCardsGrid"></div>
+  </div>
+</section>
+
+<!-- 章节 10：一键式全链路产出（6大零门槛端到端生产线） -->
+<section class="section-block" id="sec-oneclick">
+  <div class="container">
+    <div class="section-header">
+      <div class="sec-head-top">
+        <div>
+          <div class="sec-tag">PILLAR 10 // ONE-CLICK END-TO-END TURNKEY PRODUCTION RUNNERS</div>
+          <h2 class="sec-title serif-title">十、一键式全链路产出：从单句指令直达 4K 成片与剪映/达芬奇可编辑工程</h2>
+        </div>
+        <div>
+          <span class="pill-badge green">205套标准工作流 · 20+ CLI 调度器 · 剪映草稿直出</span>
+        </div>
+      </div>
+      <p class="sec-desc">金泰把繁琐的多模型串联封装为 <strong>6 条“一键式全链路产出通道”</strong>。师生既可一键直出完整配音配乐字幕的成片，也可一键导出包含全部独立视频轨、干声轨、拟音轨与字幕轨的<strong>本地剪映专业版草稿或达芬奇调色工程</strong>，彻底打通教学实训最后一公里。</p>
+    </div>
+
+    <div class="grid-3" id="oneclickCardsGrid"></div>
+  </div>
+</section>
+
+<!-- 章节 11：全谱系类型化深度定制（适配河传 18 个专业的 6 大垂直片种工业包） -->
+<section class="section-block" id="sec-genre">
+  <div class="container">
+    <div class="section-header">
+      <div class="sec-head-top">
+        <div>
+          <div class="sec-tag">PILLAR 11 // GENRE-SPECIFIC TURNKEY CUSTOMIZATION FOR 18 FILM DISCIPLINES</div>
+          <h2 class="sec-title serif-title">十一、全谱系类型化深度定制：六大垂直片种专属配方与工业级审美防线</h2>
+        </div>
+        <div class="tab-bar" id="genreTabBar" style="margin-bottom:0;">
+          <button class="tab-btn active" onclick="filterGenreCards('all', this)">全部六大片种 (All 6)</button>
+          <button class="tab-btn" onclick="filterGenreCards('history', this)">🏛️ 历史文博/古诗</button>
+          <button class="tab-btn" onclick="filterGenreCards('combat', this)">⚔️ 冷兵器/武侠动作</button>
+          <button class="tab-btn" onclick="filterGenreCards('drama', this)">🎭 精品短剧/情感文戏</button>
+          <button class="tab-btn" onclick="filterGenreCards('vfx', this)">✨ 仙侠奇幻/高燃VFX</button>
+          <button class="tab-btn" onclick="filterGenreCards('doc', this)">🩺 纪录科普/真人栏目</button>
+          <button class="tab-btn" onclick="filterGenreCards('anim', this)">🎨 绘本动画/先锋MV</button>
+        </div>
+      </div>
+      <p class="sec-desc">不同影视类型有着截然相反的镜头语法与物理规律（例如：3D 国漫打戏写角度轨迹、真人古装打戏必须反过来写受力与退步刻度；历史正剧严禁伪古风塑料红灯笼）。金泰为河传师生预置了 <strong>6 大垂直片种定制包</strong>，选定类型即自动挂载对应模型、考证词库与违禁词拦截器：</p>
+    </div>
+
+    <div class="grid-3" id="genreCardsGrid"></div>
+  </div>
+</section>
+
+<!-- 章节 12：河传师生「提出创意 ➔ 超越预期成片」实时创演沙盘模拟器 -->
 <section class="section-block" id="sec-simulator">
   <div class="container">
     <div class="section-header">
       <div>
-        <div class="sec-tag">PILLAR 07 // HBCM FACULTY &amp; STUDENT IDEA-TO-CINEMA LIVE SIMULATOR</div>
-        <h2 class="sec-title serif-title">七、河传师生创演沙盘：只需提出创意与想法，AI 完全领会并超越预期</h2>
-        <p class="sec-desc">请选择下方任一河传典型教学/创作命题（或在输入框自由填写您的创意想法），点击<strong>「🚀 启动金泰全栈领会与推演」</strong>，实时观摩金泰 AI 如何自动调取 1–3 号模型、百万考证图库、ASTRA 3D 预演、812 项专业 Skills 与 A/B 机集群，生成超越预期的完整制片方案：</p>
+        <div class="sec-tag">PILLAR 12 // HBCM FACULTY &amp; STUDENT IDEA-TO-CINEMA LIVE SIMULATOR</div>
+        <h2 class="sec-title serif-title">十二、河传师生创演沙盘：只需提出创意与想法，AI 完全领会并超越预期</h2>
+        <p class="sec-desc">请选择下方任一河传典型教学/创作命题（涵盖古诗文博、冷兵器武戏、微表情文戏、奇幻视效、<strong>真人实拍无痕换角</strong>、<strong>手机导演台多机位实时导播</strong>，或在输入框自由填写您的创意想法），点击<strong>「🚀 启动金泰全栈领会与推演」</strong>，实时观摩金泰 AI 如何自动完成从意图领会到 S1/S2/S3 数字资产归档的全流程：</p>
       </div>
     </div>
 
     <div class="simulator-box">
-      <div style="font-weight:700;font-size:0.95rem;color:var(--text-secondary);">🎯 快速载入河传师生典型创作命题：</div>
+      <div style="font-weight:700;font-size:0.95rem;color:var(--text-secondary);">🎯 快速载入河传师生六大典型创作命题：</div>
       <div class="sim-preset-row">
-        <button class="ctrl-btn active" onclick="loadSimPreset(0, this)">命题①：《唐魂·送元二使安西》3分钟古诗文博短片</button>
-        <button class="ctrl-btn" onclick="loadSimPreset(1, this)">命题②：《盛唐烽燧·陌刀破盾》15秒冷兵器一镜到底武戏</button>
-        <button class="ctrl-btn" onclick="loadSimPreset(2, this)">命题③：《雨夜棋局》杜琪峰光影 × 人物微表情六段反应链文戏</button>
-        <button class="ctrl-btn" onclick="loadSimPreset(3, this)">命题④：《敦煌幻境·天穹万剑》3D Tripo + Genjutsu 奇幻视效大片</button>
+        <button class="ctrl-btn active" onclick="loadSimPreset(0, this)">命题①：《唐魂·送元二使安西》古诗文博短片</button>
+        <button class="ctrl-btn" onclick="loadSimPreset(1, this)">命题②：《盛唐烽燧·陌刀破盾》冷兵器一镜到底武戏</button>
+        <button class="ctrl-btn" onclick="loadSimPreset(2, this)">命题③：《雨夜棋局》杜琪峰光影 × 六段微表情文戏</button>
+        <button class="ctrl-btn" onclick="loadSimPreset(3, this)">命题④：《敦煌幻境·天穹万剑》Tripo 3D + Genjutsu 视效片</button>
+        <button class="ctrl-btn" onclick="loadSimPreset(4, this)">命题⑤：【真人实拍×AI】教室实拍走位无痕替换为盛唐将军</button>
+        <button class="ctrl-btn" onclick="loadSimPreset(5, this)">命题⑥：【手机导演台】扫码体感运镜 + 1~9键多机位导播切镜</button>
       </div>
 
       <div class="sim-input-row">
@@ -1310,7 +1485,7 @@ html[data-theme="tactile-archival"] .sim-run-btn {
 <footer class="footer-bar">
   <div class="container">
     <p><strong>金泰 AI 影视艺术全栈智算平台 · 河北传媒学院（河传）产教融合赋能方案</strong></p>
-    <p style="margin-top:0.35rem;">本地 A/B 机 H100/5090 智算集群 ｜ 金泰 1–3 号模型（GPT · Gemini Argon/Carbon · Claude）｜ 812 项专业 Skills 每日更新 ｜ 138.1 万+ 考证与镜头资产库 ｜ `:4300` 内容安全防火墙（GB 45438-2025 合规）</p>
+    <p style="margin-top:0.35rem;">本地 A/B 机 H100/5090 智算集群 ｜ 金泰 1–3 号模型（GPT · Gemini Argon/Carbon · Claude）｜ 812 项专业 Skills 每日更新 ｜ 149.4 万+ 考证与镜头资产库 ｜ S1/S2/S3（77柜×24kW）冷热温存储 ｜ :4300 内容安全防火墙（GB 45438-2025 合规）</p>
   </div>
 </footer>
 <script>
@@ -1820,32 +1995,32 @@ const VAULT_CARDS = [
   {
     badge: "世界殿堂级影史镜头库 · 每日 20:00 / 23:00 扩库",
     badgeClass: "cyan",
-    count: "1,067,982 条镜头词",
-    subCount: "27,900 部世界影史名作 · 100% 满 5–104 镜",
-    title: "①《影视参考图集》—— 超越 ShotDeck 的百万镜引擎",
-    desc: "全面合拢全球百大最佳摄影权威体系（3,946 部：2,151 部获奖巨作满 104 镜、提名作满 92 镜）、1,951 部影史经典满 62 镜、4,490 部中外核心导演编剧大奖满 52 镜、13,658 部世界电影大奖满 36 镜。",
+    count: "1,175,984 条镜头词",
+    subCount: "28,200 部世界影史名作 · 全球百二十大摄影体系满百镜",
+    title: "①《影视参考图集》—— 超越 ShotDeck 的 117.6 万镜引擎",
+    desc: "全面合拢全球百二十大最佳摄影权威体系（4,441 部：2,446 部获奖巨作 100% 满 120 镜、1,995 部提名作 100% 满 100 镜）、1,951 部影史经典满 64 镜、4,579 部中外核心大奖满 54 镜、14,132 部世界电影大奖满 36 镜。",
     specs: [
       "<strong>即拷即用的专业摄影提示词</strong>：每镜均精确提炼景别、焦段、机位高度、主辅光比、色温色调、场面调度与构图几何。",
       "<strong>按导演/摄影师/年代/情绪秒级检索</strong>：无论是小津安二郎的低机位、杜琪峰的冷夜群像，还是罗杰·迪金斯的逆光剪影，一搜即得。",
       "<strong>后台双定时守护日更</strong>：每日 20:00 与 23:00 自动巡检扩库，为河传摄影系、导演系提供取之不竭的拉片与分镜弹药。"
     ],
     url: "https://aikingtai-ctrl.github.io/jintai-history-image-library/film.html",
-    btnText: "🎬 直达《影视参考图集》(106.8万镜) ↗"
+    btnText: "🎬 直达《影视参考图集》(117.6万镜) ↗"
   },
   {
     badge: "先考证后生成 · 每日 21:00 / 24:00 自动扩库",
     badgeClass: "",
-    count: "313,412 条考证词",
-    subCount: "61,779 个历史条目 · 16,000+ 历史名人 · 65 级子朝代",
+    count: "318,412 条考证词",
+    subCount: "63,179 个历史条目 · 16,000+ 历史名人 · 66/66 格满 150 大满贯",
     title: "②《中国历史文化图库》—— 66/66 格大满贯视觉基因库",
-    desc: "按 65 级中国历史子朝代编年正序架构，实现全库 11 大板块 × 6 大非名人资产类别（人物、场景、建筑 8,820+ 座、器物 4,800+ 组、配套 1,419+ 组、历史事件 1,543+ 组）100% 全满大满贯！",
+    desc: "按 65 级中国历史子朝代编年正序架构，实现全库 11 大板块 × 6 大非名人资产类别（人物、场景 13,200 组、建筑 8,906 座、器物 4,836 组、配套 1,738 组、历史事件 1,737 组）100% 全员突破 150 大关大满贯！",
     specs: [
       "<strong>中文十二段零否定词工业结构</strong>：每条提示词严格包含朝代地域、身份骨相、冠巾发式、衣裳形制、器物构件、空间光影等 12 段正向上下文。",
       "<strong>四大独立文学与神话专集</strong>：内置《红楼梦》（2,327词）、《聊斋志异》（2,998词）、《57部古代志怪神魔》（10,668项）、《古典文学与多民族史诗》（6,280词）。",
       "<strong>史料实证与推拟边界清晰</strong>：明确标注正史出处与出土文物依据，一键复制并跳转 Image 2.5 / NanoBanana Pro / 本地 Qwen 2.1 生成。"
     ],
     url: "https://aikingtai-ctrl.github.io/jintai-history-image-library/index.html",
-    btnText: "🏛️ 直达《中国历史文化图库》(31.3万词) ↗"
+    btnText: "🏛️ 直达《中国历史文化图库》(31.8万词) ↗"
   },
   {
     badge: "原生无损影视声效库 · 国内双 CDN 免代理秒开",
@@ -2014,20 +2189,587 @@ function renderMcpCards() {
 }
 
 // ============================================================================
-// 7. 河传师生「一句话创意 ➔ 超越预期成片」实时创演沙盘模拟器 (Pillar 07)
+// 7. 工作流 ➔ 产出 ➔ 双盲审核 ➔ S1/S2/S3 冷热温三级存储与数字资产库 (Pillar 07)
+// ============================================================================
+const STORAGE_FLOW = [
+  {
+    num: "STAGE 01 // WORKFLOW",
+    title: "团队容器排产与拓扑锁定",
+    body: "支持 500 个剧组容器、3,000 人同时在线操作；GPT-6 Astra 自动锁定 205 套工作流 DAG 拓扑（seedFastPath），将公共参考锚帧单次前置广播至八卡（imageFirstShots），消除重复 I/O。",
+    code: "DAG Lock · 0.92 错峰渲染利用率"
+  },
+  {
+    num: "STAGE 02 // PRODUCTION & GATE",
+    title: "并发产出与 :4300 国标双签名",
+    body: "A/B 机 12 卡并发渲染成片，流经 :4300 防火墙 v3.0（L0 4.9ms 哈希 ➔ L1 Qwen-27B 抽帧视觉审查 + 戏剧冲突白名单防误杀），自动注入 GB 45438-2025 显式角标与 HMAC-SHA256 隐式签名。",
+    code: ":4300 Fail-Closed · GB 45438-2025"
+  },
+  {
+    num: "STAGE 03 // DUAL-BLIND AUDIT",
+    title: "06/07 读写物理隔离双盲终审",
+    body: "自动拼合【影视四联检视板】并执行 100% 原尺寸人脸密集抽帧与 read_file 逐句听审；移交只读隔离的 06 号视觉挑刺官（必挑 ≥3 项瑕疵，<9.0分退回）与 07 号防放水交叉官双签 PASS。",
+    code: "EnableWriteTools:false · ≥9.0 PASS"
+  },
+  {
+    num: "STAGE 04 // S1-S2-S3 VAULT",
+    title: "冷热温三级存储与 4.5ms 秒搜复用",
+    body: "审核通过资产按热度自动分层落入 S1 全闪热区、S2 跨专业协同温区与 S3 77柜冷金库，并实时编入 :18899 全局秒搜驾驶舱（101.4万+ 条目 4.5ms 毫秒级检索），沉淀为学校永久数字资产。",
+    code: "S1/S2/S3 77×24kW · :18899 秒搜"
+  }
+];
+
+const STORAGE_CARDS = [
+  {
+    badge: "🔥 S1 全闪热存储层 · 实时推理",
+    badgeClass: "",
+    metric: "NVMe + 14.45 TB/s",
+    title: "S1 热存储：八卡硬链接池与常驻显存",
+    desc: "它是如何工作的？A 机本地配备高速企业级 U.2/U.3 NVMe RAID10 阵列与 640GB HBM3 显存池，专职承载当前秒级高频读写的模型权重、潜空间张量与正在渲染的剧组镜次。",
+    specs: [
+      "<strong>81,917 份输入素材八卡 MFT 硬链接同步</strong>：任何一张参考图或锚帧上传后，毫秒级同步映射至 8188–8195 八个 ComfyUI 实例，零重复磁盘占用、零复制延迟。",
+      "<strong>499 份 safetensors 权重零损坏常驻 + FastDiT 缓存</strong>：配合常驻 CUDA Context 锚点与 PTD 零分配原位 BF16 调制，单镜节省 1.77TB HBM3 内存分配。",
+      "<strong>动态显存卸载守卫（&lt;22 GiB 触发）</strong>：当 15 秒长镜头或多服务并发逼近显存警戒线时，自动执行 upscaler_unload 与穿透式模型驱逐，保障 8 卡永不 OOM。"
+    ],
+    chips: ["S1 全闪 NVMe 热区", "81,917 素材八卡硬链接", "499 权重 SHA/CRC 校验", "FastDiT 缓存 100%命中"]
+  },
+  {
+    badge: "🌤️ S2 跨专业协同温存储",
+    badgeClass: "cyan",
+    metric: "100G 汇聚共享",
+    title: "S2 温存储：跨专业资产包与状态账本",
+    desc: "它是如何工作的？针对河传“编剧➔导演➔美术➔摄影➔录音➔后期”多专业联合教学作业，S2 温存储通过 25G/100G 双归网络保存整个学期活跃剧组的全部结构化工程资产。",
+    specs: [
+      "<strong>五大标准数字资产锁定文件</strong>：自动归档剧组共享的 @CHR 角色三视图、@SCN 场景 3D 体块、@PRP 考证道具、CONTINUITY_LOCK.json 连续性账本与 ROLE_VOICE_SAMPLES_LOCK.json 真实声纹锁。",
+      "<strong>H3 Context-IR 跨镜续接账本（*.accepted_ledger.json）</strong>：前一镜头经双盲审核 PASS 后，自动生成已验收状态账本，下一镜头续接时强制读取前镜光照、站位与情绪余韵。",
+      "<strong>工程文件无损流转</strong>：Blender .blend 预演工程、剪映 draft_content.json 时间线草稿与达芬奇调色 LUT 实时共享，后道同学打开即接着剪。"
+    ],
+    chips: ["S2 100G 协同温区", "@CHR/@SCN/@PRP 资产包", "CONTINUITY_LOCK.json", "accepted_ledger 续镜账本"]
+  },
+  {
+    badge: "❄️ S3 冷金库 & :18899 秒搜",
+    badgeClass: "green",
+    metric: "77柜底座 · 101.4万+索引",
+    title: "S3 冷金库 × 全局 4.5ms 秒搜驾驶舱",
+    desc: "它是如何工作的？所有经过金泰 AI 平台生成的母图、分镜、3D 资产、成片母带与审核报告 100% 永久归档至 S3 冷金库（规划 77 架×24kW 存储底座 + 异地 Bare 镜像仓），绝不随毕业季流失。",
+    specs: [
+      "<strong>:18899 金泰全局秒搜驾驶舱（4.5ms 极速检索）</strong>：基于 SQLite FTS5 + 拼音首字母 + 影视业务同义词引擎，实时统管 101.4 万+ 条文档、视频、历史考证词、影视镜头与 812 项技能，一键直开视频或定位目录。",
+      "<strong>SHA-256 防篡改校验与十级分类归档</strong>：所有结项视频与工程均执行 100% SHA-256 哈希核验与十级编号目录重构，支持跨年级教学复盘与广电实验室成果申报。",
+      "<strong>B端/G端商业发行就绪</strong>：自带 GB 45438-2025 显隐式双轨合规溯源签名，可直接用于微短剧备案、海外发行与校企联合商业交付。"
+    ],
+    chips: ["S3 77柜冷金库", ":18899 全局秒搜 (4.5ms)", "101.4万+ 资产索引", "SHA-256 100%校验", "校企永久数字资产"]
+  }
+];
+
+// ============================================================================
+// 8. AI 与真人实拍深度结合 —— 虚实共生四大管线 (Pillar 08)
+// ============================================================================
+const HYBRID_FLOW = [
+  {
+    num: "HYBRID 01 // REAL IDENTITY LOCK",
+    title: "真人照片 + 15秒真声采集",
+    body: "采集真人演员/名师正侧原照（生成 12×8 面部网格锚定）与干声样本，锁入声纹与面容资产库。",
+    code: "12×8 Face Grid + VoxCPM2 48kHz"
+  },
+  {
+    num: "HYBRID 02 // LIVE-ACTION CAPTURE",
+    title: "普通教室/外景实拍表演走位",
+    body: "无需搭古装景或绿幕棚，学生在教室或空地用手机/相机实拍真实肢体动作、武打发力与眼神交流。",
+    code: "0 绿幕成本 · 保留真实物理重力"
+  },
+  {
+    num: "HYBRID 03 // SAM 3.1 + EASY H3 SWAP",
+    title: "二段式无痕换角与局部改姿",
+    body: "A机 SAM 3.1 剥离动态掩码 + 小肥猴 Easy H3 二段式替换角色与古装，动作与原片相关系数达 0.999978。",
+    code: "jintai_feihou_easy_h3_runner"
+  },
+  {
+    num: "HYBRID 04 // FACEFUSION & CLEANUP",
+    title: "隔镜框修脸 + 动态穿帮净除",
+    body: "A机 :3910 FaceFusion 3.9.2 隔遮挡物精修远景五官，MiniMax-Remover 擦除实拍威亚/路人/水印。",
+    code: ":3910 FaceFusion H100 + Remover"
+  }
+];
+
+const HYBRID_CARDS = [
+  {
+    badge: "真人专家/名师/演员 1:1 锚定",
+    badgeClass: "",
+    metric: "12×8 网格 + VoxCPM2 48kHz",
+    title: "① 真人「面容+原生声纹」1:1 数字分身",
+    desc: "它是如何工作的？以真实人物原始正脸照与真实录音为唯一第一手源头（严禁使用漂移后的舞台图二次转绘，严禁静态目标板贴嘴），在保留本人真实神态与骨相的前提下完成跨时代定妆与多语种出镜。",
+    specs: [
+      "<strong>Qwen-Image-Edit-2511 局部保脸换装</strong>：以真人原始帧为底，通过 2511 Lightning 4步 LoRA + index_timestep_zero 仅局部编辑服饰或手臂姿态，100% 锁死真实发型、五官与头身比。",
+      "<strong>VoxCPM2 48kHz 本人真声零样本克隆</strong>：将声纹参考与情绪韵律解耦，精准复刻主讲人/演员真实嗓音（已在复兴医院 4 位真人主任医护 8 集×3分钟教程与河传王永利教授《唐魂》中英双语吟诵中完美验证）。",
+      "<strong>原生 3D 口型与实心核椭圆蒙版</strong>：优先采用 H3 VAEDecodeAudio 原生发声口型；后期配音则采用实心核余弦衰减椭圆蒙版 6DoF 逆仿射融合，彻底杜绝方框贴嘴与鬼脸伪影。"
+    ],
+    chips: ["真人12×8网格锚定", "Qwen-Edit-2511局部改姿", "VoxCPM2真声克隆", "实心核椭圆口型专利", "100%原尺寸抽帧核验"]
+  },
+  {
+    badge: "实拍动作迁移 · 零绿幕无痕换角",
+    badgeClass: "cyan",
+    metric: "SAM 3.1 + 小肥猴 Easy H3",
+    title: "② 实拍视频二段式无痕换角（0.999978）",
+    desc: "它是如何工作的？学生在宿舍、教室或操场实拍一段动作参考片，A 机 8 卡通过 MDMZ H3 + SAM 3.1 与 ComfyUI-FeiHou-Easy-H3（v1.4.28）二段式管线，将实拍人物无缝替换为任意设定角色。",
+    specs: [
+      "<strong>第一段：SAM 3.1 多路复用掩码与运动骨骼提取</strong>：sam3.1_multiplex_fp16 自动追踪实拍人物每一帧的精确轮廓、衣物褶皱受力与镜头推拉节奏，无需搭建绿幕。",
+      "<strong>第二段：h3_character_swap_v1.5 + SelfLift 重绘融合</strong>：注入 @CHR 角色定妆卡（如明朝锦衣卫、盛唐陌刀将、现代都市主角），自动匹配环境主辅光比与边缘次表面散射。",
+      "<strong>音画切点帧级锁死</strong>：以实拍原片时间轴与切镜点为硬基准，实测替换后成片动作与原片相关系数高达 0.999978，彻底解决纯文生视频“动作错拍、打斗绵软”顽疾。"
+    ],
+    chips: ["SAM 3.1 动态分割", "FeiHou-Easy-H3 (20节点)", "h3_character_swap_v1.5", "免绿幕实拍换角", "0.999978 动作相关度"]
+  },
+  {
+    badge: "A机 :3910 常驻 · 52份 ONNX 模型",
+    badgeClass: "green",
+    metric: "FaceFusion 3.9.2 H100",
+    title: "③ 工业级隔遮挡物修脸与 2K 远景保真",
+    desc: "它是如何工作的？针对多人物群像、远景镜头或戴眼镜/墨镜/头盔/面纱场景下 AI 容易五官模糊的痛点，金泰在 A 机 H100（:3910）独立常驻部署满血版 FaceFusion 3.9.2 工作台。",
+    specs: [
+      "<strong>XSeg 1/2/3 隔物遮挡分离技术</strong>：当角色佩戴细金属框眼镜、墨镜、古装面纱或有剑刃掠过半脸时，自动剥离前景遮挡层，仅对底层皮肤与五官执行高精度重绘，绝不把眼镜框涂抹变形。",
+      "<strong>GPEN 2048 + RestoreFormer++ 远景面部超分</strong>：针对全景/中远景人物面部像素不足问题，逐镜锁定人脸框执行 2K 级皮肤肌理与眼神高光重建，并保护配角插镜不被误换。",
+      "<strong>本机零负载一键直连</strong>：已通过异步端口桥映射至桌面 127.0.0.1:3910，52 份 ONNX 模型经 CRC32 只读防篡改锁死，点开即用。"
+    ],
+    chips: ["FaceFusion 3.9.2 (:3910)", "XSeg 隔镜框/面纱修脸", "GPEN-BFR-2048", "RestoreFormer++", "LivePortrait 表情微调"]
+  },
+  {
+    badge: "实拍堪景转3D × 动态穿帮净除",
+    badgeClass: "",
+    metric: "2D转3D舞台 + MiniMax-Remover",
+    title: "④ 实拍照片转 3D 舞台 × 动态穿帮擦除",
+    desc: "它是如何工作的？将实拍外景照片与三维虚拟制片结合：一张校园或古迹实拍照片即可转化为可走位调度的 3D 景片，实拍镜头里的穿帮杂物则由 AI 视频擦除模型秒级净除。",
+    specs: [
+      "<strong>实拍参考图叠编号网格解算真实机位</strong>：在实拍堪景图上自动叠加编号透视网格，反求相机高度、焦距与俯仰角，并在 Blender 中生成带地形自动贴坡的 3D 舞台背景板，前置真 3D 骨骼人偶排演。",
+      "<strong>MiniMax-Remover 视频动态无痕擦除（A机8卡直出）</strong>：搭载 Wan2_1-MiniMaxRemover_1_3B_fp16 与本地 sam3.pt，仅需 59 秒即可将实拍视频中的威亚钢丝、话筒杆、误入路人或漂移水印净除并自动脑补背景纹理。",
+      "<strong>老照片/史料影像原貌修复</strong>：支持逐像素保留历史人物原图头脸五官与视线，仅修复划痕与扩展画幅，赋能纪录片系历史影像重现。"
+    ],
+    chips: ["实拍叠网格反求机位", "2D照片转3D舞台专利", "MiniMax-Remover (59s擦除)", "sam3.pt 本地分割", "威亚/路人无痕净除"]
+  }
+];
+
+// ============================================================================
+// 9. 3D 导演台 · 手机扫码无线运镜与多机位实时导播 (Pillar 09)
+// ============================================================================
+const DIRECTOR_FLOW = [
+  {
+    num: "STEP 01 // QR LINK",
+    title: "手机扫码零安装即连",
+    body: "WebRTC .local 多网卡探测生成二维码，手机浏览器一扫秒变无线摄影机与动捕仪。",
+    code: "DirectorPhoneLink.tsx"
+  },
+  {
+    num: "STEP 02 // 33-PT MOCAP",
+    title: "零视频上传33点动捕",
+    body: "手机端提取 33 点 3D 骨骼（画面0上传），经 XY=1.6Hz / Z=0.15Hz 非对称滤波驱动人偶。",
+    code: "MotionCaptureDialog.tsx"
+  },
+  {
+    num: "STEP 03 // SPACE & FPV",
+    title: "@空间名体块与物理运镜",
+    body: "GLB 自动坍缩为包围盒体块，按走廊锚点自动解算 FPV 压弯横滚角与钟摆穿楼轨迹。",
+    code: "SpaceLock + AutoFollow"
+  },
+  {
+    num: "STEP 04 // LIVE SWITCH",
+    title: "1~9键「⏺ 录切换」导播",
+    body: "多机位画中画同时监看，边播放边按数字键 1~9 像春晚导播台一样实时录制切镜轨。",
+    code: "DirectorEditor.tsx"
+  },
+  {
+    num: "STEP 05 // AXIS GUARD",
+    title: "180°越轴与防闪烁锁",
+    body: "实时几何检测拦截 180° 越轴与 30° 跳切，导出全时间轴裁剪面并集防闪烁深度图。",
+    code: "zF Axis Check + Depth Lock"
+  }
+];
+
+const DIRECTOR_CARDS = [
+  {
+    badge: "金泰独占专利二 · 零画面上传",
+    badgeClass: "",
+    metric: "1.6Hz / 0.15Hz 滤波",
+    title: "① 手机扫码无线运镜 × 33点零上传动捕",
+    desc: "它是如何工作的？河传师生无需穿戴几十万元的光学动捕服，也无需在手机安装任何 App。打开金泰 3D 导演台扫码，手机陀螺仪与摄像头即刻直驱虚拟片场：",
+    specs: [
+      "<strong>零视频帧上传隐私与带宽保护</strong>：手机摄像头在浏览器本地实时解算 MediaPipe 33 点 3D 骨骼坐标，仅通过 WebRTC 数据通道传输纯数学坐标流，视频画面 0 字节上传服务器，教室百人并发依然丝滑。",
+      "<strong>XY=1.6Hz / Z=0.15Hz（相差10.6倍）非对称 1€ 滤波专利</strong>：为什么普通单目动捕角色会前后乱窜滑步？金泰首创非对称滤波——横向 XY 轴设为 1.6Hz 灵敏捕捉挥剑转身，深度 Z 轴压低至 0.15Hz 强力锁死脚底接地。",
+      "<strong>体感 / 陀螺仪 / AR 三态硬件互斥状态机</strong>：手持手机在空中推拉摇移，电脑端 Blender 虚拟摄影机即刻 1:1 同步运镜，自动剔除零骨骼废片。"
+    ],
+    chips: ["手机扫码零App安装", "零视频帧上传专利", "1.6Hz/0.15Hz 非对称滤波", "33点实时骨骼动捕", "三态硬件互斥状态机"]
+  },
+  {
+    badge: "金泰独占专利四 · 导播台切镜",
+    badgeClass: "cyan",
+    metric: "1~9键录切 · 越轴拦截",
+    title: "② 多机位「⏺ 录切换」× 180° 越轴拦截",
+    desc: "它是如何工作的？把传统现场导播台搬进三维预演空间。学生可在同一场戏中架设 1~9 号机位（全景、主镜、正反打、过肩、特写），通过键盘实时完成蒙太奇剪辑：",
+    specs: [
+      "<strong>多机位 PIP 子窗与「⏺ 录切换」实时录制</strong>：按下录制键后播放演员走位动画，手指直接敲击键盘数字键 1~9 实时切换机位，系统自动生成帧级精确的 shotSequence 切镜时间线。",
+      "<strong>180° 越轴向量几何自动检测（zF 算法）</strong>：切镜瞬间，系统自动计算前后两机位相对于双人对话视线轴在 XZ 平面的有符号正交距离 |d⊥| &gt; 0.05m 是否异号，一旦越轴立即标红告警并给出修正机位。",
+      "<strong>30° 同景别跳切检测与上三分线自动跟拍</strong>：耦合水平方位角夹角 Δθ &lt; 30° 与七级视场身高比 r 自动拦截生硬跳切，并保持角色眼睛恒定锁在画面黄金上三分线。"
+    ],
+    chips: ["⏺ 录切换实时导播", "1~9数字键切镜", "180°越轴几何拦截专利", "30°跳切自动检测", "上三分线自动构图"]
+  },
+  {
+    badge: "金泰独占专利一/三/五",
+    badgeClass: "green",
+    metric: "@空间名 + 深度防闪烁",
+    title: "③ @空间名体块 × FPV运镜 × 防闪烁锁",
+    desc: "它是如何工作的？解决三维场景导入卡顿、无人机穿楼假、以及导出 Depth 深度图喂给 AI 视频时背景忽明忽暗闪烁三大工程死穴：",
+    specs: [
+      "<strong>@空间名 自动体块降维与位移冲突消解</strong>：导入复杂 GLB 场景自动剥离冗余网格坍缩为有向包围盒体块，折叠空节点；当走位轨迹与动作自带位移重叠时自动剥离根位移防滑步。",
+      "<strong>通道锚点 FPV 向心压弯与能量守恒钟摆穿楼</strong>：只需在走廊/城门标记通道锚点，系统自动按 φ = min(60°, arctan(v²κ/9.8)) 解算穿越机过弯压弯横滚角与钟摆抛物线轨迹，并在落轨前执行三重几何防穿模自检。",
+      "<strong>全时间轴裁剪面并集防闪烁结构锁</strong>：预扫描整条时间轴计算单帧机位至主体距离区间并取全局并集锁死远近裁剪面（_se:global），彻底根治 AI 视频因单帧深度归一化导致的背景呼吸闪烁！"
+    ],
+    chips: ["@空间名体块降维专利", "FPV向心压弯力学解算", "能量守恒钟摆穿楼", "全时间轴深度并集防闪烁", "director_console.html"]
+  }
+];
+
+// ============================================================================
+// 10. 一键式全链路产出 —— 6大零门槛端到端生产线 (Pillar 10)
+// ============================================================================
+const ONECLICK_CARDS = [
+  {
+    badge: "一键式电影分镜成片",
+    badgeClass: "",
+    metric: "jintai_h3_selflift_runner",
+    title: "① H3 文武双全 × Pika-Flex 一键成片",
+    desc: "输入核定参考图与分镜规格，后台自动完成 Context-IR 状态编译、A 机 8 卡并发 SelfLift 二采（3×5s 蒙太奇 98秒极速合片，提速 4.8 倍）、B 机 Topaz 4K 超分与 :4300 国标水印封装。",
+    specs: [
+      "<strong>支持断线无损续传（--context-ir-resume）</strong>：长片批量渲染中途断网或关机，重连后直接按日志恢复进度，绝不重复扣点或丢帧。",
+      "<strong>文戏 6+4 / 武戏 6+6 / Pika 6步极速自动切换</strong>：根据镜头类型自动挂载对应采样步数、MysticXXX 去油光与 @四只兔子 武打加速。",
+      "<strong>自动导出【影视四联标准检视板】</strong>：每镜生成完毕自动拼合母图、预演图、抽帧序列与声谱图送交 06/07 双盲审计。"
+    ],
+    chips: ["jintai_h3_selflift_runner", "jintai_pika_h3_flex_runner", "3×5s 98秒极速蒙太奇", "Topaz 4K 直通"]
+  },
+  {
+    badge: "一键导出可编辑工程",
+    badgeClass: "cyan",
+    metric: "jianying-editor + DaVinci",
+    title: "② 剪映专业版草稿 × 达芬奇工程直出",
+    desc: "彻底打破 AI 视频“只能给一条死 MP4、老师要改半秒台词就得全部重做”的困局！金泰支持将生成的所有分轨素材一键打包为本地非线性编辑软件工程。",
+    specs: [
+      "<strong>pyJianYingDraft 本地剪映草稿直出</strong>：自动在 Windows 剪映草稿目录生成包含全部独立视频分镜轨、VoiceStudio 干声对白轨、HDemucs 纯净拟音轨、MiniMax 整轨配乐轨与对齐字幕轨的可编辑工程。",
+      "<strong>达芬奇 ACES 调色节点树一键挂载</strong>：通过 davinci-ai-color-workflow 自动配置一级校色、二级肤色隔离蒙版与胶片颗粒节点。",
+      "<strong>AutoClip 1.5.7 智能高光粗剪联动</strong>：支持长视频课程、访谈与纪录片素材自动语义切片与粗剪。"
+    ],
+    chips: ["jianying-editor", "剪映多轨可编辑草稿", "davinci-ai-color-workflow", "AutoClip 1.5.7", "分轨干湿音独立导出"]
+  },
+  {
+    badge: "一键式影视解说与二创",
+    badgeClass: "green",
+    metric: "narrator-ai-cli v1.0.5",
+    title: "③ Narrator AI 影视解说全自动生产",
+    desc: "专为影视鉴赏课、拉片分析、短剧宣发与融媒体二创打造的一键式命令行工具（已完成 Windows UTF-8 与隔离环境加固），一条指令跑通解说全流程：",
+    specs: [
+      "<strong>六步全自动闭环</strong>：搜片 ➔ 选解说模板 ➔ 选情绪 BGM ➔ 选 63 种多语种配音 ➔ Gemini 生成深度拉片文案 ➔ 帧级音画对齐合成视频。",
+      "<strong>内置电影素材库与拉片模板</strong>：支持悬疑反转、深度影评、导演技法拆解、快节奏爽感解说等多种叙事模板。",
+      "<strong>零人工对轴</strong>：自动依据 TTS 语音时间戳精准裁剪拼接对应画面片段并压制动态字幕。"
+    ],
+    chips: ["narrator-ai-cli", "63种多语种解说配音", "拉片文案自动生成", "音画时间戳自动对齐"]
+  },
+  {
+    badge: "一键式手绘绘本动画",
+    badgeClass: "",
+    metric: "story-to-handdrawn-video",
+    title: "④ 327 套手绘风格绘本视频一键生成",
+    desc: "输入一篇中文故事、儿童绘本文案、历史典故或有序插图，自动转化为极具人文温度的 Remotion 手绘动画视频，彻底摆脱 AI 流水线塑料感。",
+    specs: [
+      "<strong>297 种大师手绘笔触 + 30 套主题色板</strong>：默认内置备受好评的「彩铅日记风」，并支持水墨写意、木刻版画、水彩速写、敦煌壁画等 30 大类精选风格。",
+      "<strong>参考图视觉语法自动逆向模仿</strong>：上传任意一张美术系学生的手绘原画，自动提取其线条粗细、纸张肌理与设色逻辑并复用于整部短片。",
+      "<strong>手写体字卡自动生成</strong>：内置中文手写体字卡生成与画笔涂抹转场动画。"
+    ],
+    chips: ["story-to-handdrawn-video", "297种手绘风格配方", "30套艺术色板", "参考画风自动提取"]
+  },
+  {
+    badge: "一键式 60fps 代码级大片",
+    badgeClass: "cyan",
+    metric: "Shotcraft + Remotion + SeeCode",
+    title: "⑤ 152 张镜头卡 × 60fps 代码渲染引擎",
+    desc: "当制作学院年度宣传片、先锋音乐 MV、动态数据可视化或片头包装时，无需经过扩散模型抽卡，直接由 Claude Opus 5.5 编写确定性代码渲染 1080p60/4K60 视频！",
+    specs: [
+      "<strong>video-shotcraft（152 张电影感镜头配方卡）</strong>：将真实网页/剧照转化为带 2.5D 景深视差运镜、毫秒级节拍同步切镜（Beat-Synced Cuts）与拟音设计的电影级宣传片（内置 Ink Press 模板）。",
+      "<strong>pdoom-video / Remotion / HyperFrames 先锋 MV 管线</strong>：已实战产出《一念万象》168 秒 1080p60（10,079帧）多重宇宙 MV 与《源自内心·源自算力》品牌大片。",
+      "<strong>pixel2motion 迪士尼 12 原则矢量片头 + SeeCode 多维工作台</strong>：任意校徽/片名 Logo 一键转 SVG 并生成含挤压拉伸、预备动作与刀尖高光的动态演绎；SeeCode 支持 5种视图×5种设计流派×8套配色一键编译。"
+    ],
+    chips: ["video-shotcraft (152镜头卡)", "Remotion 1080p60", "HyperFrames", "pixel2motion 迪士尼12原则", "SeeCode 5×5×8工作台"]
+  },
+  {
+    badge: "每日20:00优选 · 零重启直出",
+    badgeClass: "green",
+    metric: "jintai_rh_approved_runner",
+    title: "⑥ RunningHub 每日 S 级优选一键直通",
+    desc: "后台 rh_daily_curator.py 每日 20:00 自动从社区筛查最新高能工作流，经四重防毒门控（拦截扣费黑盒/NSFW/清显存破坏节点）后封装为一键 CLI 供师生即刻调用：",
+    specs: [
+      "<strong>#1 Qwen2511 一键高一致换装（20.35s 直出）</strong>：保持演员面部与姿态 100% 不变，20 秒极速更换任意朝代或现代服装。",
+      "<strong>#2 Qwen2511 三图跨画幅融合 × SeedVR2 直出 2K（46.11s）</strong>：将人物图 + 场景图 + 道具图无痕融合并超分直出 2560×1440 剧照。",
+      "<strong>#3 Qwen-Image-2.1 原生 2K RGBA 透明道具 & 零乱码牌匾</strong>：28 秒直出 2048×2048 四通道透明抠图资产（99.6% 二值分离），89 秒直出「弘文館」等复杂中文牌匾零乱码剧照。"
+    ],
+    chips: ["jintai_rh_approved_runner", "20s极速高一致换装", "三图融合SeedVR2 2K", "2K RGBA透明通道直出", "中文牌匾零乱码"]
+  }
+];
+
+// ============================================================================
+// 11. 全谱系类型化深度定制 —— 适配河传 18 个专业的 6 大垂直片种包 (Pillar 11)
+// ============================================================================
+const GENRE_CARDS = [
+  {
+    genre: "history",
+    badge: "类型定制① · 历史正剧 / 诗词文博",
+    badgeClass: "",
+    metric: "31.8万考证 + 宋式极简",
+    title: "历史古装与诗词文博定制包（《唐魂》）",
+    desc: "专为中国古典诗词微电影、历史正剧、博物馆文物活化与非遗纪录短片打造，彻底杜绝“影楼塑料古装、朝代形制穿帮、汉字牌匾鬼画符”三大通病。",
+    specs: [
+      "<strong>先考证后生成（65 级子朝代强制映射）</strong>：自动联通《中国历史文化图库》318,412 条中文十二段零否定词提示词与《中华文明影像库》9,604 张文物真迹，锁死冠巾、明光铠、蹀躞带与建筑斗拱形制。",
+      "<strong>2027 宋式极简留白 + 古籍半调档案审美</strong>：自动挂载 song-dynasty-ink-minimalism-aesthetic（85% 生宣留白、宿墨毛细渗化、0.25pt 宋刻乌丝栏线），拦截伪古风大红灯笼与塑料花瓣堆砌。",
+      "<strong>汉字牌匾/圣旨/书法微距零乱码</strong>：由本地 Qwen-Image-2.1 与微距逐字笔顺核验管线保障片中匾额、旌旗与书法题跋 100% 准确。"
+    ],
+    chips: ["31.8万历史考证词库", "song-dynasty-ink-minimalism", "Qwen-2.1 汉字零乱码", "胡金铨/张艺谋导演镜", "唐魂10首实战底座"]
+  },
+  {
+    genre: "combat",
+    badge: "类型定制② · 冷兵器 / 武侠动作",
+    badgeClass: "cyan",
+    metric: "四问因果链 + H3 6+6",
+    title: "冷兵器战场与武侠功夫定制包（零假摔）",
+    desc: "专为武侠动作片、古代战争史诗与现代格斗短片定制，解决 AI 打戏“谁打谁分不清、挥兵器像广播体操、挨打瞬间假摔倒地”的行业死穴。",
+    specs: [
+      "<strong>画风分流双轨反着写（爆老师 EP.02）</strong>：3D 国漫自动锁死「角度+轨迹+定格」；真人写实自动锁死「受力+退几步+扬多少土+每击落点」并拦截一切动画感词汇。",
+      "<strong>单回合必答「四问四句因果链」（爆老师 EP.03）</strong>：强制量化 ①谁发力 ➔ ②打在哪（刀碰刀迸火星 vs 刀砍木盾崩木屑）➔ ③退几步（退一步是晃、退三步是崩、靴底犁出寸许尘沟）➔ ④站住没有。",
+      "<strong>八大功夫宗师器械库 + HDemucs 纯净拟音</strong>：内置马氏通备秦剑、董志华疯魔棍、丈八蛇矛等 8 套非遗武术招式库与九宫格 15 秒一镜到底模板，配合 HDemucs 剥离战场伪人声、100% 提纯刀盾撞击拟音。"
+    ],
+    chips: ["stylized-vs-photoreal-combat", "four-questions-combat-prompts", "@四只兔子武打四件套", "8大功夫名家器械库", "HDemucs 刀盾拟音提纯"]
+  },
+  {
+    genre: "drama",
+    badge: "类型定制③ · 精品短剧 / 情感文戏",
+    badgeClass: "green",
+    metric: "情绪六段链 + PRISM",
+    title: "精品微短剧与高张力心理文戏定制包",
+    desc: "专为竖屏/横屏微短剧、年代情感剧、悬疑心理对峙戏打造，兼顾符合《微短剧发展管理办法》的强节奏商业爽感与电影级细腻微表情。",
+    specs: [
+      "<strong>短剧黄金前 3 秒反转钩子 + 去 AI 腔台词</strong>：short-drama-combat-plot-design 密集编排冲突反转点，de-ai-writing-orchestrator 消除翻译腔与书面套话。",
+      "<strong>人物情绪「六段反应链」微表情编译</strong>：将心理潜台词拆解为「刺激源➔瞳孔/呼吸第一生理反应➔视线转移➔肢体微顿➔爆发或克制➔余韵定格」，驱动 H3 演活欲言又止与隐忍泪光。",
+      "<strong>实拍热梗复刻与多角色换脸换声</strong>：支持以爆款实拍短剧为动作母本，通过 Seedance 2.5 / Easy H3 与 FaceFusion 完成多角色精准替换与 VoiceStudio 情绪配音重混。"
+    ],
+    chips: ["character-emotion-performance", "ai-micro-expression-director", "short-drama-plot-design", "PRISM 跨切镜状态传递", "杜琪峰/王家卫光影"]
+  },
+  {
+    genre: "vfx",
+    badge: "类型定制④ · 仙侠奇幻 / 视效大片",
+    badgeClass: "",
+    metric: "Genjutsu + 万剑法阵",
+    title: "高概念仙侠奇幻与故障粒子 VFX 定制包",
+    desc: "专为数字媒体艺术系、动画系与视效导演打造，将原本需要百万级 Houdini/AE 特效团队数月制作的奇幻法相与赛博粒子，压缩为 A/B 机分钟级直出管线。",
+    specs: [
+      "<strong>本地化 Genjutsu 四大幻术引擎</strong>：在 A 机 8 卡原生跑通关键帧锚点变身（Keyframe Morph）、空间崩解、维度传送门与流体能量爆发，内置六大防翻车秘诀。",
+      "<strong>仙侠天穹万剑法阵（五维史诗法相公式）</strong>：支持「微观孤影×宏观巨阵尺度反差」、「太极八卦六阶几何拓扑演进」与「0.3s 剑刃挡半脸寒眸极特写 + 毫秒级闪白冲击帧（Impact Frames）」。",
+      "<strong>故障艺术×像素粒子 VFX 战斗</strong>：通过 glitch-pixel-particle-vfx-combat 将抽象特效转化为可被扩散模型精准渲染的四维物理描述，配合 B 机 Topaz 4K 60fps 交付。"
+    ],
+    chips: ["genjutsu-vfx-director", "xianxia-sword-array-vfx", "glitch-pixel-particle-vfx", "Tripo 3D 异兽法器", "Topaz 4K 60fps"]
+  },
+  {
+    genre: "doc",
+    badge: "类型定制⑤ · 纪录科普 / 政企栏目",
+    badgeClass: "cyan",
+    metric: "678纪录片 + 真人1:1",
+    title: "纪录片、医疗宣教与政企真人栏目定制包",
+    desc: "专为新闻传播、纪录片导演、医疗健康宣教（如复兴医院八段锦全8集、妇幼科普）及政企汇报大片打造，强调绝对真实性、零鬼脸伪影与权威声画质感。",
+    specs: [
+      "<strong>真人主任/名师照片+真声 1:1 锚定出镜</strong>：锁死真人形象与 48kHz 本人声纹，严禁静态贴嘴，全片执行 100% 原尺寸人脸密集抽帧与人工逐句听审，确保零吞字、零鬼脸。",
+      "<strong>15 种代码级 MG 动态设计风格 + 口播解说</strong>：搭载 mg-styles-15 与 video-talkcraft，一键生成瑞士国际主义大字简报、医疗机理解剖动效与政企数据可视化。",
+      "<strong>678 部纪录片教学库与 128 部奥斯卡自然光摄影</strong>：直接调用经典纪录片叙事结构与 oscar-cine-natural-light 真实环境光比。"
+    ],
+    chips: ["documentary-director", "mg-styles-15 (15种MG动效)", "video-talkcraft 口播包装", "真人医护/名师1:1锚定", "678部纪录片教学库"]
+  },
+  {
+    genre: "anim",
+    badge: "类型定制⑥ · 绘本动画 / 先锋 MV",
+    badgeClass: "green",
+    metric: "327手绘 + 2027四审美",
+    title: "实验动画、先锋音乐 MV 与舞台视觉包",
+    desc: "专为动画系、录音音乐系、戏剧舞台美术系打造，融合 2027 反 AI 精致审美趋势与节拍锁定代码渲染引擎，让学生作品在电影节与毕设展映中脱颖而出。",
+    specs: [
+      "<strong>2027 四大稀缺反 AI 审美全挂载</strong>：一键编译「笨拙·新野兽派孔版套印错位（Risograph）」、「触觉·重磅棉纸盲压浮雕与捏塑」、「旧时间·30 LPI 粗目半调复印档案」与「宋式极简墨晕」。",
+      "<strong>BPM 节拍锁定先锋音乐 MV（如《一念万象》）</strong>：A 机 MiniMax Music 3 生成原创人声曲 ➔ Demucs + Whisper 毫秒级词级对齐 ➔ WebGL/Three.js/GLSL 渲染 60fps 视听奇观。",
+      "<strong>ToonFlow 漫剧工作台 + 327 套手绘绘本</strong>：支持条漫/漫剧连续分镜生产与彩铅/水墨绘本动画一键渲染。"
+    ],
+    chips: ["neo-fauvist-risograph", "tactile-materialism-embossed", "archival-xerox-halftone", "pdoom-video 60fps MV", "ToonFlow 漫剧工作台"]
+  }
+];
+
+function renderStorageSection() {
+  const flowEl = document.getElementById("storageFlowStrip");
+  if (flowEl) {
+    flowEl.innerHTML = STORAGE_FLOW.map(s => `
+      <div class="mech-step">
+        <div class="mech-step-num">${s.num}</div>
+        <div class="mech-step-title">${s.title}</div>
+        <div class="mech-step-body">${s.body}</div>
+        <div class="mech-step-code">${s.code}</div>
+      </div>
+    `).join("");
+  }
+  const gridEl = document.getElementById("storageCardsGrid");
+  if (gridEl) {
+    gridEl.innerHTML = STORAGE_CARDS.map(c => `
+      <article class="cine-card">
+        <div>
+          <div class="card-badge-row">
+            <span class="pill-badge ${c.badgeClass}">${c.badge}</span>
+            <span style="font-family:var(--font-mono);font-size:0.78rem;font-weight:800;color:var(--accent-primary);">${c.metric}</span>
+          </div>
+          <h3 class="card-title">${c.title}</h3>
+          <p class="card-body">${c.desc}</p>
+          <ul class="spec-list">
+            ${c.specs.map(s => `<li>${s}</li>`).join("")}
+          </ul>
+        </div>
+        <div class="skill-tag-wrap">
+          ${c.chips.map(ch => `<span class="skill-chip">${ch}</span>`).join("")}
+        </div>
+      </article>
+    `).join("");
+  }
+}
+
+function renderHybridSection() {
+  const flowEl = document.getElementById("hybridFlowStrip");
+  if (flowEl) {
+    flowEl.innerHTML = HYBRID_FLOW.map(s => `
+      <div class="mech-step">
+        <div class="mech-step-num">${s.num}</div>
+        <div class="mech-step-title">${s.title}</div>
+        <div class="mech-step-body">${s.body}</div>
+        <div class="mech-step-code">${s.code}</div>
+      </div>
+    `).join("");
+  }
+  const gridEl = document.getElementById("hybridCardsGrid");
+  if (gridEl) {
+    gridEl.innerHTML = HYBRID_CARDS.map(c => `
+      <article class="cine-card">
+        <div>
+          <div class="card-badge-row">
+            <span class="pill-badge ${c.badgeClass}">${c.badge}</span>
+            <span style="font-family:var(--font-mono);font-size:0.8rem;font-weight:800;color:var(--accent-primary);">${c.metric}</span>
+          </div>
+          <h3 class="card-title">${c.title}</h3>
+          <p class="card-body">${c.desc}</p>
+          <ul class="spec-list">
+            ${c.specs.map(s => `<li>${s}</li>`).join("")}
+          </ul>
+        </div>
+        <div class="skill-tag-wrap">
+          ${c.chips.map(ch => `<span class="skill-chip">${ch}</span>`).join("")}
+        </div>
+      </article>
+    `).join("");
+  }
+}
+
+function renderDirectorSection() {
+  const flowEl = document.getElementById("directorFlowStrip");
+  if (flowEl) {
+    flowEl.innerHTML = DIRECTOR_FLOW.map(s => `
+      <div class="mech-step">
+        <div class="mech-step-num">${s.num}</div>
+        <div class="mech-step-title">${s.title}</div>
+        <div class="mech-step-body">${s.body}</div>
+        <div class="mech-step-code">${s.code}</div>
+      </div>
+    `).join("");
+  }
+  const gridEl = document.getElementById("directorCardsGrid");
+  if (gridEl) {
+    gridEl.innerHTML = DIRECTOR_CARDS.map(c => `
+      <article class="cine-card">
+        <div>
+          <div class="card-badge-row">
+            <span class="pill-badge ${c.badgeClass}">${c.badge}</span>
+            <span style="font-family:var(--font-mono);font-size:0.78rem;font-weight:800;color:var(--accent-primary);">${c.metric}</span>
+          </div>
+          <h3 class="card-title">${c.title}</h3>
+          <p class="card-body">${c.desc}</p>
+          <ul class="spec-list">
+            ${c.specs.map(s => `<li>${s}</li>`).join("")}
+          </ul>
+        </div>
+        <div class="skill-tag-wrap">
+          ${c.chips.map(ch => `<span class="skill-chip">${ch}</span>`).join("")}
+        </div>
+      </article>
+    `).join("");
+  }
+}
+
+function renderOneclickSection() {
+  const gridEl = document.getElementById("oneclickCardsGrid");
+  if (!gridEl) return;
+  gridEl.innerHTML = ONECLICK_CARDS.map(c => `
+    <article class="cine-card">
+      <div>
+        <div class="card-badge-row">
+          <span class="pill-badge ${c.badgeClass}">${c.badge}</span>
+          <span style="font-family:var(--font-mono);font-size:0.78rem;font-weight:800;color:var(--accent-primary);">${c.metric}</span>
+        </div>
+        <h3 class="card-title">${c.title}</h3>
+        <p class="card-body">${c.desc}</p>
+        <ul class="spec-list">
+          ${c.specs.map(s => `<li>${s}</li>`).join("")}
+        </ul>
+      </div>
+      <div class="skill-tag-wrap">
+        ${c.chips.map(ch => `<span class="skill-chip">${ch}</span>`).join("")}
+      </div>
+    </article>
+  `).join("");
+}
+
+function renderGenreCards(filter = "all") {
+  const gridEl = document.getElementById("genreCardsGrid");
+  if (!gridEl) return;
+  const list = filter === "all" ? GENRE_CARDS : GENRE_CARDS.filter(c => c.genre === filter);
+  gridEl.innerHTML = list.map(c => `
+    <article class="cine-card">
+      <div>
+        <div class="card-badge-row">
+          <span class="pill-badge ${c.badgeClass}">${c.badge}</span>
+          <span style="font-family:var(--font-mono);font-size:0.78rem;font-weight:800;color:var(--accent-primary);">${c.metric}</span>
+        </div>
+        <h3 class="card-title">${c.title}</h3>
+        <p class="card-body">${c.desc}</p>
+        <ul class="spec-list">
+          ${c.specs.map(s => `<li>${s}</li>`).join("")}
+        </ul>
+      </div>
+      <div class="skill-tag-wrap">
+        ${c.chips.map(ch => `<span class="skill-chip">${ch}</span>`).join("")}
+      </div>
+    </article>
+  `).join("");
+}
+
+function filterGenreCards(genre, btn) {
+  document.querySelectorAll("#genreTabBar .tab-btn").forEach(b => b.classList.remove("active"));
+  if (btn) btn.classList.add("active");
+  renderGenreCards(genre);
+}
+
+// ============================================================================
+// 12. 河传师生「一句话创意 ➔ 超越预期成片」实时创演沙盘模拟器 (Pillar 12)
 // ============================================================================
 const SIM_PRESETS = [
   {
     idea: "【河传诗词文博短片命题】把王维《送元二使安西》（渭城朝雨浥轻尘，客舍青青柳色新）拍成一部 3 分钟的电影级短片：既有唐代安西都护府与渭城客舍的严谨历史形制，又融合 2027 宋式极简留白水墨意境，配王永利老师温润深沉的中英双语吟诵与古琴交响整轨配乐。",
     models: "金泰 2 号 (Gemini Argon 主控编导) + 金泰 3 号 (Claude Opus 5.5 诗词节奏精修) + NanoBanana Pro 2K 母图 + 本地 Qwen-Image-2.1 (零乱码题字) + A机 H3 SelfLift (6+4 文戏管线)",
-    vault: "自动调取《中国历史文化图库》盛唐渭城客舍建筑、唐代圆领袍揖别礼仪、安西驿道考证词（共 12 组十二段提示词）+ 《影视参考图集》胡金铨/侯孝贤留白镜头语法",
+    vault: "自动调取《中国历史文化图库》(31.8万词) 盛唐渭城客舍建筑、唐代圆领袍揖别礼仪、安西驿道考证词 + 《影视参考图集》(117.6万镜) 胡金铨/侯孝贤留白镜头语法",
     astra: "ASTRA 驱动 Blender 生成客舍庭院与渭城古道米制俯视机位图（m），设定 35mm 镜头缓慢横移轨迹并执行全时间轴深度并集防闪烁锁；驱动达芬奇加载汝窑天青胶片 LUT",
     audio: "A机 VoiceStudio (:3900) + VoxCPM2 48kHz 克隆并合成双语深情吟诵 + LatentSync 1.6 实心核椭圆蒙版精准对口型 + MiniMax Music 3 一次生成 180 秒整轨古琴箫管交响母带 (-14 LUFS)",
     skills: ["vague-idea-to-shooting-script", "song-dynasty-ink-minimalism-aesthetic", "chinese-directors", "hec-landscape-natural-light", "character-emotion-performance", "jintai-six-step-adversarial-workflow"],
-    exceed: "不仅生成 180 秒 1080P/4K 零抽卡成片，更自动交付：① 带“渭城朝雨”零乱码宋刻字卡的 2K 定妆图集、② 10 段落完整声画分镜表、③ 史料考证来源台账、④ 经 06(9.42分)/07(9.65分) 双盲审计通过的四联检视板与可二次编辑剪映/达芬奇工程包！"
+    exceed: "不仅生成 180 秒 1080P/4K 零抽卡成片，更自动交付：① 带“渭城朝雨”零乱码宋刻字卡的 2K 定妆图集、② 10 段落完整声画分镜表、③ 史料考证来源台账、④ 经 06(9.42分)/07(9.65分) 双盲审计通过的四联检视板与可二次编辑剪映草稿，并自动归入 S2/S3 校园数字资产库！"
   },
   {
-    idea: "【河传动作导演系命题】拍一段 15 秒一镜到底的盛唐边塞冷兵器交锋：荒漠夯土烽燧下，身穿明光铠的唐军校尉持两米长柄陌刀迎战突厥狼骑，要求刀劈圆盾火星四溅、敌兵連退三步单膝跪地卸力，动作拳拳到肉，拒绝动画悬浮感与假摔。",
+    idea: "【河传动作导演系命题】拍一段 15 秒一镜到底的盛唐边塞冷兵器交锋：荒漠夯土烽燧下，身穿明光铠的唐军校尉持两米长柄陌刀迎战突厥狼骑，要求刀劈圆盾火星四溅、敌兵连退三步单膝跪地卸力，动作拳拳到肉，拒绝动画悬浮感与假摔。",
     models: "金泰 1 号 (GPT-6 Astra 物理控制) + 金泰 2 号 (Gemini Argon 动作分镜) + 本地 Qwen-Image-Edit-2511 (九宫格关键帧锁死) + A机 8×H100 MiniMax H3 SelfLift (6+6 武戏管线 + @四只兔子 武打四件套 speed=3.0)",
     vault: "自动调取《中国历史文化图库》HL-TANG-CO-0004（唐代明光铠武士）、HL-TANG-PR-0008（单头长木柄宽刃陌刀，自动拦截双头刀错画）、HL-XHAN-LS-0001（边塞夯土烽燧）",
     astra: "ASTRA 驱动 Tripo 3D 构建陌刀与圆盾三维刚体，在 Blender 中通过手机无线体感运镜设计 15 秒斯坦尼康贴身跟拍轨迹，执行落轨前零穿模校验与 180° 越轴检测",
@@ -2038,7 +2780,7 @@ const SIM_PRESETS = [
   {
     idea: "【河传戏剧影视表演与摄影系命题】雨夜旧街茶楼内，两位昔日挚友隔桌对弈，表面平静叙旧，实则暗流涌动。要求采用杜琪峰银河映像冷暖高反差布光，细腻展现角色从听到试探台词、瞳孔微缩、指尖捻棋停顿到苦笑落子的完整微表情变化。",
     models: "金泰 2 号 (Gemini Carbon 微表演拉片) + 金泰 3 号 (Claude Opus 5.5 潜台词精修) + GPT Image 2.5 (角色 12×8 面部网格锚定) + A机 H3 PRISM 跨切镜状态传递管线",
-    vault: "自动调取《影视参考图集》杜琪峰《黑社会》《枪火》及奥斯卡最佳摄影 Chiaroscuro 明暗对照经典镜次共 18 条镜头描述",
+    vault: "自动调取《影视参考图集》(117.6万镜) 杜琪峰《黑社会》《枪火》及奥斯卡最佳摄影 Chiaroscuro 明暗对照经典镜次共 18 条镜头描述",
     astra: "ASTRA 驱动 Blender 布置茶楼「三角几何站位」与唯一顶置暖光吊灯 + 窗外冷青雨夜光比（8:1），正反打切镜严格通过 XZ 平面有符号距离越轴校验，驱动达芬奇执行二级肤色隔离调色",
     audio: "VoxCPM2 双输入声纹/韵律解耦配音（精准还原欲言又止的气声与停顿）+ LatentSync 1.6 逐帧口型精修（严禁静态贴嘴，全用原生帧重渲）+ 《声仓》窗外夜雨敲击瓦片与棋子落盘清脆拟音",
     skills: ["character-emotion-performance", "ai-micro-expression-director", "chinese-directors", "oscar-cine-chiaroscuro", "hec-motivated-practical-light", "davinci-ai-color-workflow"],
@@ -2051,7 +2793,25 @@ const SIM_PRESETS = [
     astra: "ASTRA 驱动 Tripo 3D 生成飞天琵琶与古剑 3D 阵列，在 Blender 中解算 FPV 穿越向心压弯横滚角与能量守恒钟摆穿楼轨迹，联动本地 Genjutsu 四大幻术工作流执行关键帧锚点变身",
     audio: "A机 MiniMax Music 3 一次生成 30 秒敦煌琵琶 × 赛博电子交响高燃曲 + 毫秒级节拍对齐（Beat-Synced Cuts）+ 剑阵破空粒子音效封装",
     skills: ["genjutsu-vfx-director", "xianxia-sword-array-vfx-prompts", "glitch-pixel-particle-vfx-combat", "tripo-3d", "jintai-b-topaz-blender-mcp", "remotion-best-practices"],
-    exceed: "融合微观孤影×宏观巨阵尺度反差、六阶几何阵法拓扑演进与 0.3s 剑刃挡半脸寒眸极特写，A 机 8 卡渲染后直通 B 机 Topaz 4K 60fps 母带封装，直接达到国际电影节展映与学院年度大秀水准！"
+    exceed: "融合微观孤影×宏观巨阵尺度反差、六阶几何阵法拓扑演进与 0.3s 剑刃挡半脸寒眸极特写，A 机 8 卡渲染后直通 B 机 Topaz 4K 60fps 母带封装，直接达到国际电影节展映水准！"
+  },
+  {
+    idea: "【真人实拍×AI虚实融合命题】河传表演系学生在普通排练教室用手机实拍了一段 20 秒的双人拔剑对峙与挥砍走位视频，希望免去绿幕抠像，直接把两名穿便服的学生无痕替换为身披盛唐明光铠与西夏旋襕袍的宿将，保留原实拍视频的精准动作节奏与眼神交锋，并换成本人克隆配音。",
+    models: "A机 8×H100 SAM 3.1 (sam3.1_multiplex_fp16 动态分割) + 小肥猴 ComfyUI-FeiHou-Easy-H3 二段式换角 + Qwen-Image-Edit-2511 (定妆卡局部锚定) + A机 :3910 FaceFusion 3.9.2 (XSeg 隔剑刃修脸)",
+    vault: "自动调取《中国历史文化图库》盛唐明光铠宿将与西夏紫皂地绣盘球子花旋襕袍考证母图，生成 @CHR 双人标准三视图定妆卡",
+    astra: "实拍视频叠编号透视网格由 ASTRA 反求教室相机焦段，MiniMax-Remover 自动擦除背景黑板与排练室杂物并替换为边塞军帐 3D 景深背景，全时间轴深度并集锁死防闪烁",
+    audio: "A机 VoxCPM2 48kHz 克隆两位学生本人声线并升级为苍劲宿将音色 + HDemucs 剥离教室环境杂音、注入精钢拔剑与甲叶摩擦原生拟音",
+    skills: ["feihou-h3-character-swap-motion", "gpt-image2-character-board", "voicestudio", "jianying-editor", "jintai-six-step-adversarial-workflow"],
+    exceed: "零绿幕棚成本！实拍动作与生成视频相关系数高达 0.999978，剑刃掠过面部时由 FaceFusion XSeg 精准保留前景刀光不糊脸，一键同步导出 1080P 成片与 Windows 剪映多轨可编辑草稿！"
+  },
+  {
+    idea: "【3D导演台手机运镜与实时导播命题】导演系老师在课堂上演示一场“古建大殿内四人圆桌密谋、突然刺客破窗而入”的复杂调度戏：要求学生用手机扫码体验无线体感运镜与实时动捕，并用键盘 1~9 键像电视台导播一样实时录切 6 个机位，自动拦截越轴错误。",
+    models: "金泰 1 号 (GPT-6 Astra 3D导演台控制中枢) + Tripo 3D (大殿桌椅屏风资产) + Blender 4.2 OptiX 实时预演 + A机 8×H100 Pika-H3-Flex / SelfLift 多镜并发渲染",
+    vault: "自动调取《中国历史文化图库》唐宋殿堂建筑形制与《影视参考图集》库布里克/杜琪峰多人物几何站位调度镜次",
+    astra: "线上 3D 导演台生成 WebRTC 局域网二维码 ➔ 学生手机扫码开启零上传 33 点体感动捕（XY=1.6Hz / Z=0.15Hz 非对称滤波防滑步）驱动刺客破窗动作 ➔ 老师边回放边按 1~6 数字键「⏺ 录切换」，zF 算法实时拦截 1 次 180° 越轴并自动修正机位",
+    audio: "《声仓》古建木窗碎裂与衣袂破风原生音效 + MiniMax Music 3 悬疑琵琶鼓点整轨配乐 + 多角色空间方位立体声混音",
+    skills: ["jintai-blender-3d-previs", "cinema-character-staging-dispatch", "steadicam-tracking-shot", "hec-frame-depth-blocking", "seecode"],
+    exceed: "把枯燥的“轴线理论课”变成沉浸式互动片场！当场生成米制（m）俯视机位平面图、零穿模 3D 预演视频、全时间轴防闪烁 Depth 序列与 A 机渲染成片，全套工程自动存入 S2 温存储供全班同学课后复盘！"
   }
 ];
 
@@ -2210,6 +2970,11 @@ window.addEventListener("DOMContentLoaded", () => {
   renderVaultCards();
   showPromptSample(0);
   renderMcpCards();
+  renderStorageSection();
+  renderHybridSection();
+  renderDirectorSection();
+  renderOneclickSection();
+  renderGenreCards("all");
   loadSimPreset(0);
   initHeroCanvas();
 });
