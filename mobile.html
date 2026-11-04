@@ -2821,14 +2821,24 @@ const MOBILE_LOCAL_URLS = {
   film: "http://127.0.0.1:18890/jintai-history-image-library/film.html?jt_ok=6e95ff3e"
 };
 
-let mobileGatewayReady = (location.protocol === "file:" || location.hostname === "127.0.0.1" || location.hostname === "localhost");
+let mobileGatewayReady = (location.hostname === "127.0.0.1" || location.hostname === "localhost");
 (function probeMobileGateway() {
   if (location.hostname === "127.0.0.1" || location.hostname === "localhost") {
     mobileGatewayReady = true;
     return;
   }
-  fetch("http://127.0.0.1:18890/api/health", { mode: "no-cors", cache: "no-store" })
-    .then(() => { mobileGatewayReady = true; })
+  fetch("http://127.0.0.1:18890/__health", { mode: "cors", cache: "no-store" })
+    .then(r => {
+      if (!r || !r.ok) return;
+      mobileGatewayReady = true;
+      try {
+        if (typeof renderMobileCardList === "function") {
+          renderMobileCardList(AUDIO_CARDS, "mAudioList");
+          renderMobileCardList(VAULT_CARDS, "mVaultList");
+        }
+        if (typeof showMobilePrompt === "function") showMobilePrompt(currentMobilePromptIdx || 0);
+      } catch (e) {}
+    })
     .catch(() => { mobileGatewayReady = false; });
 })();
 
