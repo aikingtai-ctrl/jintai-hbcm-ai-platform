@@ -996,7 +996,7 @@ html[data-theme="tactile-archival"] .m-tab-btn.active {
     <div class="m-card" style="margin-bottom:0.8rem;border-color:var(--accent-secondary);">
       <div class="m-card-head">
         <span class="m-badge">🔊 四轨真品在线试听 &amp; 平台证实</span>
-        <a href="https://aikingtai-ctrl.github.io/shengcang-sound-library/#sound-library" target="_blank" rel="noopener" class="m-mini-btn accent">🔊 直跳《声仓》203条真品 ↗</a>
+        <a href="https://aikingtai-ctrl.github.io/shengcang-sound-library/?jt_ok=6e95ff3e#sound-library" onclick="return openMobilePlatform('shengcang', event)" target="_blank" rel="noopener" class="m-mini-btn accent">🔊 直跳《声仓》203条真品 ↗</a>
       </div>
       <div class="m-tabs-scroll" style="margin-bottom:0.4rem;">
         <button class="m-tab-btn active" onclick="playMobileAudioStem(0, this)">🎤 轨1: VoxCPM2 48kHz干声</button>
@@ -1016,7 +1016,7 @@ html[data-theme="tactile-archival"] .m-tab-btn.active {
     <div class="m-sec-tag">PILLAR 05 // 1.49M+ PROMPT &amp; SHOT VAULT</div>
     <div style="display:flex;justify-content:space-between;align-items:center;gap:0.5rem;">
       <h2 class="m-sec-title" style="margin-bottom:0.3rem;">五、每日扩库 149.4 万+ 双图库</h2>
-      <a href="https://aikingtai-ctrl.github.io/jintai-domestic-portal/" target="_blank" rel="noopener" class="m-mini-btn accent">🌐 四库总入口 ↗</a>
+      <a href="https://aikingtai-ctrl.github.io/jintai-domestic-portal/?jt_ok=6e95ff3e" onclick="return openMobilePlatform('portal', event)" target="_blank" rel="noopener" class="m-mini-btn accent">🌐 四库总入口 ↗</a>
     </div>
     <p class="m-sec-desc">国内手机/微信免代理秒开，统一门禁一次验证四站通用，每日 20:00–24:00 自动扩库。</p>
 
@@ -2639,7 +2639,8 @@ function renderMobileCardList(items, containerId) {
     const chips = c.chips || c.skills || [];
     const expandClass = allMobileExpanded ? "expanded" : "";
     const btnLabel = allMobileExpanded ? "▴ 收起详细技术指标" : `▾ 展开 ${bullets.length} 项核心技术详情`;
-    const externalBtn = c.url ? `<div style="margin-top:0.55rem;"><a href="${c.url}" target="_blank" rel="noopener" class="m-mini-btn accent" style="display:inline-block;">${c.btnText}</a></div>` : "";
+    const pfKey = c.platformKey || "";
+    const externalBtn = (c.url || pfKey) ? `<div style="margin-top:0.55rem;"><a href="${pfKey ? getBestMobilePlatformUrl(pfKey) : c.url}" ${pfKey ? `onclick="return openMobilePlatform('${pfKey}', event)"` : ""} target="_blank" rel="noopener" class="m-mini-btn accent" style="display:inline-block;">${c.btnText || c.platformLabel || "🚀 直跳金泰平台验证 ↗"}</a></div>` : "";
     return `
       <article class="m-card ${expandClass}">
         <div class="m-card-head">
@@ -2799,17 +2800,48 @@ function playMobileAudioStem(idx, btn) {
 }
 
 const MOBILE_PLATFORM_URLS = {
-  portal: "https://aikingtai-ctrl.github.io/jintai-domestic-portal/",
-  history: "https://aikingtai-ctrl.github.io/jintai-history-image-library/",
-  shengcang: "https://aikingtai-ctrl.github.io/shengcang-sound-library/#sound-library",
-  doc: "https://aikingtai-ctrl.github.io/documentary-classroom-library/",
-  civilization: "https://aikingtai-ctrl.github.io/zhonghua-civilization-atlas/",
-  film: "http://172.16.0.114:3000/",
-  canvas: "http://172.16.0.114:3000/",
+  portal: "https://aikingtai-ctrl.github.io/jintai-domestic-portal/?jt_ok=6e95ff3e",
+  history: "https://aikingtai-ctrl.github.io/jintai-history-image-library/?jt_ok=6e95ff3e",
+  shengcang: "https://aikingtai-ctrl.github.io/shengcang-sound-library/?jt_ok=6e95ff3e#sound-library",
+  doc: "https://aikingtai-ctrl.github.io/documentary-classroom-library/?jt_ok=6e95ff3e",
+  civilization: "https://aikingtai-ctrl.github.io/zhonghua-civilization-atlas/?jt_ok=6e95ff3e",
+  film: "https://aikingtai-ctrl.github.io/jintai-history-image-library/film.html?jt_ok=6e95ff3e",
+  canvas: "https://172.16.0.114:3000/",
   comfy: "http://172.16.0.10:8188/",
-  voicestudio: "http://172.16.0.10:3900/",
-  facefusion: "http://172.16.0.10:3910/"
+  voicestudio: "http://127.0.0.1:3900/",
+  facefusion: "http://127.0.0.1:3910/"
 };
+
+const MOBILE_LOCAL_URLS = {
+  portal: "http://127.0.0.1:18890/?jt_ok=6e95ff3e",
+  history: "http://127.0.0.1:18890/jintai-history-image-library/?jt_ok=6e95ff3e",
+  shengcang: "http://127.0.0.1:18890/shengcang-sound-library/?jt_ok=6e95ff3e#sound-library",
+  doc: "http://127.0.0.1:18890/documentary-classroom-library/?jt_ok=6e95ff3e",
+  civilization: "http://127.0.0.1:18890/zhonghua-civilization-atlas/?jt_ok=6e95ff3e",
+  film: "http://127.0.0.1:18890/jintai-history-image-library/film.html?jt_ok=6e95ff3e"
+};
+
+let mobileGatewayReady = (location.protocol === "file:" || location.hostname === "127.0.0.1" || location.hostname === "localhost");
+(function probeMobileGateway() {
+  if (location.hostname === "127.0.0.1" || location.hostname === "localhost") {
+    mobileGatewayReady = true;
+    return;
+  }
+  fetch("http://127.0.0.1:18890/api/health", { mode: "no-cors", cache: "no-store" })
+    .then(() => { mobileGatewayReady = true; })
+    .catch(() => { mobileGatewayReady = false; });
+})();
+
+function getBestMobilePlatformUrl(key) {
+  if (mobileGatewayReady && MOBILE_LOCAL_URLS[key]) return MOBILE_LOCAL_URLS[key];
+  return MOBILE_PLATFORM_URLS[key] || MOBILE_PLATFORM_URLS.portal;
+}
+
+function openMobilePlatform(key, ev) {
+  if (ev) ev.preventDefault();
+  window.open(getBestMobilePlatformUrl(key), "_blank", "noopener");
+  return false;
+}
 
 function showMobilePrompt(idx, btn) {
   currentMobilePromptIdx = idx;
@@ -2820,7 +2852,7 @@ function showMobilePrompt(idx, btn) {
   const s = PROMPT_SAMPLES[idx] || PROMPT_SAMPLES[0];
   document.getElementById("mPromptMeta").textContent = s.meta;
   document.getElementById("mPromptBox").textContent = s.text;
-  const pfUrl = MOBILE_PLATFORM_URLS[s.platformKey] || MOBILE_PLATFORM_URLS.portal;
+  const pfUrl = getBestMobilePlatformUrl(s.platformKey || "portal");
   const proofEl = document.getElementById("mPromptProofBox");
   if (proofEl) {
     proofEl.innerHTML = `
@@ -2837,7 +2869,7 @@ function showMobilePrompt(idx, btn) {
           </div>
         </div>
         <div style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-top:0.5rem;">
-          <a href="${pfUrl}" target="_blank" rel="noopener" class="m-mini-btn accent">${s.platformLabel || "🏛️ 直跳金泰平台验证 ↗"}</a>
+          <a href="${pfUrl}" onclick="return openMobilePlatform('${s.platformKey || 'portal'}', event)" target="_blank" rel="noopener" class="m-mini-btn accent">${s.platformLabel || "🏛️ 直跳金泰平台验证 ↗"}</a>
           <a href="${s.img}" target="_blank" class="m-mini-btn">🔍 查看 2K 原图 ↗</a>
         </div>
       </div>
@@ -2878,7 +2910,7 @@ function runMobileSim() {
   `).join("");
 
   let p = SIM_PRESETS.find(item => item.idea === val) || SIM_PRESETS[0];
-  const pfUrl = MOBILE_PLATFORM_URLS[p.platformKey] || MOBILE_PLATFORM_URLS.portal;
+  const pfUrl = getBestMobilePlatformUrl(p.platformKey || "portal");
   document.getElementById("mSimOutput").innerHTML = `
     <div style="background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:12px;padding:0.8rem;">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.55rem;">
@@ -2908,8 +2940,8 @@ function runMobileSim() {
           </a>
         </div>
         <div style="display:flex;gap:0.4rem;flex-wrap:wrap;">
-          <a href="${pfUrl}" target="_blank" rel="noopener" class="m-mini-btn accent">🚀 ${p.platformLabel || "直跳金泰平台证实 ↗"}</a>
-          <a href="https://aikingtai-ctrl.github.io/jintai-domestic-portal/" target="_blank" rel="noopener" class="m-mini-btn">🌐 四大资源库总门户 ↗</a>
+          <a href="${pfUrl}" onclick="return openMobilePlatform('${p.platformKey || 'portal'}', event)" target="_blank" rel="noopener" class="m-mini-btn accent">🚀 ${p.platformLabel || "直跳金泰平台证实 ↗"}</a>
+          <a href="${getBestMobilePlatformUrl('portal')}" onclick="return openMobilePlatform('portal', event)" target="_blank" rel="noopener" class="m-mini-btn">🌐 四大资源库总门户 ↗</a>
         </div>
       </div>
     </div>

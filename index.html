@@ -4846,82 +4846,100 @@ function initHybridDemo() {
 // 全局真品实例验证模态窗 & 金泰平台免密直跳引擎 (Direct Jump & Live Proof Engine)
 // ============================================================================
 const JINTAI_GATE_TOKEN = "6e95ff3e55611d24803014d9de77b401f191f198f9372577e58f9aa2e51771d3";
+window.__JT_LOCAL_GW_ALIVE__ = (location.protocol === "file:" || location.hostname === "127.0.0.1" || location.hostname === "localhost");
+window.__JT_TUNNEL_BASE__ = "";
+
+function probeLocalGateway() {
+  fetch("http://127.0.0.1:18890/__health", { mode: "cors" })
+    .then(r => { if (r && r.ok) window.__JT_LOCAL_GW_ALIVE__ = true; })
+    .catch(() => { window.__JT_LOCAL_GW_ALIVE__ = false; });
+}
 
 const JINTAI_PLATFORMS = {
   portal: {
     name: "金泰四大文化视听资源库 · 国内免代理总门户",
-    url: "https://aikingtai-ctrl.github.io/jintai-domestic-portal/",
+    localUrl: "http://127.0.0.1:18890/?jt_ok=6e95ff3e",
+    url: "https://aikingtai-ctrl.github.io/jintai-domestic-portal/?jt_ok=6e95ff3e",
     lanOnly: false,
     desc: "统管《中国历史文化图库》《声仓》《纪录片教学资源库》《中华文明影像库》，已自动为您写入免密通行令牌！"
   },
   history: {
     name: "《中国历史文化图库》318,412 条中文十二段考证词库",
-    url: "https://aikingtai-ctrl.github.io/jintai-history-image-library/",
+    localUrl: "http://127.0.0.1:18890/jintai-history-image-library/index.html?jt_ok=6e95ff3e",
+    url: "https://aikingtai-ctrl.github.io/jintai-history-image-library/index.html?jt_ok=6e95ff3e",
     lanOnly: false,
     desc: "覆盖 9 大历史时期 × 65 级子朝代 × 12 大专业维度，点击即可在线检索并复制考证提示词。"
   },
   shengcang: {
     name: "《声仓 Shengcang》203 条原生无损影视拟音与音效库",
-    url: "https://aikingtai-ctrl.github.io/shengcang-sound-library/#sound-library",
+    localUrl: "http://127.0.0.1:18890/shengcang-sound-library/?jt_ok=6e95ff3e#sound-library",
+    url: "https://aikingtai-ctrl.github.io/shengcang-sound-library/?jt_ok=6e95ff3e#sound-library",
     lanOnly: false,
-    desc: "国内双 CDN 零延迟在线试听与入轨，涵盖刀剑交锋、塞外狂风、渭城朝雨等全场景影视拟音。"
+    desc: "本机 :18890 高速网关 + 国内双 CDN 零延迟在线试听与入轨，涵盖刀剑交锋、塞外狂风、渭城朝雨等全场景影视拟音。"
   },
   doc: {
     name: "《纪录片教学资源库》678 部课程档案",
-    url: "https://aikingtai-ctrl.github.io/documentary-classroom-library/",
+    localUrl: "http://127.0.0.1:18890/documentary-classroom-library/?jt_ok=6e95ff3e",
+    url: "https://aikingtai-ctrl.github.io/documentary-classroom-library/?jt_ok=6e95ff3e",
     lanOnly: false,
     desc: "678 部经典纪录片教学切入点、课堂讨论命题与拉片解析。"
   },
   civilization: {
     name: "《中华文明影像库》9,604 件博物馆高清文物真迹",
-    url: "https://aikingtai-ctrl.github.io/zhonghua-civilization-atlas/",
+    localUrl: "http://127.0.0.1:18890/zhonghua-civilization-atlas/?v=58&jt_ok=6e95ff3e#era=%E5%95%86",
+    url: "https://aikingtai-ctrl.github.io/zhonghua-civilization-atlas/?v=58&jt_ok=6e95ff3e#era=%E5%95%86",
     lanOnly: false,
     desc: "近万张历代器物、壁画、雕塑与书画真迹高清图与考证元数据。"
   },
   film: {
     name: "《影视参考图集》131.9 万镜大师电影分镜检索引擎",
-    url: "http://172.16.0.114:3000/",
-    publicFallback: "https://aikingtai-ctrl.github.io/jintai-domestic-portal/",
-    lanOnly: true,
+    localUrl: "http://127.0.0.1:18890/jintai-history-image-library/film.html?jt_ok=6e95ff3e",
+    url: "https://aikingtai-ctrl.github.io/jintai-history-image-library/film.html?jt_ok=6e95ff3e",
+    lanOnly: false,
     proofKey: "qwen21",
-    desc: "校园/局域网专线直连 `http://172.16.0.114:3000`（131.9万镜中英双语检索 + 金泰 AI 画布）；外网访问自动同步打开实测真品核验台与线上四库门户。"
+    desc: "131.9 万镜全球百二十大摄影体系大师电影分镜与提示词检索引擎。"
   },
   canvas: {
-    name: "金泰 AI 无限画布与多模态工作台 (172.16.0.114:3000)",
-    url: "http://172.16.0.114:3000/",
-    publicFallback: "https://aikingtai-ctrl.github.io/jintai-domestic-portal/",
+    name: "金泰 AI 无限画布与多模态工作台 (https://172.16.0.114:3000)",
+    localUrl: "https://172.16.0.114:3000/",
+    url: "https://172.16.0.114:3000/",
+    publicFallback: "https://aikingtai-ctrl.github.io/jintai-domestic-portal/?jt_ok=6e95ff3e",
     lanOnly: true,
     proofKey: "overview",
-    desc: "金泰内网生产画布 `http://172.16.0.114:3000`（支持 500 剧组容器并发）；同时为您打开 A 机 8×H100 实测真品验证总台。"
+    desc: "金泰内网生产画布 `https://172.16.0.114:3000`（支持 500 剧组容器并发）；同时为您打开 A 机 8×H100 实测真品验证总台。"
   },
   comfy: {
     name: "A机 8×H100 SXM ComfyUI 并发推理集群 (172.16.0.10:8188–8195)",
+    localUrl: "http://172.16.0.10:8188/",
     url: "http://172.16.0.10:8188/",
-    publicFallback: "https://aikingtai-ctrl.github.io/jintai-domestic-portal/",
+    publicFallback: "https://aikingtai-ctrl.github.io/jintai-domestic-portal/?jt_ok=6e95ff3e",
     lanOnly: true,
     proofKey: "qwen21",
     desc: "A机 8 卡 H100 生产集群 `:8188–8195`（6,237 节点 100% 对齐，205 套工作流常驻）。"
   },
   voicestudio: {
     name: "A机 VoiceStudio 多引擎语音克隆与合成工作台 (172.16.0.10:3900)",
+    localUrl: "http://127.0.0.1:3900/",
     url: "http://172.16.0.10:3900/",
-    publicFallback: "https://aikingtai-ctrl.github.io/shengcang-sound-library/",
+    publicFallback: "https://aikingtai-ctrl.github.io/shengcang-sound-library/?jt_ok=6e95ff3e",
     lanOnly: true,
     proofKey: "overview",
     desc: "A机 `:3900` 常驻 VoxCPM2 48kHz、IndexTTS2、Fish S2 Pro、OmniVoice 与 CosyVoice3 五大语音引擎。"
   },
   facefusion: {
     name: "A机 FaceFusion 3.9.2 H100 隔物修脸与超分工作台 (172.16.0.10:3910)",
+    localUrl: "http://127.0.0.1:3910/",
     url: "http://172.16.0.10:3910/",
-    publicFallback: "https://aikingtai-ctrl.github.io/jintai-domestic-portal/",
+    publicFallback: "https://aikingtai-ctrl.github.io/jintai-domestic-portal/?jt_ok=6e95ff3e",
     lanOnly: true,
     proofKey: "hybrid18",
     desc: "A机 `:3910` 独立常驻 52 份 ONNX 模型（XSeg 隔镜框/刀刃修脸 + GPEN 2048 远景精修）。"
   },
   asset_search: {
     name: "金泰 :18899 全局 4.5ms 数字资产秒搜驾驶舱",
+    localUrl: "http://127.0.0.1:18899/",
     url: "http://127.0.0.1:18899/",
-    publicFallback: "https://aikingtai-ctrl.github.io/jintai-domestic-portal/",
+    publicFallback: "https://aikingtai-ctrl.github.io/jintai-domestic-portal/?jt_ok=6e95ff3e",
     lanOnly: true,
     proofKey: "audit_quad",
     desc: "统管 S1/S2/S3 三级存储 101.4 万+ 份影视资产、考证词条与 812 项 Skills 的 4.5ms 极速检索引擎。"
@@ -4940,11 +4958,13 @@ function jumpToJintaiPlatform(key) {
   const pf = JINTAI_PLATFORMS[key] || JINTAI_PLATFORMS.portal;
   const isLocalOrLan = location.protocol === "file:" || location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname.startsWith("172.16.") || location.hostname.startsWith("192.168.");
   if (!pf.lanOnly) {
-    window.open(pf.url, "_blank", "noopener");
+    const targetUrl = (window.__JT_LOCAL_GW_ALIVE__ && pf.localUrl) ? pf.localUrl : pf.url;
+    window.open(targetUrl, "_blank", "noopener");
     return;
   }
   if (isLocalOrLan) {
-    window.open(pf.url, "_blank", "noopener");
+    const targetUrl = (window.__JT_LOCAL_GW_ALIVE__ && pf.localUrl) ? pf.localUrl : pf.url;
+    window.open(targetUrl, "_blank", "noopener");
   } else {
     // 外网/手机访问时，打开实测真品模态窗并附带内网直跳与线上四库直跳按钮
     openJintaiProofModal(pf.proofKey || "overview", pf);
@@ -5078,13 +5098,14 @@ function openJintaiProofModal(mode = "overview", lanPlatformInfo = null) {
       <div class="proof-btn-group">
         <button class="proof-jump-btn emerald" onclick="jumpToJintaiPlatform('portal')">🌐 金泰四库国内总门户 (免密直通) ↗</button>
         <button class="proof-jump-btn gold" onclick="jumpToJintaiPlatform('history')">🏛️ 《中国历史文化图库》(31.8万词) ↗</button>
+        <button class="proof-jump-btn" onclick="jumpToJintaiPlatform('film')">🎬 《影视参考图集》(131.9万镜) ↗</button>
         <button class="proof-jump-btn" onclick="jumpToJintaiPlatform('shengcang')">🔊 《声仓》拟音音效库 (203条真品) ↗</button>
         <button class="proof-jump-btn" onclick="jumpToJintaiPlatform('doc')">📚 《纪录片教学资源库》(678部) ↗</button>
         <button class="proof-jump-btn" onclick="jumpToJintaiPlatform('civilization')">🏺 《中华文明影像库》(9,604件真迹) ↗</button>
-        <a href="http://172.16.0.114:3000/" target="_blank" rel="noopener" class="proof-jump-btn">🎨 金泰 AI 画布与131.9万镜库 (172.16.0.114:3000) ↗</a>
+        <a href="https://172.16.0.114:3000/" target="_blank" rel="noopener" class="proof-jump-btn">🎨 金泰 AI 画布 (https://172.16.0.114:3000) ↗</a>
         <a href="http://172.16.0.10:8188/" target="_blank" rel="noopener" class="proof-jump-btn">⚡ A机 8×H100 ComfyUI (:8188–8195) ↗</a>
-        <a href="http://172.16.0.10:3900/" target="_blank" rel="noopener" class="proof-jump-btn">🎙️ A机 VoiceStudio (:3900) ↗</a>
-        <a href="http://172.16.0.10:3910/" target="_blank" rel="noopener" class="proof-jump-btn">🎭 A机 FaceFusion (:3910) ↗</a>
+        <a href="http://127.0.0.1:3900/" target="_blank" rel="noopener" class="proof-jump-btn">🎙️ A机 VoiceStudio (:3900) ↗</a>
+        <a href="http://127.0.0.1:3910/" target="_blank" rel="noopener" class="proof-jump-btn">🎭 A机 FaceFusion (:3910) ↗</a>
       </div>
     </div>
 
@@ -5135,6 +5156,7 @@ function closeJintaiProofModal() {
 // 初始化全页所有动态组件
 window.addEventListener("DOMContentLoaded", () => {
   preAuthorizeJintaiGate();
+  probeLocalGateway();
   renderModelCards("all");
   selectAstraNode("astra");
   renderSkillCards();
